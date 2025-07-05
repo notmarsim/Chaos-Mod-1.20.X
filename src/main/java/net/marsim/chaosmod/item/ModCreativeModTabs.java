@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,6 +21,11 @@ public class ModCreativeModTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.PINK_PARTICLE.get());
                         output.accept(ModItems.BLUE_PARTICLE.get());
+
+
+
+                        output.accept(ModBlocks.UNSTABLE_BLOCK.get());
+                        output.accept(ModBlocks.PINK_PARTICLE_ORE.get());
                     })
                     .build());
     public static void register(IEventBus eventBus){

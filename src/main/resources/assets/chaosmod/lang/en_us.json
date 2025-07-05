@@ -1,5 +1,11 @@
 {
-  "item.chaosmod.blueparticle": "Blue Particle",
-  "item.chaosmod.pinkparticle": "Pink Particle",
+  "item.chaosmod.blue_particle": "Blue Particle",
+  "item.chaosmod.pink_particle": "Pink Particle",
+
+
+  "block.chaosmod.unstable_block": "Unstable Block",
+  "block.chaosmod.pink_particle_ore": "Pink Particle Ore",
+
+
   "creativetab.chaos_tab": "Chaos Mod"
 }
