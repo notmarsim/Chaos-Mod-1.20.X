@@ -2,10 +2,12 @@ package net.marsim.chaosmod.block;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.item.ModItems;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,7 +27,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> UNSTABLE_BLOCK = registerBlock("unstable_block",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> UNSTABLE_PARTICLE_ORE = registerBlock("unstable_particle_ore",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
 
 
