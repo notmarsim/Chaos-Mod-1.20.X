@@ -16,16 +16,20 @@ public class ModCreativeModTabs {
 
     public static final RegistryObject<CreativeModeTab> CHAOS_TAB = CREATIVE_MODE_TABS.register("chaos_tab",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ModItems.PINK_PARTICLE.get()))
+                    .icon(() -> new ItemStack(ModItems.UNSTABLE_PARTICLE.get()))
                     .title(Component.translatable("creativetab.chaos_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.PINK_PARTICLE.get());
-                        output.accept(ModItems.BLUE_PARTICLE.get());
 
+                        // particles
+                        output.accept(ModItems.UNSTABLE_PARTICLE.get());
+                        output.accept(ModItems.STABLE_PARTICLE.get());
 
+                        // bars
+                        output.accept(ModItems.UNSTABLE_BAR.get());
 
+                        // blocks
                         output.accept(ModBlocks.UNSTABLE_BLOCK.get());
-                        output.accept(ModBlocks.PINK_PARTICLE_ORE.get());
+                        output.accept(ModBlocks.UNSTABLE_PARTICLE_ORE.get());
                     })
                     .build());
     public static void register(IEventBus eventBus){

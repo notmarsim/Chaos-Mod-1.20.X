@@ -21,9 +21,10 @@ public class ModBlocks {
 
 
 
+
     public static final RegistryObject<Block> UNSTABLE_BLOCK = registerBlock("unstable_block",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS)));
-    public static final RegistryObject<Block> PINK_PARTICLE_ORE = registerBlock("pink_particle_ore",
+    public static final RegistryObject<Block> UNSTABLE_PARTICLE_ORE = registerBlock("unstable_particle_ore",
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS)));
 
 

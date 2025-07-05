@@ -19,9 +19,13 @@ public class ModItems {
 
 
     // particles
-    public static final RegistryObject<Item> BLUE_PARTICLE = ITEMS.register("blue_particle",
+    public static final RegistryObject<Item> STABLE_PARTICLE = ITEMS.register("stable_particle",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> PINK_PARTICLE = ITEMS.register("pink_particle",
+    public static final RegistryObject<Item> UNSTABLE_PARTICLE = ITEMS.register("unstable_particle",
             () -> new Item(new Item.Properties()));
 
+
+    // bars
+    public static final RegistryObject<Item> UNSTABLE_BAR = ITEMS.register("unstable_bar",
+            () -> new Item(new Item.Properties()));
 }

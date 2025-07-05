@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients":[
+    {
+      "item": "chaosmod:unstable_bar"
+    }
+  ],
+  "result": {
+    "item": "chaosmod:unstable_particle",
+    "count": 6
+  }
+
+}

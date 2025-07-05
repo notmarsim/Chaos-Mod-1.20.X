@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chaosmod:item/blue_particle"
+    "layer0": "chaosmod:item/unstable_bar"
   }
 }
