@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Eclipse
+*.launch
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Minecraft/Forge specific
+run/
+logs/
+crash-reports/
+saves/
+screenshots/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Generated files
+src/generated/
+src/main/resources/generated/
