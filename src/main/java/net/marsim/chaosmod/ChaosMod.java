@@ -1,6 +1,9 @@
 package net.marsim.chaosmod;
 
 import com.mojang.logging.LogUtils;
+import net.marsim.chaosmod.item.ModCreativeModTabs;
+import net.marsim.chaosmod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -8,7 +11,6 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,6 +29,8 @@ public class ChaosMod
         IEventBus modEventBus = context.getModEventBus();
 
 
+        ModCreativeModTabs.register(modEventBus);
+        ModItems.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
 
 
@@ -42,12 +46,18 @@ public class ChaosMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        LOGGER.info("Chaos Mod: Common setup completed");
+        LOGGER.info("Chaos Mod: Registered items: " + ModItems.ITEMS.getEntries().size());
+        LOGGER.info("Chaos Mod: Registered creative tabs: " + ModCreativeModTabs.CREATIVE_MODE_TABS.getEntries().size());
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+//            event.accept(ModItems.BLUE_PARTICLE);
+//            event.accept(ModItems.PINK_PARTICLE);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -64,7 +74,11 @@ public class ChaosMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            
+            LOGGER.info("Chaos Mod: Client setup completed");
         }
+        
+
+        
+
     }
 }
