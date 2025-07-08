@@ -20,15 +20,34 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.SHADOW_INFUSED_COAL);
         simpleItem(ModItems.UNSTABLE_BAR);
         simpleItem(ModItems.STABLE_BAR);
+        simpleItem(ModItems.DUALITY_BAR);
         simpleItem(ModItems.UNSTABLE_PARTICLE);
         simpleItem(ModItems.STABLE_PARTICLE);
         simpleItem(ModItems.VOID_DUST);
+        simpleItem(ModItems.VOID_INGOT);
+        simpleItem(ModItems.FUSION_CORE);
 
+        // Tools
+        handheldItem(ModItems.DUALITY_SWORD);
+        handheldItem(ModItems.DUALITY_PICKAXE);
+        handheldItem(ModItems.DUALITY_AXE);
+
+        // Armor
+        simpleItem(ModItems.DUALITY_HELMET);
+        simpleItem(ModItems.DUALITY_CHESTPLATE);
+        simpleItem(ModItems.DUALITY_LEGGINGS);
+        simpleItem(ModItems.DUALITY_BOOTS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(ChaosMod.MOD_ID,"item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/handheld")).texture("layer0",
                 new ResourceLocation(ChaosMod.MOD_ID,"item/" + item.getId().getPath()));
     }
 }

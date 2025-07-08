@@ -27,6 +27,7 @@ public class ModCreativeModTabs {
                         // bars
                         output.accept(ModItems.UNSTABLE_BAR.get());
                         output.accept(ModItems.STABLE_BAR.get());
+                        output.accept(ModItems.DUALITY_BAR.get());
 
                         // fuel
                         output.accept(ModItems.SHADOW_INFUSED_COAL.get());
@@ -39,6 +40,23 @@ public class ModCreativeModTabs {
 
                         //dusts
                         output.accept(ModItems.VOID_DUST.get());
+
+                        // ingots
+                        output.accept(ModItems.VOID_INGOT.get());
+
+                        // cores
+                        output.accept(ModItems.FUSION_CORE.get());
+
+                        // tools
+                        output.accept(ModItems.DUALITY_SWORD.get());
+                        output.accept(ModItems.DUALITY_PICKAXE.get());
+                        output.accept(ModItems.DUALITY_AXE.get());
+
+                        // armor
+                        output.accept(ModItems.DUALITY_HELMET.get());
+                        output.accept(ModItems.DUALITY_CHESTPLATE.get());
+                        output.accept(ModItems.DUALITY_LEGGINGS.get());
+                        output.accept(ModItems.DUALITY_BOOTS.get());
                     })
                     .build());
     public static void register(IEventBus eventBus){

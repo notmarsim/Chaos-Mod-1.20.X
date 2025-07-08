@@ -2,6 +2,7 @@ package net.marsim.chaosmod.datagen;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -37,6 +38,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
+
+
+        this.tag(ModTags.NEEDS_DUALITY_TOOL);
 
     }
 }

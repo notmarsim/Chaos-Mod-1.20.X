@@ -3,9 +3,22 @@
   "item.chaosmod.stable_particle": "Stable Particle",
   "item.chaosmod.unstable_particle": "Unstable Particle",
   "item.chaosmod.unstable_bar": "Unstable Bar",
+  "item.chaosmod.stable_bar": "Stable Bar",
+  "item.chaosmod.duality_bar": "Duality Bar",
+  "item.chaosmod.void_dust": "Void Dust",
+  "item.chaosmod.void_ingot": "Void Ingot",
+  "item.chaosmod.fusion_core": "Fusion Core",
+  "item.chaosmod.duality_sword": "Duality Sword",
+  "item.chaosmod.duality_pickaxe": "Duality Pickaxe",
+  "item.chaosmod.duality_axe": "Duality Axe",
+  "item.chaosmod.duality_helmet": "Duality Helmet",
+  "item.chaosmod.duality_chestplate": "Duality Chestplate",
+  "item.chaosmod.duality_leggings": "Duality Leggings",
+  "item.chaosmod.duality_boots": "Duality Boots",
 
   "block.chaosmod.unstable_block": "Unstable Block",
   "block.chaosmod.unstable_particle_ore": "Unstable Particle Ore",
+  "block.chaosmod.stable_particle_ore": "Stable Particle Ore",
 
 
   "item.chaosmod.shadow_infused_coal": "Shadow Infused Coal",
