@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
     DUALITY("duality", 26, new int[]{ 5, 10, 8, 4 }, 25,
-            SoundEvents.ARMOR_EQUIP_DIAMOND, 1f, 2f, () -> Ingredient.of(ModItems.DUALITY_BAR.get()));;
+            SoundEvents.ARMOR_EQUIP_DIAMOND, 1f, 0.5f, () -> Ingredient.of(ModItems.DUALITY_BAR.get()));;
 
 
     private final String name;

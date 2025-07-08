@@ -5,11 +5,13 @@ import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -32,7 +34,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //shaped
 
         //bar
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.UNSTABLE_BAR.get())
                 .pattern("UUU")
                 .pattern("UUU")
@@ -40,12 +41,81 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.UNSTABLE_PARTICLE.get()), has(ModItems.UNSTABLE_PARTICLE.get()))
                 .save(pWriter);
 
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STABLE_BAR.get())
                 .pattern("SSS")
                 .pattern("SSS")
                 .define('S', ModItems.STABLE_PARTICLE.get())
                 .unlockedBy(getHasName(ModItems.STABLE_PARTICLE.get()), has(ModItems.STABLE_PARTICLE.get()))
+                .save(pWriter);
+
+        // duality bar
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DUALITY_BAR.get())
+                .pattern("UUU")
+                .pattern("SSS")
+                .define('U', ModItems.UNSTABLE_BAR.get())
+                .define('S', ModItems.STABLE_BAR.get())
+                .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DUALITY_BAR.get())
+                .pattern("SSS")
+                .pattern("UUU")
+                .define('U', ModItems.UNSTABLE_BAR.get())
+                .define('S', ModItems.STABLE_BAR.get())
+                .unlockedBy(getHasName(ModItems.STABLE_BAR.get()), has(ModItems.STABLE_BAR.get()))
+                .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "duality_bar_alt"));
+
+        // armors
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DUALITY_HELMET.get())
+                .pattern("DDD")
+                .pattern("D D")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DUALITY_CHESTPLATE.get())
+                .pattern("D D")
+                .pattern("DDD")
+                .pattern("DDD")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DUALITY_LEGGINGS.get())
+                .pattern("DDD")
+                .pattern("D D")
+                .pattern("D D")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DUALITY_BOOTS.get())
+                .pattern("D D")
+                .pattern("D D")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+
+        // Duality Tools
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_SWORD.get())
+                .pattern(" D ")
+                .pattern(" D ")
+                .pattern(" S ")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_PICKAXE.get())
+                .pattern("DDD")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_AXE.get())
+                .pattern("DD ")
+                .pattern("DS ")
+                .pattern(" S ")
+                .define('D', ModItems.DUALITY_BAR.get())
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
                 .save(pWriter);
 
         // block
@@ -65,7 +135,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("VCV")
                 .pattern("VVV")
                 .define('V', ModItems.VOID_DUST.get())
-                .define('C', ModItems.UNSTABLE_PARTICLE.get()) // must be the minecraft coal
+                .define('C', Items.COAL) //
                 .unlockedBy(getHasName(ModItems.STABLE_PARTICLE.get()), has(ModItems.STABLE_PARTICLE.get()))
                 .save(pWriter);
 
@@ -82,9 +152,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pWriter);
 
         // bar
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.UNSTABLE_BAR.get(), 6)
-//                .requires(ModBlocks.UNSTABLE_BLOCK.get())
-//                .save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.UNSTABLE_BAR.get(), 9)
+                .requires(ModBlocks.UNSTABLE_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.UNSTABLE_BLOCK.get()), has(ModBlocks.UNSTABLE_BLOCK.get()))
+                .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "unstable_bar_from_block"));
 
     }
 
