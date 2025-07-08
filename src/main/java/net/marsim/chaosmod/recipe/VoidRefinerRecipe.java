@@ -35,6 +35,11 @@ public class VoidRefinerRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return inputItems;
+    }
+
+    @Override
     public ItemStack assemble(SimpleContainer pContainer, RegistryAccess registryAccess) {
         return output.copy();
     }
