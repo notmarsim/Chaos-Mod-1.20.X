@@ -25,6 +25,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.UNSTABLE_BLOCK.get());
+        this.dropSelf(ModBlocks.VOID_REFINER.get());
         this.add(ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.UNSTABLE_PARTICLE_ORE.get(), ModItems.UNSTABLE_PARTICLE.get()));
         this.add(ModBlocks.STABLE_PARTICLE_ORE.get(),

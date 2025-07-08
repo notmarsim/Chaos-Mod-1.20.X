@@ -35,6 +35,7 @@ public class ModCreativeModTabs {
                         // blocks
                         output.accept(ModBlocks.UNSTABLE_BLOCK.get());
                         output.accept(ModBlocks.UNSTABLE_PARTICLE_ORE.get());
+                        output.accept(ModBlocks.VOID_REFINER.get());
 
                         output.accept(ModBlocks.STABLE_PARTICLE_ORE.get());
 

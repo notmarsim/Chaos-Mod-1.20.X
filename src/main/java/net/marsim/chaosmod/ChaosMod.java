@@ -2,8 +2,12 @@ package net.marsim.chaosmod;
 
 import com.mojang.logging.LogUtils;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.block.entity.ModBlockEntities;
 import net.marsim.chaosmod.item.ModCreativeModTabs;
 import net.marsim.chaosmod.item.ModItems;
+import net.marsim.chaosmod.screen.ModMenuTypes;
+import net.marsim.chaosmod.screen.VoidRefinerScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,8 +39,8 @@ public class ChaosMod
         ModBlocks.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
 
-
-
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
 
@@ -77,6 +81,7 @@ public class ChaosMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             LOGGER.info("Chaos Mod: Client setup completed");
+            MenuScreens.register(ModMenuTypes.VOID_REFINER_MENU.get(), VoidRefinerScreen::new);
         }
         
 
