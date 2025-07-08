@@ -45,7 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.UNSTABLE_PARTICLE);
         simpleItem(ModItems.STABLE_PARTICLE);
         simpleItem(ModItems.VOID_DUST);
-        simpleItem(ModItems.VOID_INGOT);
+        simpleItem(ModItems.VOID_BAR);
         simpleItem(ModItems.FUSION_CORE);
 
         // tools

@@ -43,7 +43,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.VOID_DUST.get());
 
                         // ingots
-                        output.accept(ModItems.VOID_INGOT.get());
+                        output.accept(ModItems.VOID_BAR.get());
 
                         // cores
                         output.accept(ModItems.FUSION_CORE.get());

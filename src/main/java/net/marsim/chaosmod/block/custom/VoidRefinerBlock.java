@@ -24,7 +24,20 @@ import org.jetbrains.annotations.Nullable;
 
 public class VoidRefinerBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16); // size of the block
+    @Override
+    public boolean useShapeForLightOcclusion(BlockState state) {
+        return true;
+    }
 
+    @Override
+    public boolean isOcclusionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
+        return false;
+    }
+    
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+        return true;
+    }
 
     public VoidRefinerBlock(Properties pProperties) {
         super(pProperties);
@@ -64,6 +77,11 @@ public class VoidRefinerBlock extends BaseEntityBlock {
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
+    @Override
+    public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
+        return false;
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

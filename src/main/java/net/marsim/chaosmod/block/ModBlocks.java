@@ -34,7 +34,7 @@ public class ModBlocks {
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
     public static final RegistryObject<Block> VOID_REFINER = registerBlock("void_refiner",
-            ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops()));
+            ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
 
 

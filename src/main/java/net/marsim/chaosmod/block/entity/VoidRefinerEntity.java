@@ -37,7 +37,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 120;
+    private int maxProgress = 600;
 
     public VoidRefinerEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.VOID_REFINER_BE.get(), pPos, pBlockState);
@@ -143,7 +143,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.VOID_INGOT.get(), 1);
+        ItemStack result = new ItemStack(ModItems.VOID_BAR.get(), 1);
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
@@ -152,7 +152,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider {
 
     private boolean hasRecipe() {
         boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.VOID_DUST.get();
-        ItemStack result = new ItemStack(ModItems.VOID_INGOT.get());
+        ItemStack result = new ItemStack(ModItems.VOID_BAR.get());
 
         return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }

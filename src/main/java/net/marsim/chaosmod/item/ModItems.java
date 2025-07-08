@@ -33,6 +33,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_BAR = ITEMS.register("duality_bar",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_BAR = ITEMS.register("void_bar",
+            () -> new Item(new Item.Properties()));
 
 
     // fuel
