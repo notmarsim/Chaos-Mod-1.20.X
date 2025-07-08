@@ -53,7 +53,7 @@ public class ModItems {
 
     // tools
     public static final RegistryObject<Item> DUALITY_SWORD = ITEMS.register("duality_sword",
-            () -> new SwordItem(ModToolTiers.DUALITY, 7, 3F, new Item.Properties()));
+            () -> new SwordItem(ModToolTiers.DUALITY, 5, 3F, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_PICKAXE = ITEMS.register("duality_pickaxe",
             () -> new PickaxeItem(ModToolTiers.DUALITY, 2, 2F, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_AXE = ITEMS.register("duality_axe",
@@ -61,11 +61,11 @@ public class ModItems {
 
     // armor
     public static final RegistryObject<Item> DUALITY_HELMET = ITEMS.register("duality_helmet",
-            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_CHESTPLATE = ITEMS.register("duality_chestplate",
-            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_LEGGINGS = ITEMS.register("duality_leggings",
-            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_BOOTS = ITEMS.register("duality_boots",
-            () -> new ArmorItem(ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.BOOTS, new Item.Properties()));
 }

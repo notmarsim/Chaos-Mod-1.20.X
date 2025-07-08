@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ModToolTiers {
     public static final Tier DUALITY = TierSortingRegistry.registerTier(
-            new ForgeTier(5,5000,6f,6f,30, ModTags.NEEDS_DUALITY_TOOL,
+            new ForgeTier(5,5000,10f,6f,30, ModTags.NEEDS_DUALITY_TOOL,
                     ()-> Ingredient.of(ModItems.DUALITY_BAR.get())),
                     new ResourceLocation(ChaosMod.MOD_ID, "duality"), List.of(Tiers.NETHERITE), List.of());
 
