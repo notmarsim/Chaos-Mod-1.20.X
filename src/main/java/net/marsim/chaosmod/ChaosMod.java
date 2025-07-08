@@ -5,6 +5,7 @@ import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.block.entity.ModBlockEntities;
 import net.marsim.chaosmod.item.ModCreativeModTabs;
 import net.marsim.chaosmod.item.ModItems;
+import net.marsim.chaosmod.recipe.ModRecipes;
 import net.marsim.chaosmod.screen.ModMenuTypes;
 import net.marsim.chaosmod.screen.VoidRefinerScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -42,7 +43,7 @@ public class ChaosMod
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
-
+        ModRecipes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 

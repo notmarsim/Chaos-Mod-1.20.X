@@ -1,0 +1,12 @@
+{
+  "type": "chaosmod:void_refiner",
+  "ingredients": [
+    {
+      "item": "chaosmod:void_dust"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "chaosmod:void_bar"
+  }
+}
