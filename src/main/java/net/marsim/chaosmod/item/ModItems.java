@@ -29,7 +29,15 @@ public class ModItems {
     // bars
     public static final RegistryObject<Item> UNSTABLE_BAR = ITEMS.register("unstable_bar",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STABLE_BAR = ITEMS.register("stable_bar",
+            () -> new Item(new Item.Properties()));
 
+
+    // fuel
     public static final RegistryObject<Item> SHADOW_INFUSED_COAL = ITEMS.register("shadow_infused_coal",
             () -> new FuelItem(new Item.Properties(),3000));
+
+    // dusts
+    public static final RegistryObject<Item> VOID_DUST = ITEMS.register("void_dust",
+            () -> new Item(new Item.Properties()));
 }

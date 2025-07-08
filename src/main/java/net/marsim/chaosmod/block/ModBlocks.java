@@ -29,6 +29,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> UNSTABLE_PARTICLE_ORE = registerBlock("unstable_particle_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
+    public static final RegistryObject<Block> STABLE_PARTICLE_ORE = registerBlock("stable_particle_ore",
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
