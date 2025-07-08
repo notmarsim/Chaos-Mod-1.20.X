@@ -27,6 +27,9 @@ public class ModCreativeModTabs {
                         // bars
                         output.accept(ModItems.UNSTABLE_BAR.get());
 
+                        // fuel
+                        output.accept(ModItems.SHADOW_INFUSED_COAL.get());
+
                         // blocks
                         output.accept(ModBlocks.UNSTABLE_BLOCK.get());
                         output.accept(ModBlocks.UNSTABLE_PARTICLE_ORE.get());

@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.item.custom.FuelItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -28,4 +29,7 @@ public class ModItems {
     // bars
     public static final RegistryObject<Item> UNSTABLE_BAR = ITEMS.register("unstable_bar",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> SHADOW_INFUSED_COAL = ITEMS.register("shadow_infused_coal",
+            () -> new FuelItem(new Item.Properties(),3000));
 }
