@@ -3,6 +3,7 @@ package net.marsim.chaosmod;
 import com.mojang.logging.LogUtils;
 import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.block.entity.ModBlockEntities;
+import net.marsim.chaosmod.loot.ModLootModifiers;
 import net.marsim.chaosmod.item.ModCreativeModTabs;
 import net.marsim.chaosmod.item.ModItems;
 import net.marsim.chaosmod.recipe.ModRecipes;
@@ -30,9 +31,9 @@ public class ChaosMod
     public static final String MOD_ID = "chaosmod";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    public ChaosMod(FMLJavaModLoadingContext context)
+    public ChaosMod()
     {
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
         ModCreativeModTabs.register(modEventBus);
@@ -44,6 +45,8 @@ public class ChaosMod
         ModMenuTypes.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         ModRecipes.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 

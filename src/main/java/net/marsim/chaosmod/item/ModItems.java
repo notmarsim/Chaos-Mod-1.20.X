@@ -45,10 +45,6 @@ public class ModItems {
     public static final RegistryObject<Item> VOID_DUST = ITEMS.register("void_dust",
             () -> new Item(new Item.Properties()));
 
-    // ingots
-    public static final RegistryObject<Item> VOID_INGOT = ITEMS.register("void_ingot",
-            () -> new Item(new Item.Properties()));
-
     // cores
     public static final RegistryObject<Item> FUSION_CORE = ITEMS.register("fusion_core",
             () -> new Item(new Item.Properties()));
