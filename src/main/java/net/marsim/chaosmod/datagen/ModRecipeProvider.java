@@ -12,6 +12,11 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraft.resources.ResourceLocation;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -157,6 +162,56 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.UNSTABLE_BLOCK.get()), has(ModBlocks.UNSTABLE_BLOCK.get()))
                 .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "unstable_bar_from_block"));
 
+        // Receita customizada da Duality Sword na Chaotic Station
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+            // void bar
+            Ingredient voidBar = Ingredient.of(ModItems.VOID_BAR.get());
+            inputs.set(76, voidBar);
+            inputs.set(56, voidBar);
+            inputs.set(57, voidBar);
+            inputs.set(58, voidBar);
+            inputs.set(59, voidBar);
+            inputs.set(60, voidBar);
+            // fusion core
+            Ingredient fusionCore = Ingredient.of(ModItems.FUSION_CORE.get());
+            inputs.set(67, fusionCore);
+            // duality bar
+            Ingredient dualityBar = Ingredient.of(ModItems.DUALITY_BAR.get());
+            inputs.set(49, dualityBar);
+            inputs.set(40, dualityBar);
+            inputs.set(31, dualityBar);
+            inputs.set(22, dualityBar);
+            inputs.set(13, dualityBar);
+            inputs.set(4, dualityBar);
+
+            ItemStack output = new ItemStack(ModItems.DUALITY_SWORD.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_sword_chaotic_station");
+
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:chaotic_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.DUALITY_SWORD.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {

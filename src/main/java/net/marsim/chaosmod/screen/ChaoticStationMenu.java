@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ChaoticStationMenu extends AbstractContainerMenu {
@@ -42,8 +43,8 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
                     this.addSlot(new SlotItemHandler(iItemHandler, slotIndex, x, y));
                 }
             }
-            // Slot de output (ajuste conforme necessário)
-            this.addSlot(new SlotItemHandler(iItemHandler, 81, 210, 80));
+            // Slot de output customizado
+            this.addSlot(new OutputSlot(blockEntity, iItemHandler, 81, 210, 80));
         });
 
         addDataSlots(data);
@@ -132,6 +133,24 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
         int hotbarY = 232; // logo abaixo do inventário
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, hotbarX + i * 18, hotbarY));
+        }
+    }
+
+    // Slot de output customizado
+    public static class OutputSlot extends SlotItemHandler {
+        private final ChaoticStationEntity blockEntity;
+        public OutputSlot(ChaoticStationEntity blockEntity, IItemHandler itemHandler, int index, int x, int y) {
+            super(itemHandler, index, x, y);
+            this.blockEntity = blockEntity;
+        }
+        @Override
+        public boolean mayPlace(ItemStack stack) {
+            return false;
+        }
+        @Override
+        public void onTake(Player player, ItemStack stack) {
+            blockEntity.consumeIngredients();
+            super.onTake(player, stack);
         }
     }
 } 

@@ -27,6 +27,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.Item;
+import net.minecraft.core.NonNullList;
 
 import java.util.Optional;
 
@@ -38,35 +39,16 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 600;
 
     public ChaoticStationEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.CHAOTIC_STATION_BE.get(), pPos, pBlockState);
-        this.data = new ContainerData(){
-
+        this.data = new ContainerData() {
             @Override
-            public int get(int pIndex) {
-                return switch (pIndex){
-                    case 0 -> ChaoticStationEntity.this.progress;
-                    case 1 -> ChaoticStationEntity.this.maxProgress;
-                    default -> 0;
-                };
-            }
-
+            public int get(int pIndex) { return 0; }
             @Override
-            public void set(int pIndex, int pValue) {
-                switch (pIndex){
-                    case 0 -> ChaoticStationEntity.this.progress = pValue;
-                    case 1 -> ChaoticStationEntity.this.maxProgress = pValue;
-                }
-
-            }
-
+            public void set(int pIndex, int pValue) {}
             @Override
-            public int getCount() {
-                return 2;
-            }
+            public int getCount() { return 2; }
         };
     }
 
@@ -115,7 +97,6 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("chaotic_station.progress", progress);
         super.saveAdditional(pTag);
     }
 
@@ -123,25 +104,18 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("chaotic_station.progress");
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(hasRecipe()) {
-            increaseCraftingProgress();
-            setChanged(pLevel, pPos, pState);
-
-            if(hasProgressFinished()) {
-                craftItem();
-                resetProgress();
-            }
+        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        if (recipe.isPresent()) {
+            ItemStack result = recipe.get().getResultItem(null);
+            // Só mostra o resultado no output, não consome nada ainda!
+            this.itemHandler.setStackInSlot(OUTPUT_SLOT, result.copy());
         } else {
-            resetProgress();
+            // Se não tem receita, limpa o output
+            this.itemHandler.setStackInSlot(OUTPUT_SLOT, ItemStack.EMPTY);
         }
-    }
-
-    private void resetProgress() {
-        progress = 0;
     }
 
     private void craftItem() {
@@ -158,6 +132,18 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+    }
+
+    public void consumeIngredients() {
+        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        if (recipe.isPresent()) {
+            NonNullList<net.minecraft.world.item.crafting.Ingredient> ingredients = recipe.get().getIngredients();
+            for (int i = 0; i < 81; i++) {
+                if (!ingredients.get(i).isEmpty()) {
+                    itemHandler.extractItem(i, 1, false);
+                }
+            }
+        }
     }
 
     private boolean hasRecipe() {
@@ -186,11 +172,5 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
         return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count <= this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
     }
 
-    private boolean hasProgressFinished() {
-        return progress >= maxProgress;
-    }
-
-    private void increaseCraftingProgress() {
-        progress++;
-    }
+    // Métodos de progress removidos pois não são mais necessários
 } 
