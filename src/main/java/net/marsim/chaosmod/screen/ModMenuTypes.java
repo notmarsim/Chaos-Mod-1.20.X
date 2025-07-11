@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<VoidRefinerMenu>> VOID_REFINER_MENU =
             registerMenuType("void_refiner_menu", VoidRefinerMenu::new);
 
+    public static final RegistryObject<MenuType<ChaoticStationMenu>> CHAOTIC_STATION_MENU =
+            registerMenuType("chaotic_station_menu", ChaoticStationMenu::new);
+
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

@@ -23,6 +23,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.STABLE_PARTICLE_ORE);
         simpleBlockWithItem(ModBlocks.VOID_REFINER.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));
+        simpleBlockWithItem(ModBlocks.CHAOTIC_STATION.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
 
 
 

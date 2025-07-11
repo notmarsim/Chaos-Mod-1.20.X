@@ -9,6 +9,7 @@ import net.marsim.chaosmod.item.ModItems;
 import net.marsim.chaosmod.recipe.ModRecipes;
 import net.marsim.chaosmod.screen.ModMenuTypes;
 import net.marsim.chaosmod.screen.VoidRefinerScreen;
+import net.marsim.chaosmod.screen.ChaoticStationScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -86,6 +87,7 @@ public class ChaosMod
         {
             LOGGER.info("Chaos Mod: Client setup completed");
             MenuScreens.register(ModMenuTypes.VOID_REFINER_MENU.get(), VoidRefinerScreen::new);
+            MenuScreens.register(ModMenuTypes.CHAOTIC_STATION_MENU.get(), ChaoticStationScreen::new);
         }
         
 

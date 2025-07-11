@@ -23,7 +23,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.UNSTABLE_BLOCK.get(),
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
-                ModBlocks.STABLE_PARTICLE_ORE.get());
+                ModBlocks.STABLE_PARTICLE_ORE.get(),
+                ModBlocks.VOID_REFINER.get(),
+                ModBlocks.CHAOTIC_STATION.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL);
 

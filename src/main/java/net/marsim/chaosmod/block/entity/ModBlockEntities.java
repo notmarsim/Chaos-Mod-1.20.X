@@ -2,6 +2,7 @@ package net.marsim.chaosmod.block.entity;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.block.entity.ChaoticStationEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,6 +17,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("void_refiner_be",()->
                     BlockEntityType.Builder.of(VoidRefinerEntity::new,
                             ModBlocks.VOID_REFINER.get()).build(null));
+                            
+    public static final RegistryObject<BlockEntityType<ChaoticStationEntity>> CHAOTIC_STATION_BE =
+            BLOCK_ENTITIES.register("chaotic_station_be",()->
+                    BlockEntityType.Builder.of(ChaoticStationEntity::new,
+                            ModBlocks.CHAOTIC_STATION.get()).build(null));
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }
