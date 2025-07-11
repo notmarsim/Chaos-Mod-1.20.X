@@ -212,6 +212,118 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 public ResourceLocation getAdvancementId() { return null; }
             });
         }
+        // Receita customizada da Duality Axe na Chaotic Station
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+            // void bar
+            Ingredient voidBar = Ingredient.of(ModItems.VOID_BAR.get());
+            inputs.set(76, voidBar);
+            inputs.set(67, voidBar);
+            inputs.set(49, voidBar);
+            inputs.set(31, voidBar);
+            inputs.set(4, voidBar);
+            // fusion core
+            Ingredient fusionCore = Ingredient.of(ModItems.FUSION_CORE.get());
+            inputs.set(58, fusionCore);
+            inputs.set(40, fusionCore);
+            // duality bar
+            Ingredient dualityBar = Ingredient.of(ModItems.DUALITY_BAR.get());
+            inputs.set(2, dualityBar);
+            inputs.set(3, dualityBar);
+            inputs.set(10, dualityBar);
+            inputs.set(11, dualityBar);
+            inputs.set(12, dualityBar);
+            inputs.set(13, dualityBar);
+            inputs.set(14, dualityBar);
+            inputs.set(19, dualityBar);
+            inputs.set(20, dualityBar);
+            inputs.set(21, dualityBar);
+            inputs.set(22, dualityBar);
+            inputs.set(23, dualityBar);
+            inputs.set(29, dualityBar);
+            inputs.set(30, dualityBar);
+            ItemStack output = new ItemStack(ModItems.DUALITY_AXE.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_axe_chaotic_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:chaotic_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.DUALITY_AXE.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+        // Receita customizada da Duality Pickaxe na Chaotic Station
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+            // void bar
+            Ingredient voidBar = Ingredient.of(ModItems.VOID_BAR.get());
+            inputs.set(76, voidBar);
+            inputs.set(67, voidBar);
+            inputs.set(49, voidBar);
+            inputs.set(40, voidBar);
+            inputs.set(22, voidBar);
+            inputs.set(4, voidBar);
+            // fusion core
+            Ingredient fusionCore = Ingredient.of(ModItems.FUSION_CORE.get());
+            inputs.set(58, fusionCore);
+            inputs.set(31, fusionCore);
+            // duality bar
+            Ingredient dualityBar = Ingredient.of(ModItems.DUALITY_BAR.get());
+            inputs.set(3, dualityBar);
+            inputs.set(5, dualityBar);
+            inputs.set(11, dualityBar);
+            inputs.set(12, dualityBar);
+            inputs.set(13, dualityBar);
+            inputs.set(14, dualityBar);
+            inputs.set(15, dualityBar);
+            inputs.set(19, dualityBar);
+            inputs.set(20, dualityBar);
+            inputs.set(24, dualityBar);
+            inputs.set(25, dualityBar);
+            inputs.set(28, dualityBar);
+            inputs.set(34, dualityBar);
+            ItemStack output = new ItemStack(ModItems.DUALITY_PICKAXE.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_pickaxe_chaotic_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:chaotic_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.DUALITY_PICKAXE.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
