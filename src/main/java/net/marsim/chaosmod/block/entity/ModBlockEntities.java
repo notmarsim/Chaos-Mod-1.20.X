@@ -22,6 +22,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("chaotic_station_be",()->
                     BlockEntityType.Builder.of(ChaoticStationEntity::new,
                             ModBlocks.CHAOTIC_STATION.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<StarGeneratorEntity>> STAR_GENERATOR_BE =
+            BLOCK_ENTITIES.register("star_generator_be",()->
+                    BlockEntityType.Builder.of(StarGeneratorEntity::new,
+                            ModBlocks.STAR_GENERATOR.get()).build(null));
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }
