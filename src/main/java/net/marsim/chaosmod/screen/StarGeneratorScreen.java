@@ -42,24 +42,18 @@ public class StarGeneratorScreen extends AbstractContainerScreen<StarGeneratorMe
         int barY = y + 27;
         int barWidth = 6;
         int barHeight = 32;
-        // int energy = menu.getEnergyStored();
-        // int maxEnergy = menu.getMaxEnergyStored();
-        // int filled = (int)((double)energy / maxEnergy * barHeight);
-        int filled = barHeight; // Força a barra cheia
+        int energy = menu.getEnergyStored();
+        int maxEnergy = menu.getMaxEnergyStored();
+        int filled = (int)((double)energy / maxEnergy * barHeight);
 
         // Desenha barra vazia (fundo)
         RenderSystem.setShaderTexture(0, ENERGY_EMPTY);
-        guiGraphics.blit(ENERGY_EMPTY, barX, barY, 0, 0, barWidth, barHeight);
+        guiGraphics.blit(ENERGY_EMPTY, barX, barY, 100, 0, 0, barWidth, barHeight, 6, 32);
 
         // Desenha barra cheia (vermelha) de baixo para cima, só na parte proporcional
         if (filled > 0) {
             RenderSystem.setShaderTexture(0, ENERGY_FULL);
-            guiGraphics.blit(
-                ENERGY_FULL,
-                barX, barY + (barHeight - filled), // destino na tela
-                0, barHeight - filled,             // origem na textura
-                barWidth, filled                   // largura, altura
-            );
+            guiGraphics.blit(ENERGY_FULL, barX, barY + (barHeight - filled), 100, 0, barHeight - filled, barWidth, filled, 6, 32);
         }
     }
     @Override
