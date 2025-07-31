@@ -13,6 +13,8 @@ import net.marsim.chaosmod.screen.ChaoticStationScreen;
 import net.marsim.chaosmod.screen.StarGeneratorScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -62,6 +64,10 @@ public class ChaosMod
         LOGGER.info("Chaos Mod: Common setup completed");
         LOGGER.info("Chaos Mod: Registered items: " + ModItems.ITEMS.getEntries().size());
         LOGGER.info("Chaos Mod: Registered creative tabs: " + ModCreativeModTabs.CREATIVE_MODE_TABS.getEntries().size());
+        event.enqueueWork(() -> {
+            // Garantir que os blocos estão registrados antes de adicionar ao flower pot
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CATMINT.getId(), ModBlocks.POTTED_CATMINT);
+        });
     }
 
     // Add the example block item to the building blocks tab

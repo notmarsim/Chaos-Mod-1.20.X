@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.datagen;
 
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -58,6 +60,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.DUALITY_CHESTPLATE);
         trimmedArmorItem(ModItems.DUALITY_LEGGINGS);
         trimmedArmorItem(ModItems.DUALITY_BOOTS);
+
+        //block
+        simpleBlockItemBlockTexture(ModBlocks.CATMINT);
     }
 
     private void trimmedArmorItem(RegistryObject<Item> itemRegistryObject) {
@@ -115,5 +120,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/handheld")).texture("layer0",
                 new ResourceLocation(ChaosMod.MOD_ID,"item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(ChaosMod.MOD_ID,"block/" + item.getId().getPath()));
     }
 }

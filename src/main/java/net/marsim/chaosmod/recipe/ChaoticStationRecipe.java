@@ -32,7 +32,7 @@ public class ChaoticStationRecipe implements Recipe<SimpleContainer> {
             return false;
         }
         
-        // Check if all required ingredients are present in the input slots (0-80)
+
         for(int i = 0; i < inputItems.size(); i++) {
             if(!inputItems.get(i).test(pContainer.getItem(i))) {
                 return false;

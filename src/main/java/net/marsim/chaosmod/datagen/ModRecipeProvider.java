@@ -133,6 +133,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
                 .save(pWriter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STAR_GENERATOR.get())
+                .pattern("UUU")
+                .pattern("UUU")
+                .pattern("UUU")
+                .define('U', Items.OBSIDIAN)
+                .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
+                .save(pWriter);
+
         // fuel
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SHADOW_INFUSED_COAL.get())

@@ -60,6 +60,10 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DUALITY_CHESTPLATE.get());
                         output.accept(ModItems.DUALITY_LEGGINGS.get());
                         output.accept(ModItems.DUALITY_BOOTS.get());
+
+                        // flower
+                        output.accept(ModBlocks.CATMINT.get());
+
                     })
                     .build());
     public static void register(IEventBus eventBus){

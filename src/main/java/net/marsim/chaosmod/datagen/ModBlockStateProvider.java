@@ -3,6 +3,7 @@ package net.marsim.chaosmod.datagen;
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -25,8 +26,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));
         simpleBlockWithItem(ModBlocks.CHAOTIC_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
+        simpleBlockWithItem(ModBlocks.STAR_GENERATOR.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
 
-
+        simpleBlockWithItem(ModBlocks.CATMINT.get(), models().cross(blockTexture(ModBlocks.CATMINT.get()).getPath(),
+                blockTexture(ModBlocks.CATMINT.get())).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.POTTED_CATMINT.get(), models().singleTexture("potted_catmint", new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.CATMINT.get())).renderType("cutout"));
 
     }
 

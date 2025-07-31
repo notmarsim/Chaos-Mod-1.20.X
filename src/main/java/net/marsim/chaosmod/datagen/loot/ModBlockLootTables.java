@@ -27,10 +27,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.UNSTABLE_BLOCK.get());
         this.dropSelf(ModBlocks.VOID_REFINER.get());
         this.dropSelf(ModBlocks.CHAOTIC_STATION.get());
+        this.dropSelf(ModBlocks.STAR_GENERATOR.get());
         this.add(ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.UNSTABLE_PARTICLE_ORE.get(), ModItems.UNSTABLE_PARTICLE.get()));
         this.add(ModBlocks.STABLE_PARTICLE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.STABLE_PARTICLE_ORE.get(), ModItems.STABLE_PARTICLE.get()));
+
+
+
+        this.dropSelf(ModBlocks.CATMINT.get());
+        this.add(ModBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(ModBlocks.CATMINT.get()));
 
     }
 

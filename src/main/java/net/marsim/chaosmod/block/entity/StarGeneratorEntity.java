@@ -116,7 +116,7 @@ public class StarGeneratorEntity extends BlockEntity implements MenuProvider {
     }
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level == null || level.isClientSide) return;
-        // Geração solar: só de dia, céu visível, sem bloco sólido acima (exceto vidro)
+        // geração solar: só de dia, céu visível, sem bloco sólido acima (exceto vidro)
         boolean canSeeSky = true;
         for (int y = pos.getY() + 1; y < level.getMaxBuildHeight(); y++) {
             BlockState above = level.getBlockState(new BlockPos(pos.getX(), y, pos.getZ()));
@@ -126,11 +126,11 @@ public class StarGeneratorEntity extends BlockEntity implements MenuProvider {
             }
         }
         if (level.isDay() && canSeeSky) {
-            // 500M FE em 10 minutos = 500_000_000 / (10*60*20) = 4166 FE/tick
+            // 500000 FE/tick
             int fePerTick = 500000;
             energyStorage.receiveEnergy(fePerTick, false);
         }
-        // Transferir energia para item recarregável no slot 0
+        // transferir energia para item recarregável no slot 0
         ItemStack stack = itemHandler.getStackInSlot(0);
         if (!stack.isEmpty()) {
             stack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
