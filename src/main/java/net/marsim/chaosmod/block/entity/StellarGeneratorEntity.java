@@ -132,10 +132,13 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
             IEnergyStorage itemEnergy = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
 
             if (itemEnergy != null && itemEnergy.canReceive()) {
+
                 int energyAvailable = energyStorage.getEnergyStored() + energyGeneratedThisTick;
+
                 int maxEnergyToSend = Math.min(ENERGY_TRANSFER_RATE, energyAvailable);
 
                 if (maxEnergyToSend > 0) {
+
                     energyTransferredThisTick = itemEnergy.receiveEnergy(maxEnergyToSend, false);
                 }
             }
@@ -143,11 +146,13 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
 
         int netEnergyChange = energyGeneratedThisTick - energyTransferredThisTick;
 
+
         if (netEnergyChange > 0) {
             energyStorage.receiveEnergy(netEnergyChange, false);
         } else if (netEnergyChange < 0) {
             energyStorage.extractEnergy(Math.abs(netEnergyChange), false);
         }
+
 
         setChanged(level, pos, state);
     }

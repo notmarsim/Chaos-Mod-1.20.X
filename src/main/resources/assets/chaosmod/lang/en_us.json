@@ -37,6 +37,6 @@
 
 
   "item.chaosmod.shadow_infused_coal": "Shadow Infused Coal",
-
+  "tooltip.chaosmod.energy_bar": "Energy: %s / %s FE",
   "creativetab.chaos_tab": "Chaos Mod"
 }

@@ -50,7 +50,7 @@ public class CableBlockEntity extends BlockEntity {
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
-    // NOVO MÉTODO ADICIONADO AQUI
+
     public ConnectionType getConnectionState(Direction side) {
         return this.connectionStates.get(side);
     }
