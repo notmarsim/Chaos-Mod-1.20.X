@@ -115,7 +115,7 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         if (pTag.contains("energy")) {
-            energyStorage.deserializeNBT(pTag.get("energy"));
+            energyStorage.deserializeNBT(pTag.getCompound("energy"));
         }
     }
 
@@ -131,7 +131,7 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         ItemStack stack = itemHandler.getStackInSlot(0);
         if (!stack.isEmpty()) {
             stack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
-                // CORREÇÃO FINAL: Usando a constante em vez de um método que não existe.
+
                 int maxTransfer = Math.min(ENERGY_TRANSFER_RATE, energyStorage.getEnergyStored());
                 if (maxTransfer > 0) {
                     int transferred = itemEnergy.receiveEnergy(maxTransfer, false);

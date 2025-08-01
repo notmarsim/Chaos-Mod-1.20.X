@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.item.custom.FuelItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -48,7 +49,11 @@ public class ModItems {
     public static final RegistryObject<Item> CHAOS_BAR = ITEMS.register("chaos_bar",
             () -> new Item(new Item.Properties()));
 
-
+    public static final RegistryObject<Item> STELLAR_GENERATOR = ITEMS.register("stellar_generator",
+            () -> new EnergyBlockItem(ModBlocks.STELLAR_GENERATOR.get(), new Item.Properties(),
+                    500_000_000, // capacity
+                    500_000,   // maxReceive
+                    100_000)); // maxExtract
     // fuel
     public static final RegistryObject<Item> SHADOW_INFUSED_COAL = ITEMS.register("shadow_infused_coal",
             () -> new FuelItem(new Item.Properties(),3000));

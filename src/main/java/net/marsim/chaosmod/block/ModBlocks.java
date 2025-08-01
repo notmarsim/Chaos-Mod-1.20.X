@@ -39,7 +39,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> CHAOTIC_STATION = registerBlock("chaotic_station",
             ()-> new ChaoticStationBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
-    public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlock("stellar_generator",
+    public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
             ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
 
@@ -66,6 +66,9 @@ public class ModBlocks {
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
+    }
+    private static <T extends Block> RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
     }
 
 }
