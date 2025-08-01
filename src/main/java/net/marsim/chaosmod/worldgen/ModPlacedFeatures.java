@@ -24,6 +24,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> NETHER_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("nether_unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> END_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("end_unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> STELLAR_FLOWER_PLACED_KEY = registerKey("stellar_flower_placed");
+    public static final ResourceKey<PlacedFeature> STELLAR_FLOWER_BONEMEAL_KEY = registerKey("stellar_flower_bonemeal");
 
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -40,9 +41,17 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
         register(context, STELLAR_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STELLAR_FLOWER_KEY),
                 List.of(
-                        RarityFilter.onAverageOnceEvery(16), // rarity
+                        RarityFilter.onAverageOnceEvery(4),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                ));
+
+        register(context, STELLAR_FLOWER_BONEMEAL_KEY,
+
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STELLAR_FLOWER_BONEMEAL_CONFIG_KEY),
+                List.of(
+                        InSquarePlacement.spread(),
                         BiomeFilter.biome()
                 ));
     }

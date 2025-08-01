@@ -32,6 +32,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_UNSTABLE_PARTICLE_ORE_KEY = registerKey("unstable_particle_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_UNSTABLE_PARTICLE_ORE_KEY = registerKey("nether_unstable_particle_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_UNSTABLE_PARTICLE_ORE_KEY = registerKey("end_unstable_particle_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STELLAR_FLOWER_BONEMEAL_CONFIG_KEY = registerKey("stellar_flower_bonemeal_config");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STELLAR_FLOWER_KEY = registerKey("stellar_flower");
 
 
@@ -54,7 +55,6 @@ public class ModConfiguredFeatures {
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get().defaultBlockState(),6));
         register(context, END_UNSTABLE_PARTICLE_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceables,
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get().defaultBlockState(),8));
-
         register(context, STELLAR_FLOWER_KEY, Feature.FLOWER,
                 new RandomPatchConfiguration(
                         32,
@@ -68,6 +68,20 @@ public class ModConfiguredFeatures {
                                         BlockPredicate.wouldSurvive(ModBlocks.STELLAR_FLOWER.get().defaultBlockState(), Direction.DOWN.getNormal()),
                                         BlockPredicate.matchesBlocks(Vec3i.ZERO, Blocks.AIR)
                                 ))
+                        )
+                ));
+        register(context, STELLAR_FLOWER_BONEMEAL_CONFIG_KEY, Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        32,
+                        6,
+                        0,
+                        PlacementUtils.inlinePlaced(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STELLAR_FLOWER.get())),
+
+                                BlockPredicateFilter.forPredicate(
+                                        BlockPredicate.matchesBlocks(Vec3i.ZERO, Blocks.AIR)
+                                )
                         )
                 ));
 
