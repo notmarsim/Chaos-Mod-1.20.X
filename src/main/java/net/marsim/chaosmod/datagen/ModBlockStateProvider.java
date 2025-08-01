@@ -26,7 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));
         simpleBlockWithItem(ModBlocks.CHAOTIC_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
-        simpleBlockWithItem(ModBlocks.STAR_GENERATOR.get(),
+        simpleBlockWithItem(ModBlocks.STELLAR_GENERATOR.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
 
         simpleBlockWithItem(ModBlocks.STELLAR_FLOWER.get(), models().cross(blockTexture(ModBlocks.STELLAR_FLOWER.get()).getPath(),

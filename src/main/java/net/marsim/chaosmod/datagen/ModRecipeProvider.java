@@ -97,30 +97,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
                 .save(pWriter);
 
-        // Duality Tools
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_SWORD.get())
-                .pattern(" D ")
-                .pattern(" D ")
-                .pattern(" S ")
-                .define('D', ModItems.DUALITY_BAR.get())
-                .define('S', Items.STICK)
-                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+        // other
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VOID_ROD.get())
+                .pattern("V")
+                .pattern("V")
+                .define('V', ModItems.VOID_BAR.get())
+                .unlockedBy(getHasName(ModItems.VOID_BAR.get()), has(ModItems.VOID_BAR.get()))
                 .save(pWriter);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_PICKAXE.get())
-                .pattern("DDD")
-                .pattern(" S ")
-                .pattern(" S ")
-                .define('D', ModItems.DUALITY_BAR.get())
-                .define('S', Items.STICK)
-                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CHAOTIC_STAR.get())
+                .pattern(" C ")
+                .pattern("CNC")
+                .pattern(" C ")
+                .define('C', ModItems.CHAOS_FRAGMENT.get())
+                .define('N', Items.NETHER_STAR)
+                .unlockedBy(getHasName(ModItems.CHAOS_FRAGMENT.get()), has(ModItems.CHAOS_FRAGMENT.get()))
                 .save(pWriter);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DUALITY_AXE.get())
-                .pattern("DD ")
-                .pattern("DS ")
-                .pattern(" S ")
-                .define('D', ModItems.DUALITY_BAR.get())
-                .define('S', Items.STICK)
-                .unlockedBy(getHasName(ModItems.DUALITY_BAR.get()), has(ModItems.DUALITY_BAR.get()))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FUSION_CORE.get())
+                .pattern(" O ")
+                .pattern("ODO")
+                .pattern(" O ")
+                .define('O', Items.OBSIDIAN)
+                .define('D', Items.DIAMOND)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
                 .save(pWriter);
 
         // block
@@ -133,12 +132,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
                 .save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STAR_GENERATOR.get())
-                .pattern("UUU")
-                .pattern("UUU")
-                .pattern("UUU")
-                .define('U', Items.OBSIDIAN)
-                .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHAOTIC_STATION.get())
+                .pattern("OCO")
+                .pattern("CFC")
+                .pattern("OCO")
+                .define('O', Items.OBSIDIAN)
+                .define('F', ModItems.FUSION_CORE.get())
+                .define('C', ModItems.CHAOTIC_STAR.get())
+                .unlockedBy(getHasName(ModItems.CHAOS_FRAGMENT.get()), has(ModItems.CHAOS_FRAGMENT.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VOID_REFINER.get())
+                .pattern("ODO")
+                .pattern("DFD")
+                .pattern("ODO")
+                .define('O', Items.OBSIDIAN)
+                .define('F', ModItems.FUSION_CORE.get())
+                .define('D', Items.DIAMOND)
+                .unlockedBy(getHasName(ModItems.FUSION_CORE.get()), has(ModItems.FUSION_CORE.get()))
                 .save(pWriter);
 
         // fuel
@@ -162,6 +173,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.UNSTABLE_PARTICLE.get(), 6)
                 .requires(ModItems.UNSTABLE_BAR.get())
                 .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
+                .save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STABLE_PARTICLE.get(), 6)
+                .requires(ModItems.STABLE_BAR.get())
+                .unlockedBy(getHasName(ModItems.STABLE_BAR.get()), has(ModItems.STABLE_BAR.get()))
+                .save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STELLAR_ESSENCE.get(), 1)
+                .requires(ModBlocks.STELLAR_FLOWER.get())
+                .unlockedBy(getHasName(ModBlocks.STELLAR_FLOWER.get()), has(ModBlocks.STELLAR_FLOWER.get()))
                 .save(pWriter);
 
         // bar

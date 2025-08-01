@@ -9,14 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class StarGeneratorScreen extends AbstractContainerScreen<StarGeneratorMenu> {
+public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGeneratorMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/energy.png");
     private static final ResourceLocation ENERGY_EMPTY =
             new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/empty_energy_bar.png");
     private static final ResourceLocation ENERGY_FULL =
             new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/full_energy_bar.png");
-    public StarGeneratorScreen(StarGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public StellarGeneratorScreen(StellarGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 176;
         this.imageHeight = 166;

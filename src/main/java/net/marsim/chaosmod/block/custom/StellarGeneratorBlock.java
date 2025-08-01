@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.block.custom;
 
 import net.marsim.chaosmod.block.entity.ModBlockEntities;
-import net.marsim.chaosmod.block.entity.StarGeneratorEntity;
+import net.marsim.chaosmod.block.entity.StellarGeneratorEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class StarGeneratorBlock extends BaseEntityBlock {
+public class StellarGeneratorBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16);
     @Override
     public boolean useShapeForLightOcclusion(BlockState state) {
@@ -36,7 +36,7 @@ public class StarGeneratorBlock extends BaseEntityBlock {
     public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return true;
     }
-    public StarGeneratorBlock(Properties pProperties) {
+    public StellarGeneratorBlock(Properties pProperties) {
         super(pProperties);
     }
     @Override
@@ -51,8 +51,8 @@ public class StarGeneratorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof StarGeneratorEntity) {
-                ((StarGeneratorEntity) blockEntity).drops();
+            if (blockEntity instanceof StellarGeneratorEntity) {
+                ((StellarGeneratorEntity) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -61,8 +61,8 @@ public class StarGeneratorBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof StarGeneratorEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (StarGeneratorEntity)entity, pPos);
+            if(entity instanceof StellarGeneratorEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (StellarGeneratorEntity)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -76,7 +76,7 @@ public class StarGeneratorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new StarGeneratorEntity(pPos,pState);
+        return new StellarGeneratorEntity(pPos,pState);
     }
     @Nullable
     @Override
@@ -84,7 +84,7 @@ public class StarGeneratorBlock extends BaseEntityBlock {
         if(pLevel.isClientSide()) {
             return null;
         }
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.STAR_GENERATOR_BE.get(),
-                (pLevel1, pPos, pState1, pBlockEntity) -> ((StarGeneratorEntity)pBlockEntity).tick(pLevel1, pPos, pState1));
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.STELLAR_GENERATOR_BE.get(),
+                (pLevel1, pPos, pState1, pBlockEntity) -> ((StellarGeneratorEntity)pBlockEntity).tick(pLevel1, pPos, pState1));
     }
 } 

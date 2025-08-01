@@ -41,7 +41,7 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
         register(context, STELLAR_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STELLAR_FLOWER_KEY),
                 List.of(
-                        RarityFilter.onAverageOnceEvery(4),
+                        RarityFilter.onAverageOnceEvery(16),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()

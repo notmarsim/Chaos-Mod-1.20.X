@@ -20,8 +20,8 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<ChaoticStationMenu>> CHAOTIC_STATION_MENU =
             registerMenuType("chaotic_station_menu", ChaoticStationMenu::new);
 
-    public static final RegistryObject<MenuType<StarGeneratorMenu>> STAR_GENERATOR_MENU =
-            registerMenuType("star_generator_menu", StarGeneratorMenu::new);
+    public static final RegistryObject<MenuType<StellarGeneratorMenu>> STELLAR_GENERATOR_MENU =
+            registerMenuType("star_generator_menu", StellarGeneratorMenu::new);
 
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

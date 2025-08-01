@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.screen;
 
 import net.marsim.chaosmod.block.ModBlocks;
-import net.marsim.chaosmod.block.entity.StarGeneratorEntity;
+import net.marsim.chaosmod.block.entity.StellarGeneratorEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,16 +12,16 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class StarGeneratorMenu extends AbstractContainerMenu {
-    public final StarGeneratorEntity blockEntity;
+public class StellarGeneratorMenu extends AbstractContainerMenu {
+    public final StellarGeneratorEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-    public StarGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public StellarGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
-    public StarGeneratorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.STAR_GENERATOR_MENU.get(), pContainerId);
-        blockEntity = ((StarGeneratorEntity) entity);
+    public StellarGeneratorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.STELLAR_GENERATOR_MENU.get(), pContainerId);
+        blockEntity = ((StellarGeneratorEntity) entity);
         this.level = inv.player.level();
         this.data = data;
         addPlayerInventory(inv);
@@ -65,7 +65,7 @@ public class StarGeneratorMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.STAR_GENERATOR.get());
+                pPlayer, ModBlocks.STELLAR_GENERATOR.get());
     }
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {

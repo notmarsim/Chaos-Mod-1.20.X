@@ -2,7 +2,6 @@ package net.marsim.chaosmod.block.entity;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
-import net.marsim.chaosmod.block.entity.ChaoticStationEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,10 +22,10 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ChaoticStationEntity::new,
                             ModBlocks.CHAOTIC_STATION.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<StarGeneratorEntity>> STAR_GENERATOR_BE =
-            BLOCK_ENTITIES.register("star_generator_be",()->
-                    BlockEntityType.Builder.of(StarGeneratorEntity::new,
-                            ModBlocks.STAR_GENERATOR.get()).build(null));
+    public static final RegistryObject<BlockEntityType<StellarGeneratorEntity>> STELLAR_GENERATOR_BE =
+            BLOCK_ENTITIES.register("stellar_generator_be",()->
+                    BlockEntityType.Builder.of(StellarGeneratorEntity::new,
+                            ModBlocks.STELLAR_GENERATOR.get()).build(null));
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }

@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.block;
 
 import net.marsim.chaosmod.ChaosMod;
-import net.marsim.chaosmod.block.custom.StarGeneratorBlock;
+import net.marsim.chaosmod.block.custom.StellarGeneratorBlock;
 import net.marsim.chaosmod.block.custom.VoidRefinerBlock;
 import net.marsim.chaosmod.block.custom.ChaoticStationBlock;
 import net.marsim.chaosmod.item.ModItems;
@@ -39,8 +39,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> CHAOTIC_STATION = registerBlock("chaotic_station",
             ()-> new ChaoticStationBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
-    public static final RegistryObject<Block> STAR_GENERATOR = registerBlock("star_generator",
-            ()-> new StarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlock("stellar_generator",
+            ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
 
     public static final RegistryObject<Block> STELLAR_FLOWER = registerBlock("stellar_flower",

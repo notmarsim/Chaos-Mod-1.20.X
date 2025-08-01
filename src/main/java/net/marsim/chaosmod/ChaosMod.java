@@ -10,7 +10,7 @@ import net.marsim.chaosmod.recipe.ModRecipes;
 import net.marsim.chaosmod.screen.ModMenuTypes;
 import net.marsim.chaosmod.screen.VoidRefinerScreen;
 import net.marsim.chaosmod.screen.ChaoticStationScreen;
-import net.marsim.chaosmod.screen.StarGeneratorScreen;
+import net.marsim.chaosmod.screen.StellarGeneratorScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -96,7 +96,7 @@ public class ChaosMod
             LOGGER.info("Chaos Mod: Client setup completed");
             MenuScreens.register(ModMenuTypes.VOID_REFINER_MENU.get(), VoidRefinerScreen::new);
             MenuScreens.register(ModMenuTypes.CHAOTIC_STATION_MENU.get(), ChaoticStationScreen::new);
-            MenuScreens.register(ModMenuTypes.STAR_GENERATOR_MENU.get(), StarGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.STELLAR_GENERATOR_MENU.get(), StellarGeneratorScreen::new);
         }
         
 

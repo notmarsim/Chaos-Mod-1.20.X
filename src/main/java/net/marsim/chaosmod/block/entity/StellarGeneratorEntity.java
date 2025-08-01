@@ -1,6 +1,6 @@
 package net.marsim.chaosmod.block.entity;
 
-import net.marsim.chaosmod.screen.StarGeneratorMenu;
+import net.marsim.chaosmod.screen.StellarGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -27,7 +26,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class StarGeneratorEntity extends BlockEntity implements MenuProvider {
+public class StellarGeneratorEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(1);
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private final EnergyStorage energyStorage = new EnergyStorage(500_000_000, 100_000, 100_000) {
@@ -42,8 +41,8 @@ public class StarGeneratorEntity extends BlockEntity implements MenuProvider {
     };
     private LazyOptional<net.minecraftforge.energy.IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
     protected final ContainerData data;
-    public StarGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.STAR_GENERATOR_BE.get(), pPos, pBlockState);
+    public StellarGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.STELLAR_GENERATOR_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -88,25 +87,25 @@ public class StarGeneratorEntity extends BlockEntity implements MenuProvider {
     }
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.chaosmod.star_generator");
+        return Component.translatable("block.chaosmod.stellar_generator");
     }
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
-        return new StarGeneratorMenu(pContainerId, pPlayerInventory,this,this.data);
+        return new StellarGeneratorMenu(pContainerId, pPlayerInventory,this,this.data);
     }
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("star_generator.energy", energyStorage.getEnergyStored());
+        pTag.putInt("stellar_generator.energy", energyStorage.getEnergyStored());
         super.saveAdditional(pTag);
     }
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        if (pTag.contains("star_generator.energy")) {
-            int energy = pTag.getInt("star_generator.energy");
+        if (pTag.contains("stellar_generator.energy")) {
+            int energy = pTag.getInt("stellar_generator.energy");
             try {
                 java.lang.reflect.Field f = EnergyStorage.class.getDeclaredField("energy");
                 f.setAccessible(true);
