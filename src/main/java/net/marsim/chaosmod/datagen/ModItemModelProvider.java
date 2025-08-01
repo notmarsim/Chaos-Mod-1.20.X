@@ -40,15 +40,31 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.SHADOW_INFUSED_COAL);
+
+        // bars
         simpleItem(ModItems.UNSTABLE_BAR);
         simpleItem(ModItems.STABLE_BAR);
+        simpleItem(ModItems.VOID_BAR);
         simpleItem(ModItems.DUALITY_BAR);
+        simpleItem(ModItems.STELLAR_BAR);
+        simpleItem(ModItems.DARKLIGHT_BAR);
+        simpleItem(ModItems.NOVA_BAR);
+        simpleItem(ModItems.CHAOS_BAR);
+
+        simpleItem(ModItems.SHADOW_INFUSED_COAL);
+        simpleItem(ModItems.STELLAR_ESSENCE);
+        simpleItem(ModItems.CHAOS_FRAGMENT);
+        simpleItem(ModItems.CHAOTIC_STAR);
+        simpleItem(ModItems.VOID_ROD);
+
+
+
         simpleItem(ModItems.UNSTABLE_PARTICLE);
         simpleItem(ModItems.STABLE_PARTICLE);
         simpleItem(ModItems.VOID_DUST);
-        simpleItem(ModItems.VOID_BAR);
+
         simpleItem(ModItems.FUSION_CORE);
+
 
         // tools
         handheldItem(ModItems.DUALITY_SWORD);

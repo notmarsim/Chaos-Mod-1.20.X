@@ -24,6 +24,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> UNSTABLE_PARTICLE = ITEMS.register("unstable_particle",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CHAOS_FRAGMENT = ITEMS.register("chaos_fragment",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_ESSENCE = ITEMS.register("stellar_essence",
+            () -> new Item(new Item.Properties()));
 
 
     // bars
@@ -34,6 +38,14 @@ public class ModItems {
     public static final RegistryObject<Item> DUALITY_BAR = ITEMS.register("duality_bar",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VOID_BAR = ITEMS.register("void_bar",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_BAR = ITEMS.register("stellar_bar",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_BAR = ITEMS.register("darklight_bar",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_BAR = ITEMS.register("nova_bar",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CHAOS_BAR = ITEMS.register("chaos_bar",
             () -> new Item(new Item.Properties()));
 
 
@@ -66,4 +78,10 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_BOOTS = ITEMS.register("duality_boots",
             () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+
+    public static final RegistryObject<Item> CHAOTIC_STAR = ITEMS.register("chaotic_star",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_ROD = ITEMS.register("void_rod",
+            () -> new Item(new Item.Properties()));
 }

@@ -16,6 +16,16 @@
   "item.chaosmod.duality_leggings": "Duality Leggings",
   "item.chaosmod.duality_boots": "Duality Boots",
 
+  "item.chaosmod.chaos_fragment": "Chaos Fragment",
+  "item.chaosmod.chaos_bar": "Chaos Bar",
+  "item.chaosmod.stellar_bar": "Stellar Bar",
+  "item.chaosmod.stellar_essence": "Stellar Essence",
+  "item.chaosmod.darklight_bar": "Darklight Bar",
+  "item.chaosmod.nova_bar": "Nova Bar",
+  "item.chaosmod.void_rod": "Void Rod",
+
+  "item.chaosmod.chaotic_star": "Chaotic Star",
+
   "block.chaosmod.unstable_block": "Unstable Block",
   "block.chaosmod.unstable_particle_ore": "Unstable Particle Ore",
   "block.chaosmod.stable_particle_ore": "Stable Particle Ore",

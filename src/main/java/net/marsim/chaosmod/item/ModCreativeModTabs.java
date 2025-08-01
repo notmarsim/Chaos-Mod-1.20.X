@@ -23,11 +23,18 @@ public class ModCreativeModTabs {
                         // particles
                         output.accept(ModItems.UNSTABLE_PARTICLE.get());
                         output.accept(ModItems.STABLE_PARTICLE.get());
+                        output.accept(ModItems.CHAOS_FRAGMENT.get());
 
                         // bars
                         output.accept(ModItems.UNSTABLE_BAR.get());
                         output.accept(ModItems.STABLE_BAR.get());
+                        output.accept(ModItems.VOID_BAR.get());
                         output.accept(ModItems.DUALITY_BAR.get());
+                        output.accept(ModItems.STELLAR_BAR.get());
+                        output.accept(ModItems.DARKLIGHT_BAR.get());
+                        output.accept(ModItems.NOVA_BAR.get());
+                        output.accept(ModItems.CHAOS_BAR.get());
+
 
                         // fuel
                         output.accept(ModItems.SHADOW_INFUSED_COAL.get());
@@ -44,8 +51,8 @@ public class ModCreativeModTabs {
                         //dusts
                         output.accept(ModItems.VOID_DUST.get());
 
-                        // ingots
-                        output.accept(ModItems.VOID_BAR.get());
+
+
 
                         // cores
                         output.accept(ModItems.FUSION_CORE.get());
@@ -60,6 +67,11 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DUALITY_CHESTPLATE.get());
                         output.accept(ModItems.DUALITY_LEGGINGS.get());
                         output.accept(ModItems.DUALITY_BOOTS.get());
+
+                        // others
+                        output.accept(ModItems.STELLAR_ESSENCE.get());
+                        output.accept(ModItems.VOID_ROD.get());
+                        output.accept(ModItems.CHAOTIC_STAR.get());
 
                         // flower
                         output.accept(ModBlocks.STELLAR_FLOWER.get());

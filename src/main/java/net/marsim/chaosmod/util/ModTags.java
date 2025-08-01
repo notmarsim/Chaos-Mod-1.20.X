@@ -12,6 +12,10 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static final TagKey<Block> NEEDS_DUALITY_TOOL = Blocks.tag("needs_duality_tool");
+    public static final TagKey<Block> NEEDS_STELLAR_TOOL = Blocks.tag("needs_stellar_tool");
+    public static final TagKey<Block> NEEDS_DARKLIGHT_TOOL = Blocks.tag("needs_darklight_tool");
+    public static final TagKey<Block> NEEDS_NOVA_TOOL = Blocks.tag("needs_nova_tool");
+    public static final TagKey<Block> NEEDS_CHAOS_TOOL = Blocks.tag("needs_chaos_tool");
 
     public static class Blocks{
         private static TagKey<Block> tag(String name){
