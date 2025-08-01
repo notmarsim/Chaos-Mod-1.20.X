@@ -43,11 +43,11 @@ public class ModBlocks {
             ()-> new StarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
 
-    public static final RegistryObject<Block> CATMINT = registerBlock("catmint",
+    public static final RegistryObject<Block> STELLAR_FLOWER = registerBlock("stellar_flower",
             () -> new FlowerBlock(() -> MobEffects.LUCK, 5,
                     BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission()));
-    public static final RegistryObject<Block> POTTED_CATMINT = registerBlock("potted_catmint",
-            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.CATMINT,
+    public static final RegistryObject<Block> POTTED_STELLAR_FLOWER = registerBlock("potted_stellar_flower",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.STELLAR_FLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
 
 

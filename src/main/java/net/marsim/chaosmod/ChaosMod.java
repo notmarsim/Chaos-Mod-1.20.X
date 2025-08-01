@@ -65,8 +65,8 @@ public class ChaosMod
         LOGGER.info("Chaos Mod: Registered items: " + ModItems.ITEMS.getEntries().size());
         LOGGER.info("Chaos Mod: Registered creative tabs: " + ModCreativeModTabs.CREATIVE_MODE_TABS.getEntries().size());
         event.enqueueWork(() -> {
-            // Garantir que os blocos estão registrados antes de adicionar ao flower pot
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CATMINT.getId(), ModBlocks.POTTED_CATMINT);
+            // garantir que os blocos estão registrados antes de adicionar ao flower pot
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.STELLAR_FLOWER.getId(), ModBlocks.POTTED_STELLAR_FLOWER);
         });
     }
 

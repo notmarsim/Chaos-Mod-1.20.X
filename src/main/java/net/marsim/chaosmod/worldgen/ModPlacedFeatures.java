@@ -1,17 +1,21 @@
 package net.marsim.chaosmod.worldgen;
 
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.block.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.core.Direction;
+
 import java.util.List;
 
 public class ModPlacedFeatures {
@@ -19,6 +23,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> NETHER_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("nether_unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> END_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("end_unstable_particle_ore_placed");
+    public static final ResourceKey<PlacedFeature> STELLAR_FLOWER_PLACED_KEY = registerKey("stellar_flower_placed");
 
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -33,6 +38,18 @@ public class ModPlacedFeatures {
         register(context, END_UNSTABLE_PARTICLE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.END_UNSTABLE_PARTICLE_ORE_KEY),
                 ModOrePlacement.commonOrePlacement(5,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
+        register(context, STELLAR_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STELLAR_FLOWER_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(4),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        // CORREÇÃO AQUI: Adicione o segundo argumento para o offset
+                        BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(
+                                ModBlocks.STELLAR_FLOWER.get().defaultBlockState(),
+                                Direction.DOWN.getNormal() // Diz para checar o bloco ABAIXO
+                        )),
+                        BiomeFilter.biome()
+                ));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

@@ -3,7 +3,6 @@ package net.marsim.chaosmod.datagen.loot;
 import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.item.ModItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -35,8 +34,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 
 
-        this.dropSelf(ModBlocks.CATMINT.get());
-        this.add(ModBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(ModBlocks.CATMINT.get()));
+        this.dropSelf(ModBlocks.STELLAR_FLOWER.get());
+        this.add(ModBlocks.POTTED_STELLAR_FLOWER.get(), createPotFlowerItemTable(ModBlocks.STELLAR_FLOWER.get()));
 
     }
 

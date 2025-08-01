@@ -29,10 +29,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.STAR_GENERATOR.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
 
-        simpleBlockWithItem(ModBlocks.CATMINT.get(), models().cross(blockTexture(ModBlocks.CATMINT.get()).getPath(),
-                blockTexture(ModBlocks.CATMINT.get())).renderType("cutout"));
-        simpleBlockWithItem(ModBlocks.POTTED_CATMINT.get(), models().singleTexture("potted_catmint", new ResourceLocation("flower_pot_cross"), "plant",
-                blockTexture(ModBlocks.CATMINT.get())).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.STELLAR_FLOWER.get(), models().cross(blockTexture(ModBlocks.STELLAR_FLOWER.get()).getPath(),
+                blockTexture(ModBlocks.STELLAR_FLOWER.get())).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.POTTED_STELLAR_FLOWER.get(), models().singleTexture("potted_stellar_flower", new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.STELLAR_FLOWER.get())).renderType("cutout"));
 
     }
 

@@ -62,7 +62,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.DUALITY_BOOTS);
 
         //block
-        simpleBlockItemBlockTexture(ModBlocks.CATMINT);
+        simpleBlockItemBlockTexture(ModBlocks.STELLAR_FLOWER);
     }
 
     private void trimmedArmorItem(RegistryObject<Item> itemRegistryObject) {

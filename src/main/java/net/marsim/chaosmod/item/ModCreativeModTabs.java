@@ -62,7 +62,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DUALITY_BOOTS.get());
 
                         // flower
-                        output.accept(ModBlocks.CATMINT.get());
+                        output.accept(ModBlocks.STELLAR_FLOWER.get());
 
                     })
                     .build());
