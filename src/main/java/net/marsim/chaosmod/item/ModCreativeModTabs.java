@@ -2,6 +2,7 @@ package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.item.custom.ConfiguratorItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -51,7 +52,8 @@ public class ModCreativeModTabs {
                         //dusts
                         output.accept(ModItems.VOID_DUST.get());
 
-
+                        output.accept(ModBlocks.ENERGY_CABLE.get());
+                        output.accept(ModItems.CONFIGURATOR.get());
 
 
                         // cores

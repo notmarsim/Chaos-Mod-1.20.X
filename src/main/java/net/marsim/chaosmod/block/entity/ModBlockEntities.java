@@ -26,6 +26,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("stellar_generator_be",()->
                     BlockEntityType.Builder.of(StellarGeneratorEntity::new,
                             ModBlocks.STELLAR_GENERATOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<CableBlockEntity>> CABLE_BE =
+            BLOCK_ENTITIES.register("cable_be", () ->
+                    BlockEntityType.Builder.of(CableBlockEntity::new,
+                            ModBlocks.ENERGY_CABLE.get()).build(null));
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }

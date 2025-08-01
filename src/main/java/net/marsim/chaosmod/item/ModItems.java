@@ -2,6 +2,7 @@ package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.item.custom.ConfiguratorItem;
 import net.marsim.chaosmod.item.custom.FuelItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -85,6 +86,9 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
+    // others
+    public static final RegistryObject<Item> CONFIGURATOR = ITEMS.register("configurator",
+            () -> new ConfiguratorItem(new Item.Properties()));
     public static final RegistryObject<Item> CHAOTIC_STAR = ITEMS.register("chaotic_star",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VOID_ROD = ITEMS.register("void_rod",
