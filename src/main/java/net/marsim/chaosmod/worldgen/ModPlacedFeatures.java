@@ -10,11 +10,11 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraft.core.Direction;
+
+
 
 import java.util.List;
 
@@ -40,14 +40,9 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
         register(context, STELLAR_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STELLAR_FLOWER_KEY),
                 List.of(
-                        RarityFilter.onAverageOnceEvery(4),
+                        RarityFilter.onAverageOnceEvery(16), // rarity
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                        // CORREÇÃO AQUI: Adicione o segundo argumento para o offset
-                        BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(
-                                ModBlocks.STELLAR_FLOWER.get().defaultBlockState(),
-                                Direction.DOWN.getNormal() // Diz para checar o bloco ABAIXO
-                        )),
                         BiomeFilter.biome()
                 ));
     }
