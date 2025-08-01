@@ -20,25 +20,22 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StellarGeneratorEntity extends BlockEntity implements MenuProvider {
-    private static final int ENERGY_TRANSFER_RATE = 100_000;
+    private static final int ENERGY_TRANSFER_RATE = 1_000_000;
     private static final int CAPACITY = 500_000_000;
     private static final int MAX_RECEIVE = 500_000;
-
-
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(1);
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-
     private final EnergyStorage energyStorage = new EnergyStorage(CAPACITY, MAX_RECEIVE, ENERGY_TRANSFER_RATE);
-
-    private LazyOptional<net.minecraftforge.energy.IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
+    private LazyOptional<IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
     protected final ContainerData data;
 
     public StellarGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
@@ -115,32 +112,43 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         if (pTag.contains("energy")) {
-            energyStorage.deserializeNBT(pTag.getCompound("energy"));
+            energyStorage.deserializeNBT(pTag.get("energy"));
         }
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
-        if (level.isClientSide) return;
-
-        boolean canSeeSky = level.canSeeSky(pos.above());
-
-        if (level.isDay() && canSeeSky) {
-            energyStorage.receiveEnergy(MAX_RECEIVE, false);
+        if (level.isClientSide) {
+            return;
         }
 
+        int energyGeneratedThisTick = 0;
+        if (level.isDay() && level.canSeeSky(pos.above())) {
+            energyGeneratedThisTick = MAX_RECEIVE;
+        }
+
+        int energyTransferredThisTick = 0;
         ItemStack stack = itemHandler.getStackInSlot(0);
         if (!stack.isEmpty()) {
-            stack.getCapability(ForgeCapabilities.ENERGY).ifPresent(itemEnergy -> {
+            IEnergyStorage itemEnergy = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
 
-                int maxTransfer = Math.min(ENERGY_TRANSFER_RATE, energyStorage.getEnergyStored());
-                if (maxTransfer > 0) {
-                    int transferred = itemEnergy.receiveEnergy(maxTransfer, false);
-                    if (transferred > 0) {
-                        energyStorage.extractEnergy(transferred, false);
-                        setChanged(level, pos, state);
-                    }
+            if (itemEnergy != null && itemEnergy.canReceive()) {
+                int energyAvailable = energyStorage.getEnergyStored() + energyGeneratedThisTick;
+                int maxEnergyToSend = Math.min(ENERGY_TRANSFER_RATE, energyAvailable);
+
+                if (maxEnergyToSend > 0) {
+                    energyTransferredThisTick = itemEnergy.receiveEnergy(maxEnergyToSend, false);
                 }
-            });
+            }
         }
+
+        int netEnergyChange = energyGeneratedThisTick - energyTransferredThisTick;
+
+        if (netEnergyChange > 0) {
+            energyStorage.receiveEnergy(netEnergyChange, false);
+        } else if (netEnergyChange < 0) {
+            energyStorage.extractEnergy(Math.abs(netEnergyChange), false);
+        }
+
+        setChanged(level, pos, state);
     }
 }
