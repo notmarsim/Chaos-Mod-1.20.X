@@ -110,10 +110,10 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
         Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
         if (recipe.isPresent()) {
             ItemStack result = recipe.get().getResultItem(null);
-            // só mostra o resultado no output, não consome nada
+
             this.itemHandler.setStackInSlot(OUTPUT_SLOT, result.copy());
         } else {
-            // Se não tem receita, limpa o output
+
             this.itemHandler.setStackInSlot(OUTPUT_SLOT, ItemStack.EMPTY);
         }
     }
@@ -172,5 +172,4 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
         return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count <= this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
     }
 
-    // Métodos de progress removidos pois não são mais necessários
 } 

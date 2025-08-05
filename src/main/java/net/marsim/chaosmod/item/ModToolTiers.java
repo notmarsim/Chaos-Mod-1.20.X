@@ -15,7 +15,7 @@ public class ModToolTiers {
     public static final Tier DUALITY = TierSortingRegistry.registerTier(
             new ForgeTier(5,5000,10f,6f,30, ModTags.NEEDS_DUALITY_TOOL,
                     ()-> Ingredient.of(ModItems.DUALITY_BAR.get())),
-                    new ResourceLocation(ChaosMod.MOD_ID, "duality"), List.of(Tiers.NETHERITE), List.of());
+            new ResourceLocation(ChaosMod.MOD_ID, "duality"), List.of(Tiers.NETHERITE), List.of());
     public static final Tier STELLAR = TierSortingRegistry.registerTier(
             new ForgeTier(7,7500,15f,9f,45, ModTags.NEEDS_STELLAR_TOOL,
                     ()-> Ingredient.of(ModItems.STELLAR_BAR.get())),

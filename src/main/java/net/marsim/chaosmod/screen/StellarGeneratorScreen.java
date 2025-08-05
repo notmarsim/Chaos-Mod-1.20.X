@@ -2,9 +2,7 @@ package net.marsim.chaosmod.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.marsim.chaosmod.ChaosMod;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -13,8 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGeneratorMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/energy.png");
-    private static final ResourceLocation CONFIG_BUTTON_TEXTURE = new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/configuration.png");
-
     private static final ResourceLocation ENERGY_EMPTY = new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/empty_energy_bar.png");
     private static final ResourceLocation ENERGY_FULL = new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/full_energy_bar.png");
 
@@ -30,11 +26,6 @@ public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGener
         this.inventoryLabelY = 10000;
         this.titleLabelY = 10000;
 
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        this.addRenderableWidget(new ImageButton(x, y, 16, 16, 0, 0, 0, CONFIG_BUTTON_TEXTURE, 16, 16,
-                (button) -> Minecraft.getInstance().setScreen(new SideConfigScreen(this.menu.blockEntity, this))));
     }
 
     @Override
@@ -46,8 +37,6 @@ public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGener
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
-
-
         renderEnergyBar(guiGraphics, x, y);
     }
 
@@ -58,8 +47,8 @@ public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGener
         int barHeight = 32;
         int energy = menu.getEnergyStored();
         int maxEnergy = menu.getMaxEnergyStored();
+        if (maxEnergy == 0) return;
         int filled = (int)((double)energy / maxEnergy * barHeight);
-
 
         guiGraphics.blit(ENERGY_EMPTY, barX, barY, 0, 0, barWidth, barHeight, barWidth, barHeight);
 
@@ -90,7 +79,6 @@ public class StellarGeneratorScreen extends AbstractContainerScreen<StellarGener
                     String.format("%,d", energy), String.format("%,d", maxEnergy));
             guiGraphics.renderTooltip(font, tooltip, mouseX, mouseY);
         }
-
 
         super.renderTooltip(guiGraphics, mouseX, mouseY);
     }

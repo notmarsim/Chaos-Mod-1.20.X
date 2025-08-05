@@ -1,3 +1,4 @@
+
 package net.marsim.chaosmod;
 
 import com.mojang.logging.LogUtils;
@@ -98,9 +99,9 @@ public class ChaosMod
             MenuScreens.register(ModMenuTypes.CHAOTIC_STATION_MENU.get(), ChaoticStationScreen::new);
             MenuScreens.register(ModMenuTypes.STELLAR_GENERATOR_MENU.get(), StellarGeneratorScreen::new);
         }
-        
 
-        
+
+
 
     }
 }

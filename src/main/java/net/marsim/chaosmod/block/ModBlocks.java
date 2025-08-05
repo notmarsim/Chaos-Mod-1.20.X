@@ -34,7 +34,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> STABLE_PARTICLE_ORE = registerBlock("stable_particle_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
-    public static final RegistryObject<Block> VOID_REFINER = registerBlock("void_refiner",
+    public static final RegistryObject<Block> VOID_REFINER = registerBlockWithoutItem("void_refiner",
             ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> CHAOTIC_STATION = registerBlock("chaotic_station",

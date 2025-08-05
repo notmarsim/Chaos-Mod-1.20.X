@@ -1,4 +1,4 @@
-package net.marsim.chaosmod.block.custom; // Ou seu pacote
+package net.marsim.chaosmod.block.custom;
 
 import net.marsim.chaosmod.block.entity.CableBlockEntity;
 import net.marsim.chaosmod.block.entity.ModBlockEntities;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor; // <-- IMPORT NECESSÁRIO
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -52,10 +52,9 @@ public class CableBlock extends BaseEntityBlock {
         return this.getConnectionState(pContext.getLevel(), pContext.getClickedPos());
     }
 
-    // CORREÇÃO AQUI: O tipo do parâmetro agora é LevelAccessor
     @Override
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        return this.getConnectionState((Level) pLevel, pCurrentPos); // Fazemos um "cast" para Level aqui dentro
+        return this.getConnectionState((Level) pLevel, pCurrentPos);
     }
 
     private BlockState getConnectionState(Level level, BlockPos pos) {
@@ -68,15 +67,18 @@ public class CableBlock extends BaseEntityBlock {
                 .setValue(WEST, canConnect(level, pos, Direction.WEST));
     }
 
+
     private boolean canConnect(Level level, BlockPos pos, Direction direction) {
         BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
-        if (neighbor instanceof CableBlockEntity) {
-            return true;
+        if (neighbor == null) {
+            return false;
         }
-        if (neighbor != null && neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).isPresent()) {
-            return true;
+
+        if (neighbor instanceof CableBlockEntity neighborCable) {
+            return neighborCable.getConnectionState(direction.getOpposite()) != net.marsim.chaosmod.block.entity.ConnectionType.NONE;
         }
-        return false;
+
+        return neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).isPresent();
     }
 
     @Override
@@ -109,7 +111,6 @@ public class CableBlock extends BaseEntityBlock {
                 if (be instanceof CableBlockEntity cable) {
                     Direction clickedFace = pHit.getDirection();
                     cable.cycleConnection(clickedFace);
-                    // Agora este método existe e o erro vai desaparecer
                     pPlayer.sendSystemMessage(Component.literal("Cable side set to: " + cable.getConnectionState(clickedFace)));
                     return InteractionResult.SUCCESS;
                 }

@@ -16,16 +16,6 @@
   "item.chaosmod.duality_leggings": "Duality Leggings",
   "item.chaosmod.duality_boots": "Duality Boots",
 
-  "item.chaosmod.chaos_fragment": "Chaos Fragment",
-  "item.chaosmod.chaos_bar": "Chaos Bar",
-  "item.chaosmod.stellar_bar": "Stellar Bar",
-  "item.chaosmod.stellar_essence": "Stellar Essence",
-  "item.chaosmod.darklight_bar": "Darklight Bar",
-  "item.chaosmod.nova_bar": "Nova Bar",
-  "item.chaosmod.void_rod": "Void Rod",
-
-  "item.chaosmod.chaotic_star": "Chaotic Star",
-
   "block.chaosmod.unstable_block": "Unstable Block",
   "block.chaosmod.unstable_particle_ore": "Unstable Particle Ore",
   "block.chaosmod.stable_particle_ore": "Stable Particle Ore",
@@ -35,8 +25,17 @@
   "block.chaosmod.stellar_flower": "Stellar Flower",
   "block.chaosmod.potted_stellar_flower": "Potted Stellar Flower",
 
-
-  "item.chaosmod.shadow_infused_coal": "Shadow Infused Coal",
+  "tooltip.chaosmod.side.up": "Top",
+  "tooltip.chaosmod.side.down": "Down",
+  "tooltip.chaosmod.side.north": "Front",
+  "tooltip.chaosmod.side.south": "Behind",
+  "tooltip.chaosmod.side.west": "Left",
+  "tooltip.chaosmod.side.east": "Right",
+  "tooltip.chaosmod.side_state.none": "§7None",
+  "tooltip.chaosmod.side_state.input": "§cInput",
   "tooltip.chaosmod.energy_bar": "Energy: %s / %s FE",
+  "block.chaosmod.energy_cable": "Energy Cable",
+  "item.chaosmod.shadow_infused_coal": "Shadow Infused Coal",
+
   "creativetab.chaos_tab": "Chaos Mod"
 }

@@ -33,7 +33,7 @@ public class VoidRefinerBlock extends BaseEntityBlock {
     public boolean isOcclusionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
         return false;
     }
-    
+
     @Override
     public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return true;
@@ -98,7 +98,4 @@ public class VoidRefinerBlock extends BaseEntityBlock {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.VOID_REFINER_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
-    }
-
-
-
+}

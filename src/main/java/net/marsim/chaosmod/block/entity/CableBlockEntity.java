@@ -1,4 +1,4 @@
-package net.marsim.chaosmod.block.entity; // Ou seu pacote
+package net.marsim.chaosmod.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,18 +14,24 @@ import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CableBlockEntity extends BlockEntity {
     private final Map<Direction, ConnectionType> connectionStates = new HashMap<>();
-    private final EnergyStorage energyStorage = new EnergyStorage(10000, 1000, 1000);
+
+    private static final int CAPACITY = 10000;
+    private static final int MAX_TRANSFER = 1000;
+
+    private final EnergyStorage energyStorage = new EnergyStorage(CAPACITY, MAX_TRANSFER, MAX_TRANSFER);
     private final LazyOptional<IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
 
     public CableBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.CABLE_BE.get(), pPos, pBlockState);
         for (Direction dir : Direction.values()) {
-            connectionStates.put(dir, ConnectionType.NONE);
+            connectionStates.put(dir, ConnectionType.INPUT_OUTPUT);
         }
     }
 
@@ -39,17 +45,10 @@ public class CableBlockEntity extends BlockEntity {
 
     public void cycleConnection(Direction side) {
         ConnectionType currentState = connectionStates.get(side);
-        if (currentState == ConnectionType.NONE) {
-            connectionStates.put(side, ConnectionType.INPUT);
-        } else if (currentState == ConnectionType.INPUT) {
-            connectionStates.put(side, ConnectionType.OUTPUT);
-        } else {
-            connectionStates.put(side, ConnectionType.NONE);
-        }
+        connectionStates.put(side, currentState.getNext());
         setChanged();
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
-
 
     public ConnectionType getConnectionState(Direction side) {
         return this.connectionStates.get(side);
@@ -76,6 +75,9 @@ public class CableBlockEntity extends BlockEntity {
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
 
+        List<IEnergyStorage> outputs = new ArrayList<>();
+        List<IEnergyStorage> inputs = new ArrayList<>();
+
         for (Direction dir : Direction.values()) {
             ConnectionType type = connectionStates.get(dir);
             if (type == ConnectionType.NONE) continue;
@@ -84,23 +86,36 @@ public class CableBlockEntity extends BlockEntity {
             if (neighbor == null) continue;
 
             LazyOptional<IEnergyStorage> neighborEnergy = neighbor.getCapability(ForgeCapabilities.ENERGY, dir.getOpposite());
-
             neighborEnergy.ifPresent(storage -> {
-                if (type == ConnectionType.OUTPUT) {
-                    int energyToSend = energyStorage.extractEnergy(1000, true);
-                    if (energyToSend > 0) {
-                        int received = storage.receiveEnergy(energyToSend, false);
-                        energyStorage.extractEnergy(received, false);
-                    }
+                if (storage.canExtract() && type.canReceive()) {
+                    inputs.add(storage);
                 }
-                if (type == ConnectionType.INPUT) {
-                    int energyToReceive = storage.extractEnergy(1000, true);
-                    if (energyToReceive > 0) {
-                        int received = energyStorage.receiveEnergy(energyToReceive, false);
-                        storage.extractEnergy(received, false);
-                    }
+                if (storage.canReceive() && type.canExtract()) {
+                    outputs.add(storage);
                 }
             });
+        }
+
+        for (IEnergyStorage source : inputs) {
+
+            int canPull = source.extractEnergy(MAX_TRANSFER, true);
+            if (canPull > 0) {
+                int received = energyStorage.receiveEnergy(canPull, false);
+                source.extractEnergy(received, false);
+            }
+        }
+
+        if (energyStorage.getEnergyStored() > 0 && !outputs.isEmpty()) {
+
+            int energyToSend = Math.min(energyStorage.getEnergyStored(), MAX_TRANSFER);
+            int energyPerOutput = energyToSend / outputs.size();
+
+            if (energyPerOutput > 0) {
+                for (IEnergyStorage destination : outputs) {
+                    int sent = destination.receiveEnergy(energyPerOutput, false);
+                    energyStorage.extractEnergy(sent, false);
+                }
+            }
         }
     }
 }

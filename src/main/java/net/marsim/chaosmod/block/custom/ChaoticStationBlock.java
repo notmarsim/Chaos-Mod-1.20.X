@@ -33,7 +33,7 @@ public class ChaoticStationBlock extends BaseEntityBlock {
     public boolean isOcclusionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
         return false;
     }
-    
+
     @Override
     public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return true;

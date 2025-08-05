@@ -32,7 +32,7 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-
+            // Grid 9x9 começa em x=11, y=7
             int startX = 12;
             int startY = 8;
             for(int row = 0; row < 9; row++) {
@@ -43,7 +43,7 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
                     this.addSlot(new SlotItemHandler(iItemHandler, slotIndex, x, y));
                 }
             }
-
+            // Slot de output customizado
             this.addSlot(new OutputSlot(blockEntity, iItemHandler, 81, 210, 80));
         });
 

@@ -7,12 +7,16 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 
 import java.util.Set;
 
@@ -24,19 +28,47 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.UNSTABLE_BLOCK.get());
-        this.dropSelf(ModBlocks.VOID_REFINER.get());
         this.dropSelf(ModBlocks.CHAOTIC_STATION.get());
-        this.dropSelf(ModBlocks.STELLAR_GENERATOR.get());
+
         this.add(ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.UNSTABLE_PARTICLE_ORE.get(), ModItems.UNSTABLE_PARTICLE.get()));
         this.add(ModBlocks.STABLE_PARTICLE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.STABLE_PARTICLE_ORE.get(), ModItems.STABLE_PARTICLE.get()));
 
 
+        this.add(ModBlocks.VOID_REFINER.get(),
+                LootTable.lootTable()
+                        .withPool(
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1))
+                                        .add(
+                                                LootItem.lootTableItem(ModBlocks.VOID_REFINER.get().asItem())
+                                                        .apply(
+
+                                                                CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                                                        .copy("energy", "BlockEntityTag.energy")
+                                                                        .copy("inventory", "BlockEntityTag.inventory")
+                                                                        .copy("void_refiner.progress", "BlockEntityTag.void_refiner.progress")
+                                                        )
+                                        )
+                        )
+        );
 
         this.dropSelf(ModBlocks.STELLAR_FLOWER.get());
         this.add(ModBlocks.POTTED_STELLAR_FLOWER.get(), createPotFlowerItemTable(ModBlocks.STELLAR_FLOWER.get()));
 
+
+        this.add(ModBlocks.STELLAR_GENERATOR.get(), block -> createBlockEntityTable(ModBlocks.STELLAR_GENERATOR.get(), "energy", "inventory"));
+
+    }
+
+
+    protected LootTable.Builder createBlockEntityTable(Block pBlock, String... nbtTags) {
+        CopyNbtFunction.Builder builder = CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY);
+        for(String tag : nbtTags) {
+            builder.copy(tag, "BlockEntityTag." + tag);
+        }
+        return LootTable.lootTable().withPool(this.applyExplosionCondition(pBlock, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(pBlock).apply(builder))));
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {

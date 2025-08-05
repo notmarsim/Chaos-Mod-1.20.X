@@ -1,5 +1,6 @@
 package net.marsim.chaosmod.block.entity;
 
+import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.screen.StellarGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,6 +26,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StellarGeneratorEntity extends BlockEntity implements MenuProvider {
     private static final int ENERGY_TRANSFER_RATE = 1_000_000;
@@ -81,13 +86,22 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         lazyEnergy.invalidate();
     }
 
-    public void drops(){
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i =0; i < itemHandler.getSlots();i++){
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level,this.worldPosition, inventory);
-    }
+//    public void drops() {
+//        ItemStack blockItem = new ItemStack(ModBlocks.STELLAR_GENERATOR.get());
+//
+//        blockItem.getCapability(ForgeCapabilities.ENERGY).ifPresent(energy -> {
+//            energy.receiveEnergy(this.energyStorage.getEnergyStored(), false);
+//        });
+//
+//        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+//        for (int i = 0; i < itemHandler.getSlots(); i++) {
+//            inventory.setItem(i, itemHandler.getStackInSlot(i));
+//        }
+//
+//        Containers.dropContents(this.level, this.worldPosition, inventory);
+//        Containers.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), blockItem);
+//    }
+
 
     @Override
     public Component getDisplayName() {
@@ -121,38 +135,61 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
             return;
         }
 
+
         int energyGeneratedThisTick = 0;
         if (level.isDay() && level.canSeeSky(pos.above())) {
             energyGeneratedThisTick = MAX_RECEIVE;
         }
 
+
         int energyTransferredThisTick = 0;
+        int energyAvailable = energyStorage.getEnergyStored() + energyGeneratedThisTick;
+        int maxEnergyToSend = Math.min(ENERGY_TRANSFER_RATE, energyAvailable);
+
+
         ItemStack stack = itemHandler.getStackInSlot(0);
-        if (!stack.isEmpty()) {
+        if (!stack.isEmpty() && maxEnergyToSend > 0) {
             IEnergyStorage itemEnergy = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
-
             if (itemEnergy != null && itemEnergy.canReceive()) {
+                int sentToItem = itemEnergy.receiveEnergy(maxEnergyToSend, false);
+                energyTransferredThisTick += sentToItem;
+                maxEnergyToSend -= sentToItem;
+            }
+        }
 
-                int energyAvailable = energyStorage.getEnergyStored() + energyGeneratedThisTick;
 
-                int maxEnergyToSend = Math.min(ENERGY_TRANSFER_RATE, energyAvailable);
+        if (maxEnergyToSend > 0) {
 
-                if (maxEnergyToSend > 0) {
+            List<IEnergyStorage> receivers = new ArrayList<>();
+            for (Direction direction : Direction.values()) {
+                BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
+                if (neighbor != null) {
+                    neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).ifPresent(storage -> {
+                        if (storage.canReceive()) {
+                            receivers.add(storage);
+                        }
+                    });
+                }
+            }
 
-                    energyTransferredThisTick = itemEnergy.receiveEnergy(maxEnergyToSend, false);
+
+            if (!receivers.isEmpty()) {
+                int energyPerReceiver = maxEnergyToSend / receivers.size();
+                for (IEnergyStorage receiver : receivers) {
+                    int sent = receiver.receiveEnergy(energyPerReceiver, false);
+                    energyTransferredThisTick += sent;
                 }
             }
         }
 
-        int netEnergyChange = energyGeneratedThisTick - energyTransferredThisTick;
 
+        int netEnergyChange = energyGeneratedThisTick - energyTransferredThisTick;
 
         if (netEnergyChange > 0) {
             energyStorage.receiveEnergy(netEnergyChange, false);
         } else if (netEnergyChange < 0) {
             energyStorage.extractEnergy(Math.abs(netEnergyChange), false);
         }
-
 
         setChanged(level, pos, state);
     }
