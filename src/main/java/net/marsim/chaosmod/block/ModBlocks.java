@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.block;
 
 import net.marsim.chaosmod.ChaosMod;
-import net.marsim.chaosmod.block.custom.CableBlock;
+import net.marsim.chaosmod.block.custom.VoidCableBlock;
 import net.marsim.chaosmod.block.custom.StellarGeneratorBlock;
 import net.marsim.chaosmod.block.custom.VoidRefinerBlock;
 import net.marsim.chaosmod.block.custom.ChaoticStationBlock;
@@ -43,8 +43,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
             ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
 
-    public static final RegistryObject<Block> ENERGY_CABLE = registerBlock("energy_cable",
-            () -> new CableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> VOID_CABLE = registerBlock("void_cable",
+            () -> new VoidCableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
     public static final RegistryObject<Block> STELLAR_FLOWER = registerBlock("stellar_flower",

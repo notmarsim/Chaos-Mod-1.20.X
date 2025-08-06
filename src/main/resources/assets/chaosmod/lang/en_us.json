@@ -15,6 +15,15 @@
   "item.chaosmod.duality_chestplate": "Duality Chestplate",
   "item.chaosmod.duality_leggings": "Duality Leggings",
   "item.chaosmod.duality_boots": "Duality Boots",
+  "block.chaosmod.void_cable": "Void Cable",
+  "item.chaosmod.chaos_bar": "Chaos Bar",
+  "item.chaosmod.chaotic_star": "Chaotic Star",
+  "item.chaosmod.chaos_fragment": "Chaos Fragment",
+  "item.chaosmod.darklight_bar": "Darklight Bar",
+  "item.chaosmod.nova_bar": "Nova Bar",
+  "item.chaosmod.stellar_bar": "Stellar Bar",
+  "item.chaosmod.stellar_essence": "Stellar Essence",
+  "item.chaosmod.void_rod": "Void Rod",
 
   "block.chaosmod.unstable_block": "Unstable Block",
   "block.chaosmod.unstable_particle_ore": "Unstable Particle Ore",
@@ -24,6 +33,8 @@
   "block.chaosmod.stellar_generator": "Stellar Generator",
   "block.chaosmod.stellar_flower": "Stellar Flower",
   "block.chaosmod.potted_stellar_flower": "Potted Stellar Flower",
+
+
 
   "tooltip.chaosmod.side.up": "Top",
   "tooltip.chaosmod.side.down": "Down",

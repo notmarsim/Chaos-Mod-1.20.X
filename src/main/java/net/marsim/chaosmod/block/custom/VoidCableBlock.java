@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -23,29 +24,48 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.Nullable;
 
-public class CableBlock extends BaseEntityBlock {
+public class VoidCableBlock extends BaseEntityBlock {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
     public static final BooleanProperty WEST = BooleanProperty.create("west");
     public static final BooleanProperty UP = BooleanProperty.create("up");
     public static final BooleanProperty DOWN = BooleanProperty.create("down");
+    public static final VoxelShape SHAPE = Block.box(6, 6, 6, 10, 10, 10);
 
-    public CableBlock(Properties pProperties) {
+    public VoidCableBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(NORTH, false).setValue(SOUTH, false).setValue(EAST, false)
                 .setValue(WEST, false).setValue(UP, false).setValue(DOWN, false));
     }
-
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(NORTH, SOUTH, EAST, WEST, UP, DOWN);
     }
+    @Override
+    public boolean useShapeForLightOcclusion(BlockState state) {
+        return true;
+    }
 
+    @Override
+    public boolean isOcclusionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+        return true;
+    }
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -81,9 +101,8 @@ public class CableBlock extends BaseEntityBlock {
         return neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).isPresent();
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
     }
 
     @Nullable

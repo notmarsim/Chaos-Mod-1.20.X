@@ -49,6 +49,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.VOID_DUST);
         simpleItem(ModItems.VOID_BAR);
         simpleItem(ModItems.FUSION_CORE);
+        simpleItem(ModItems.CHAOS_FRAGMENT);
+        simpleItem(ModItems.CHAOTIC_STAR);
+        simpleItem(ModItems.CHAOS_BAR);
+        simpleItem(ModItems.STELLAR_ESSENCE);
+        simpleItem(ModItems.STELLAR_BAR);
+        simpleItem(ModItems.DARKLIGHT_BAR);
+        simpleItem(ModItems.NOVA_BAR);
+        simpleItem(ModItems.VOID_ROD);
 
         // tools
         handheldItem(ModItems.DUALITY_SWORD);

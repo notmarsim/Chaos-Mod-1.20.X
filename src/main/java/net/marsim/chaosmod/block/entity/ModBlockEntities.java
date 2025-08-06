@@ -30,7 +30,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<CableBlockEntity>> CABLE_BE =
             BLOCK_ENTITIES.register("cable_be", () ->
                     BlockEntityType.Builder.of(CableBlockEntity::new,
-                            ModBlocks.ENERGY_CABLE.get()).build(null));
+                            ModBlocks.VOID_CABLE.get()).build(null));
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);
     }
