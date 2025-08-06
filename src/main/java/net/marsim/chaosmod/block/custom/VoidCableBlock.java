@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.Nullable;
@@ -37,6 +38,13 @@ public class VoidCableBlock extends BaseEntityBlock {
     public static final BooleanProperty UP = BooleanProperty.create("up");
     public static final BooleanProperty DOWN = BooleanProperty.create("down");
     public static final VoxelShape SHAPE = Block.box(6, 6, 6, 10, 10, 10);
+    private static final VoxelShape SHAPE_CORE = Block.box(6, 6, 6, 10, 10, 10);
+    private static final VoxelShape SHAPE_NORTH = Block.box(6, 6, 0, 10, 10, 6);
+    private static final VoxelShape SHAPE_SOUTH = Block.box(6, 6, 10, 10, 10, 16);
+    private static final VoxelShape SHAPE_EAST  = Block.box(10, 6, 6, 16, 10, 10);
+    private static final VoxelShape SHAPE_WEST  = Block.box(0, 6, 6, 6, 10, 10);
+    private static final VoxelShape SHAPE_UP    = Block.box(6, 10, 6, 10, 16, 10);
+    private static final VoxelShape SHAPE_DOWN  = Block.box(6, 0, 6, 10, 6, 10);
 
     public VoidCableBlock(Properties pProperties) {
         super(pProperties);
@@ -101,9 +109,20 @@ public class VoidCableBlock extends BaseEntityBlock {
         return neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).isPresent();
     }
 
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        VoxelShape shape = SHAPE_CORE;
+
+        if (state.getValue(NORTH)) shape = Shapes.or(shape, SHAPE_NORTH);
+        if (state.getValue(SOUTH)) shape = Shapes.or(shape, SHAPE_SOUTH);
+        if (state.getValue(EAST))  shape = Shapes.or(shape, SHAPE_EAST);
+        if (state.getValue(WEST))  shape = Shapes.or(shape, SHAPE_WEST);
+        if (state.getValue(UP))    shape = Shapes.or(shape, SHAPE_UP);
+        if (state.getValue(DOWN))  shape = Shapes.or(shape, SHAPE_DOWN);
+
+        return shape;
     }
+
 
     @Nullable
     @Override
