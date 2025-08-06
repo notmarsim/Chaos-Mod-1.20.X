@@ -45,32 +45,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void generateCable(RegistryObject<Block> block, String textureName) {
 
         ModelFile core = models().getBuilder("block/" + textureName + "_core")
-                .texture("all", "chaosmod:block/" + textureName)
-                .element()
-                .from(6, 6, 6).to(10, 10, 10)
-                .face(Direction.DOWN).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .end();
+                .parent(models().getExistingFile(mcLoc("block/block")))
+                .texture("particle", modLoc("block/" + textureName))
+                .texture("texture", modLoc("block/" + textureName))
+                .element().from(6, 6, 6).to(10, 10, 10)
+                .allFaces((dir, face) -> face.uvs(6, 6, 10, 10).texture("#texture")).end();
 
 
         ModelFile arm = models().getBuilder("block/" + textureName + "_arm")
-                .texture("all", "chaosmod:block/" + textureName)
-                .element()
-                .from(6, 6, 0).to(10, 10, 6)
-                .face(Direction.DOWN).texture("#all").end()
-                .face(Direction.UP).texture("#all").end()
-                .face(Direction.NORTH).texture("#all").end()
-                .face(Direction.SOUTH).texture("#all").end()
-                .face(Direction.WEST).texture("#all").end()
-                .face(Direction.EAST).texture("#all").end()
-                .end();
+                .parent(models().getExistingFile(mcLoc("block/block")))
+                .texture("particle", modLoc("block/" + textureName))
+                .texture("texture", modLoc("block/" + textureName))
+                .element().from(6, 6, 0).to(10, 10, 6)
+                .allFaces((dir, face) -> face.texture("#texture")).end();
+
 
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get())
-                .part().modelFile(core).addModel().end(); // Núcleo fixo
+                .part().modelFile(core).addModel().end();
+
 
         builder.part().modelFile(arm).uvLock(true).addModel().condition(NORTH, true).end();
         builder.part().modelFile(arm).rotationY(180).uvLock(true).addModel().condition(SOUTH, true).end();
