@@ -5,6 +5,7 @@ import net.marsim.chaosmod.block.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -72,7 +73,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
         builder.part().modelFile(arm).rotationX(270).uvLock(true).addModel().condition(UP, true).end();
 
 
-        itemModels().getBuilder(block.getId().getPath()).parent(core);
+        itemModels().getBuilder(block.getId().getPath())
+                .parent(core)
+                .transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
+                .rotation(0, 90, -35)
+                .translation(0, 1.25F, -3.5F)
+                .scale(1.5F, 1.5F, 1.5F)
+                .end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
+                .rotation(0, 45, 0)
+                .translation(0, 0, 0)
+                .scale(1.5F, 1.5F, 1.5F)
+                .end()
+                .transform(ItemDisplayContext.GUI)
+                .rotation(30, 225, 0)
+                .translation(0, 0, 0)
+                .scale(1.5F, 1.5F, 1.5F)
+                .end()
+                .transform(ItemDisplayContext.GROUND)
+                .translation(0, 2, 0)
+                .scale(1.0F, 1.0F, 1.0F)
+                .end()
+                .end();
+
+
     }
 
 
