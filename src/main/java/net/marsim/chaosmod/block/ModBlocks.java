@@ -35,16 +35,16 @@ public class ModBlocks {
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
     public static final RegistryObject<Block> VOID_REFINER = registerBlockWithoutItem("void_refiner",
-            ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
+            ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> CHAOTIC_STATION = registerBlock("chaotic_station",
-            ()-> new ChaoticStationBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
+            ()-> new ChaoticStationBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
-            ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).requiresCorrectToolForDrops().noOcclusion()));
+            ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> VOID_CABLE = registerBlock("void_cable",
-            () -> new VoidCableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+            () -> new VoidCableBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).noOcclusion()));
 
 
     public static final RegistryObject<Block> STELLAR_FLOWER = registerBlock("stellar_flower",
