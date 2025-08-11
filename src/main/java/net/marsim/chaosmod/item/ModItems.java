@@ -28,6 +28,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CHAOS_FRAGMENT = ITEMS.register("chaos_fragment",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_FRAGMENT= ITEMS.register("darklight_fragment",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_FRAGMENT= ITEMS.register("nova_fragment",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STELLAR_ESSENCE = ITEMS.register("stellar_essence",
             () -> new Item(new Item.Properties()));
 
@@ -96,6 +100,14 @@ public class ModItems {
             () -> new ConfiguratorItem(new Item.Properties()));
     public static final RegistryObject<Item> CHAOTIC_STAR = ITEMS.register("chaotic_star",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DARKLIGHT_STAR = ITEMS.register("darklight_star",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_STAR = ITEMS.register("nova_star",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_STAR = ITEMS.register("stellar_star",
+            () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> VOID_ROD = ITEMS.register("void_rod",
             () -> new Item(new Item.Properties()));
 }

@@ -24,6 +24,8 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.UNSTABLE_PARTICLE.get());
                         output.accept(ModItems.STABLE_PARTICLE.get());
                         output.accept(ModItems.CHAOS_FRAGMENT.get());
+                        output.accept(ModItems.DARKLIGHT_FRAGMENT.get());
+                        output.accept(ModItems.NOVA_FRAGMENT.get());
 
                         // bars
                         output.accept(ModItems.UNSTABLE_BAR.get());
@@ -73,6 +75,10 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.STELLAR_ESSENCE.get());
                         output.accept(ModItems.VOID_ROD.get());
                         output.accept(ModItems.CHAOTIC_STAR.get());
+                        output.accept(ModItems.DARKLIGHT_STAR.get());
+                        output.accept(ModItems.NOVA_STAR.get());
+                        output.accept(ModItems.STELLAR_STAR.get());
+
 
                         // flower
                         output.accept(ModBlocks.STELLAR_FLOWER.get());

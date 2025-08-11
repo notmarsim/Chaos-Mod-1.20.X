@@ -22,6 +22,12 @@
   "item.chaosmod.darklight_bar": "Darklight Bar",
   "item.chaosmod.nova_bar": "Nova Bar",
   "item.chaosmod.stellar_bar": "Stellar Bar",
+  "item.chaosmod.stellar_star": "Stellar Star",
+  "item.chaosmod.darklight_star": "Darklight Star",
+  "item.chaosmod.darklight_fragment": "Darklight Fragment",
+  "item.chaosmod.nova_star": "Nova Star",
+  "item.chaosmod.nova_fragment": "Nova Fragment",
+
   "item.chaosmod.stellar_essence": "Stellar Essence",
   "item.chaosmod.void_rod": "Void Rod",
 
