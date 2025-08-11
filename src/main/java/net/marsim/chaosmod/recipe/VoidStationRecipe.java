@@ -12,14 +12,13 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
-public class ChaoticStationRecipe implements Recipe<SimpleContainer> {
+public class VoidStationRecipe implements Recipe<SimpleContainer> {
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
     private final ResourceLocation id;
 
-    public ChaoticStationRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public VoidStationRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
@@ -77,19 +76,19 @@ public class ChaoticStationRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<ChaoticStationRecipe> {
+    public static class Type implements RecipeType<VoidStationRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
-        public static final String ID = "chaotic_station";
+        public static final String ID = "void_station";
     }
 
-    public static class Serializer implements RecipeSerializer<ChaoticStationRecipe> {
+    public static class Serializer implements RecipeSerializer<VoidStationRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(ChaosMod.MOD_ID,"chaotic_station");
+                new ResourceLocation(ChaosMod.MOD_ID,"void_station");
 
         @Override
-        public ChaoticStationRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public VoidStationRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
@@ -99,11 +98,11 @@ public class ChaoticStationRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new ChaoticStationRecipe(inputs, output, id);
+            return new VoidStationRecipe(inputs, output, id);
         }
 
         @Override
-        public ChaoticStationRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public VoidStationRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -111,11 +110,11 @@ public class ChaoticStationRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = buf.readItem();
-            return new ChaoticStationRecipe(inputs, output, id);
+            return new VoidStationRecipe(inputs, output, id);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, ChaoticStationRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, VoidStationRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
 
             for (Ingredient ing : recipe.getIngredients()) {

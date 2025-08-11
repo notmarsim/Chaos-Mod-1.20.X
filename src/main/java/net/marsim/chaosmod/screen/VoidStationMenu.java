@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.screen;
 
 import net.marsim.chaosmod.block.ModBlocks;
-import net.marsim.chaosmod.block.entity.ChaoticStationEntity;
+import net.marsim.chaosmod.block.entity.VoidStationEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,18 +13,18 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ChaoticStationMenu extends AbstractContainerMenu {
-    public final ChaoticStationEntity blockEntity;
+public class VoidStationMenu extends AbstractContainerMenu {
+    public final VoidStationEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public ChaoticStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public VoidStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public ChaoticStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.CHAOTIC_STATION_MENU.get(), pContainerId);
-        blockEntity = ((ChaoticStationEntity) entity);
+    public VoidStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.VOID_STATION_MENU.get(), pContainerId);
+        blockEntity = ((VoidStationEntity) entity);
         this.level = inv.player.level();
         this.data = data;
 
@@ -115,7 +115,7 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.CHAOTIC_STATION.get());
+                pPlayer, ModBlocks.VOID_STATION.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -138,8 +138,8 @@ public class ChaoticStationMenu extends AbstractContainerMenu {
 
     // Slot de output customizado
     public static class OutputSlot extends SlotItemHandler {
-        private final ChaoticStationEntity blockEntity;
-        public OutputSlot(ChaoticStationEntity blockEntity, IItemHandler itemHandler, int index, int x, int y) {
+        private final VoidStationEntity blockEntity;
+        public OutputSlot(VoidStationEntity blockEntity, IItemHandler itemHandler, int index, int x, int y) {
             super(itemHandler, index, x, y);
             this.blockEntity = blockEntity;
         }

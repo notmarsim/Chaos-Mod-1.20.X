@@ -1,8 +1,7 @@
 package net.marsim.chaosmod.block.entity;
 
-import net.marsim.chaosmod.item.ModItems;
-import net.marsim.chaosmod.recipe.ChaoticStationRecipe;
-import net.marsim.chaosmod.screen.ChaoticStationMenu;
+import net.marsim.chaosmod.recipe.VoidStationRecipe;
+import net.marsim.chaosmod.screen.VoidStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +16,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -31,7 +29,7 @@ import net.minecraft.core.NonNullList;
 
 import java.util.Optional;
 
-public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
+public class VoidStationEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(82);
 
     private static final int OUTPUT_SLOT = 81;
@@ -40,8 +38,8 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
 
-    public ChaoticStationEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.CHAOTIC_STATION_BE.get(), pPos, pBlockState);
+    public VoidStationEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.VOID_STATION_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) { return 0; }
@@ -85,13 +83,13 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.chaosmod.chaotic_station");
+        return Component.translatable("block.chaosmod.void_station");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
-        return new ChaoticStationMenu(pContainerId, pPlayerInventory,this,this.data);
+        return new VoidStationMenu(pContainerId, pPlayerInventory,this,this.data);
     }
 
     @Override
@@ -107,7 +105,7 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        Optional<VoidStationRecipe> recipe = getCurrentRecipe();
         if (recipe.isPresent()) {
             ItemStack result = recipe.get().getResultItem(null);
 
@@ -120,7 +118,7 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
 
     private void craftItem() {
 
-        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        Optional<VoidStationRecipe> recipe = getCurrentRecipe();
         ItemStack result = recipe.get().getResultItem(null);
 
 
@@ -135,7 +133,7 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     }
 
     public void consumeIngredients() {
-        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        Optional<VoidStationRecipe> recipe = getCurrentRecipe();
         if (recipe.isPresent()) {
             NonNullList<net.minecraft.world.item.crafting.Ingredient> ingredients = recipe.get().getIngredients();
             for (int i = 0; i < 81; i++) {
@@ -147,7 +145,7 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        Optional<ChaoticStationRecipe> recipe = getCurrentRecipe();
+        Optional<VoidStationRecipe> recipe = getCurrentRecipe();
         if(recipe.isEmpty()){
             return false;
         }
@@ -155,13 +153,13 @@ public class ChaoticStationEntity extends BlockEntity implements MenuProvider {
         return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }
 
-    private Optional<ChaoticStationRecipe> getCurrentRecipe() {
+    private Optional<VoidStationRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
         for(int i = 0; i< itemHandler.getSlots(); i++){
             inventory.setItem(i, this.itemHandler.getStackInSlot(i));
         }
 
-        return this.level.getRecipeManager().getRecipeFor(ChaoticStationRecipe.Type.INSTANCE, inventory,level);
+        return this.level.getRecipeManager().getRecipeFor(VoidStationRecipe.Type.INSTANCE, inventory,level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

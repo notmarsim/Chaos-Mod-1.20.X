@@ -25,7 +25,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
                 ModBlocks.STABLE_PARTICLE_ORE.get(),
                 ModBlocks.VOID_REFINER.get(),
-                ModBlocks.CHAOTIC_STATION.get(),
+                ModBlocks.VOID_STATION.get(),
                 ModBlocks.STELLAR_GENERATOR.get(),
                 ModBlocks.VOID_CABLE.get());
 

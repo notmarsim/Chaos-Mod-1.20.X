@@ -3,6 +3,7 @@ package net.marsim.chaosmod.datagen;
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.item.ModItems;
+import net.marsim.chaosmod.recipe.VoidStationRecipe;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
@@ -133,7 +134,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pWriter);
 
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHAOTIC_STATION.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VOID_STATION.get())
                 .pattern("OCO")
                 .pattern("CFC")
                 .pattern("OCO")
@@ -189,7 +190,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.UNSTABLE_BLOCK.get()), has(ModBlocks.UNSTABLE_BLOCK.get()))
                 .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "unstable_bar_from_block"));
 
-        // Receita customizada da Duality Sword na Chaotic Station
+        // Receita customizada da Duality Sword na Void Station
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
             // void bar
@@ -213,12 +214,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             inputs.set(4, dualityBar);
 
             ItemStack output = new ItemStack(ModItems.DUALITY_SWORD.get());
-            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_sword_chaotic_station");
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_sword_void_station");
 
             pWriter.accept(new FinishedRecipe() {
                 @Override
                 public void serializeRecipeData(JsonObject json) {
-                    json.addProperty("type", "chaosmod:chaotic_station");
+                    json.addProperty("type", "chaosmod:void_station");
                     JsonArray ingredients = new JsonArray();
                     for (Ingredient ingredient : inputs) {
                         ingredients.add(ingredient.toJson());
@@ -232,14 +233,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 @Override
                 public ResourceLocation getId() { return id; }
                 @Override
-                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
                 @Override
                 public JsonObject serializeAdvancement() { return null; }
                 @Override
                 public ResourceLocation getAdvancementId() { return null; }
             });
         }
-        // Receita customizada da Duality Axe na Chaotic Station
+        // Receita customizada da Duality Axe na Void Station
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
             // void bar
@@ -270,11 +271,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             inputs.set(29, dualityBar);
             inputs.set(30, dualityBar);
             ItemStack output = new ItemStack(ModItems.DUALITY_AXE.get());
-            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_axe_chaotic_station");
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_axe_void_station");
             pWriter.accept(new FinishedRecipe() {
                 @Override
                 public void serializeRecipeData(JsonObject json) {
-                    json.addProperty("type", "chaosmod:chaotic_station");
+                    json.addProperty("type", "chaosmod:void_station");
                     JsonArray ingredients = new JsonArray();
                     for (Ingredient ingredient : inputs) {
                         ingredients.add(ingredient.toJson());
@@ -288,14 +289,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 @Override
                 public ResourceLocation getId() { return id; }
                 @Override
-                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
                 @Override
                 public JsonObject serializeAdvancement() { return null; }
                 @Override
                 public ResourceLocation getAdvancementId() { return null; }
             });
         }
-        // Receita customizada da Duality Pickaxe na Chaotic Station
+        // Receita customizada da Duality Pickaxe na Void Station
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
             // void bar
@@ -326,11 +327,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             inputs.set(28, dualityBar);
             inputs.set(34, dualityBar);
             ItemStack output = new ItemStack(ModItems.DUALITY_PICKAXE.get());
-            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_pickaxe_chaotic_station");
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "duality_pickaxe_void_station");
             pWriter.accept(new FinishedRecipe() {
                 @Override
                 public void serializeRecipeData(JsonObject json) {
-                    json.addProperty("type", "chaosmod:chaotic_station");
+                    json.addProperty("type", "chaosmod:void_station");
                     JsonArray ingredients = new JsonArray();
                     for (Ingredient ingredient : inputs) {
                         ingredients.add(ingredient.toJson());
@@ -344,7 +345,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 @Override
                 public ResourceLocation getId() { return id; }
                 @Override
-                public RecipeSerializer<?> getType() { return net.marsim.chaosmod.recipe.ChaoticStationRecipe.Serializer.INSTANCE; }
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
                 @Override
                 public JsonObject serializeAdvancement() { return null; }
                 @Override

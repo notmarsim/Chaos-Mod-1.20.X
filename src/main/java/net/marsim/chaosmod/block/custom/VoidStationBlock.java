@@ -1,7 +1,7 @@
 package net.marsim.chaosmod.block.custom;
 
 import net.marsim.chaosmod.block.entity.ModBlockEntities;
-import net.marsim.chaosmod.block.entity.ChaoticStationEntity;
+import net.marsim.chaosmod.block.entity.VoidStationEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class ChaoticStationBlock extends BaseEntityBlock {
+public class VoidStationBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16); // size of the block
     @Override
     public boolean useShapeForLightOcclusion(BlockState state) {
@@ -39,7 +39,7 @@ public class ChaoticStationBlock extends BaseEntityBlock {
         return true;
     }
 
-    public ChaoticStationBlock(Properties pProperties) {
+    public VoidStationBlock(Properties pProperties) {
         super(pProperties);
     }
     @Override
@@ -56,8 +56,8 @@ public class ChaoticStationBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ChaoticStationEntity) {
-                ((ChaoticStationEntity) blockEntity).drops();
+            if (blockEntity instanceof VoidStationEntity) {
+                ((VoidStationEntity) blockEntity).drops();
             }
         }
 
@@ -68,8 +68,8 @@ public class ChaoticStationBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof ChaoticStationEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ChaoticStationEntity)entity, pPos);
+            if(entity instanceof VoidStationEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (VoidStationEntity)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -86,7 +86,7 @@ public class ChaoticStationBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
 
-        return new ChaoticStationEntity(pPos,pState);
+        return new VoidStationEntity(pPos,pState);
     }
     @Nullable
     @Override
@@ -95,7 +95,7 @@ public class ChaoticStationBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.CHAOTIC_STATION_BE.get(),
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.VOID_STATION_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 } 

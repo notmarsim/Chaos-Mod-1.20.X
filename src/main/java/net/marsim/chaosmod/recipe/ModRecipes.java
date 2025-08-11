@@ -16,8 +16,8 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<VoidRefinerRecipe>> VOID_REFINER_SERIALIZER =
             SERIALIZERS.register("void_refiner", () -> VoidRefinerRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<ChaoticStationRecipe>> CHAOTIC_STATION_SERIALIZER =
-            SERIALIZERS.register("chaotic_station", () -> ChaoticStationRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<VoidStationRecipe>> VOID_STATION_SERIALIZER =
+            SERIALIZERS.register("void_station", () -> VoidStationRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus){
         SERIALIZERS.register(eventBus);

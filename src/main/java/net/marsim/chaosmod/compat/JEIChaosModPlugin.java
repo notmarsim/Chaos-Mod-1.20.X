@@ -9,9 +9,8 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.recipe.VoidRefinerRecipe;
 import net.marsim.chaosmod.screen.VoidRefinerScreen;
-import net.marsim.chaosmod.screen.ChaoticStationScreen;
-import net.marsim.chaosmod.compat.ChaoticStationCategory;
-import net.marsim.chaosmod.recipe.ChaoticStationRecipe;
+import net.marsim.chaosmod.screen.VoidStationScreen;
+import net.marsim.chaosmod.recipe.VoidStationRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -28,7 +27,7 @@ public class JEIChaosModPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new VoidRefinerCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new ChaoticStationCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new VoidStationCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -38,15 +37,15 @@ public class JEIChaosModPlugin implements IModPlugin {
         List<VoidRefinerRecipe> refinerRecipes = recipeManager.getAllRecipesFor(VoidRefinerRecipe.Type.INSTANCE);
         registration.addRecipes(VoidRefinerCategory.VOID_REFINER_TYPE, refinerRecipes);
 
-        List<ChaoticStationRecipe> chaoticRecipes = recipeManager.getAllRecipesFor(ChaoticStationRecipe.Type.INSTANCE);
-        registration.addRecipes(ChaoticStationCategory.CHAOTIC_STATION_TYPE, chaoticRecipes);
+        List<VoidStationRecipe> chaoticRecipes = recipeManager.getAllRecipesFor(VoidStationRecipe.Type.INSTANCE);
+        registration.addRecipes(VoidStationCategory.VOID_STATION_TYPE, chaoticRecipes);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(VoidRefinerScreen.class,80,30,28,30,
                 VoidRefinerCategory.VOID_REFINER_TYPE);
-        registration.addRecipeClickArea(ChaoticStationScreen.class,176,80,21,14,
-                ChaoticStationCategory.CHAOTIC_STATION_TYPE);
+        registration.addRecipeClickArea(VoidStationScreen.class,176,80,21,14,
+                VoidStationCategory.VOID_STATION_TYPE);
     }
 }

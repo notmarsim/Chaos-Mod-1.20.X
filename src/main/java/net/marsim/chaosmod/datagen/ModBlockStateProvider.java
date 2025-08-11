@@ -2,7 +2,6 @@ package net.marsim.chaosmod.datagen;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
-import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -31,10 +30,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.STABLE_PARTICLE_ORE);
         simpleBlockWithItem(ModBlocks.VOID_REFINER.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));
-        simpleBlockWithItem(ModBlocks.CHAOTIC_STATION.get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
+        simpleBlockWithItem(ModBlocks.VOID_STATION.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
         simpleBlockWithItem(ModBlocks.STELLAR_GENERATOR.get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/chaotic_station")));
+                new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
 
         simpleBlockWithItem(ModBlocks.STELLAR_FLOWER.get(), models().cross(blockTexture(ModBlocks.STELLAR_FLOWER.get()).getPath(),
                 blockTexture(ModBlocks.STELLAR_FLOWER.get())).renderType("cutout"));

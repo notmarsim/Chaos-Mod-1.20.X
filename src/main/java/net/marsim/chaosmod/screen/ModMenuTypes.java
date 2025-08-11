@@ -17,8 +17,8 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<VoidRefinerMenu>> VOID_REFINER_MENU =
             registerMenuType("void_refiner_menu", VoidRefinerMenu::new);
 
-    public static final RegistryObject<MenuType<ChaoticStationMenu>> CHAOTIC_STATION_MENU =
-            registerMenuType("chaotic_station_menu", ChaoticStationMenu::new);
+    public static final RegistryObject<MenuType<VoidStationMenu>> VOID_STATION_MENU =
+            registerMenuType("chaotic_station_menu", VoidStationMenu::new);
 
     public static final RegistryObject<MenuType<StellarGeneratorMenu>> STELLAR_GENERATOR_MENU =
             registerMenuType("star_generator_menu", StellarGeneratorMenu::new);

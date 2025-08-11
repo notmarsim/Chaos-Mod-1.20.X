@@ -10,36 +10,36 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
-import net.marsim.chaosmod.recipe.ChaoticStationRecipe;
+import net.marsim.chaosmod.recipe.VoidStationRecipe;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-public class ChaoticStationCategory implements IRecipeCategory<ChaoticStationRecipe> {
+public class VoidStationCategory implements IRecipeCategory<VoidStationRecipe> {
 
-    public static final ResourceLocation UID = new ResourceLocation(ChaosMod.MOD_ID, "chaotic_station");
+    public static final ResourceLocation UID = new ResourceLocation(ChaosMod.MOD_ID, "void_station");
     public static final ResourceLocation TEXTURE = new ResourceLocation(ChaosMod.MOD_ID,
-            "textures/gui/chaotic_station_gui.png");
+            "textures/gui/void_station_gui.png");
 
-    public static final RecipeType<ChaoticStationRecipe> CHAOTIC_STATION_TYPE =
-            new RecipeType<>(UID, ChaoticStationRecipe.class);
+    public static final RecipeType<VoidStationRecipe> VOID_STATION_TYPE =
+            new RecipeType<>(UID, VoidStationRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;
 
-    public ChaoticStationCategory(IGuiHelper helper) {
+    public VoidStationCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE,0,0,256,256);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CHAOTIC_STATION.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.VOID_STATION.get()));
     }
 
     @Override
-    public RecipeType<ChaoticStationRecipe> getRecipeType() {
-        return CHAOTIC_STATION_TYPE;
+    public RecipeType<VoidStationRecipe> getRecipeType() {
+        return VOID_STATION_TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.chaosmod.chaotic_station");
+        return Component.translatable("block.chaosmod.void_station");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ChaoticStationCategory implements IRecipeCategory<ChaoticStationRec
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, ChaoticStationRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, VoidStationRecipe recipe, IFocusGroup focuses) {
         
         for (int i = 0; i < 81; i++) {
             int x = 11 + (i % 9) * 18;

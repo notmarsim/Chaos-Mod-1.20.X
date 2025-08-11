@@ -17,10 +17,10 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(VoidRefinerEntity::new,
                             ModBlocks.VOID_REFINER.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<ChaoticStationEntity>> CHAOTIC_STATION_BE =
-            BLOCK_ENTITIES.register("chaotic_station_be",()->
-                    BlockEntityType.Builder.of(ChaoticStationEntity::new,
-                            ModBlocks.CHAOTIC_STATION.get()).build(null));
+    public static final RegistryObject<BlockEntityType<VoidStationEntity>> VOID_STATION_BE =
+            BLOCK_ENTITIES.register("void_station_be",()->
+                    BlockEntityType.Builder.of(VoidStationEntity::new,
+                            ModBlocks.VOID_STATION.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<StellarGeneratorEntity>> STELLAR_GENERATOR_BE =
             BLOCK_ENTITIES.register("stellar_generator_be",()->

@@ -9,11 +9,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class ChaoticStationScreen extends AbstractContainerScreen<ChaoticStationMenu> {
+public class VoidStationScreen extends AbstractContainerScreen<VoidStationMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/chaotic_station_gui.png");
+            new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/void_station_gui.png");
 
-    public ChaoticStationScreen(ChaoticStationMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public VoidStationScreen(VoidStationMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 256;
         this.imageHeight = 256;

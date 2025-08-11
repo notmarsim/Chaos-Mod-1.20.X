@@ -4,7 +4,7 @@ import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.custom.VoidCableBlock;
 import net.marsim.chaosmod.block.custom.StellarGeneratorBlock;
 import net.marsim.chaosmod.block.custom.VoidRefinerBlock;
-import net.marsim.chaosmod.block.custom.ChaoticStationBlock;
+import net.marsim.chaosmod.block.custom.VoidStationBlock;
 import net.marsim.chaosmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
@@ -37,8 +37,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> VOID_REFINER = registerBlockWithoutItem("void_refiner",
             ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
-    public static final RegistryObject<Block> CHAOTIC_STATION = registerBlock("chaotic_station",
-            ()-> new ChaoticStationBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> VOID_STATION = registerBlock("void_station",
+            ()-> new VoidStationBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
             ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
