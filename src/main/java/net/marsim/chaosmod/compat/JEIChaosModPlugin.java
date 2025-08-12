@@ -6,9 +6,12 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.recipe.VoidRefinerRecipe;
+import net.marsim.chaosmod.screen.VoidRefinerMenu;
 import net.marsim.chaosmod.screen.VoidRefinerScreen;
+import net.marsim.chaosmod.screen.VoidStationMenu;
 import net.marsim.chaosmod.screen.VoidStationScreen;
 import net.marsim.chaosmod.recipe.VoidStationRecipe;
 import net.minecraft.client.Minecraft;
@@ -47,5 +50,23 @@ public class JEIChaosModPlugin implements IModPlugin {
                 VoidRefinerCategory.VOID_REFINER_TYPE);
         registration.addRecipeClickArea(VoidStationScreen.class,176,80,21,14,
                 VoidStationCategory.VOID_STATION_TYPE);
+    }
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        // Handler para o Void Refiner
+        registration.addRecipeTransferHandler(VoidRefinerMenu.class, null,
+                VoidRefinerCategory.VOID_REFINER_TYPE,
+                36, // first slot index (input)
+                1,  // slots quantity
+                0,
+                36);
+
+        // Handler para a Void Station
+        registration.addRecipeTransferHandler(VoidStationMenu.class, null,
+                VoidStationCategory.VOID_STATION_TYPE,
+                36, // first slot index (input)
+                81,   // slots quantity
+                0,
+                36);
     }
 }
