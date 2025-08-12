@@ -78,6 +78,10 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DARKLIGHT_STAR.get());
                         output.accept(ModItems.NOVA_STAR.get());
                         output.accept(ModItems.STELLAR_STAR.get());
+                        output.accept(ModItems.VOID_CAPACITOR.get());
+                        output.accept(ModItems.VOID_CIRCUIT.get());
+                        output.accept(ModItems.ZENITH.get());
+                        output.accept(ModItems.ZENITH_SHARD.get());
 
 
                         // flower

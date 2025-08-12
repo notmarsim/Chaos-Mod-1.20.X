@@ -62,6 +62,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.DARKLIGHT_BAR);
         simpleItem(ModItems.NOVA_BAR);
         simpleItem(ModItems.VOID_ROD);
+        simpleItem(ModItems.ZENITH);
+        simpleItem(ModItems.ZENITH_SHARD);
+        simpleItem(ModItems.VOID_CAPACITOR);
+        simpleItem(ModItems.VOID_CIRCUIT);
 
         // tools
         handheldItem(ModItems.DUALITY_SWORD);

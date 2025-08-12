@@ -23,7 +23,7 @@ public class CableBlockEntity extends BlockEntity {
     private final Map<Direction, ConnectionType> connectionStates = new HashMap<>();
 
     private static final int CAPACITY = 10000;
-    private static final int MAX_TRANSFER = 1000;
+    private static final int MAX_TRANSFER = 10000;
 
     private final EnergyStorage energyStorage = new EnergyStorage(CAPACITY, MAX_TRANSFER, MAX_TRANSFER);
     private final LazyOptional<IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);

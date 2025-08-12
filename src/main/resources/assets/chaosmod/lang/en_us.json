@@ -28,6 +28,12 @@
   "item.chaosmod.nova_star": "Nova Star",
   "item.chaosmod.nova_fragment": "Nova Fragment",
 
+  "item.chaosmod.configurator": "Configurator",
+  "item.chaosmod.zenith": "Zenith",
+  "item.chaosmod.zenith_shard": "Zenith Shard",
+  "item.chaosmod.void_capacitor": "Void Capacitor",
+  "item.chaosmod.void_circuit": "Void Circuit",
+
   "item.chaosmod.stellar_essence": "Stellar Essence",
   "item.chaosmod.void_rod": "Void Rod",
 

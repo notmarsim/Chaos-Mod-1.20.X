@@ -100,6 +100,14 @@ public class ModItems {
             () -> new ConfiguratorItem(new Item.Properties()));
     public static final RegistryObject<Item> CHAOTIC_STAR = ITEMS.register("chaotic_star",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ZENITH = ITEMS.register("zenith",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ZENITH_SHARD = ITEMS.register("zenith_shard",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_CAPACITOR = ITEMS.register("void_capacitor",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_CIRCUIT = ITEMS.register("void_circuit",
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> DARKLIGHT_STAR = ITEMS.register("darklight_star",
             () -> new Item(new Item.Properties()));

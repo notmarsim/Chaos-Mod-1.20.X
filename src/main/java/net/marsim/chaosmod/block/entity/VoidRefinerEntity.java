@@ -185,9 +185,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        System.out.println("Tick chamado!");
-        System.out.println("Energia atual: " + energyStorage.getEnergyStored());
-        System.out.println("Tem receita? " + hasRecipe());
+
 
         if (hasRecipe()) {
             if (hasEnoughEnergy()) {
@@ -204,9 +202,9 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
                     resetProgress();
                 }
             }
-            // Se não tem energia, apenas espera — não reseta
+
         } else {
-            // A receita não é mais válida: provavelmente o item foi removido ou alterado
+
             resetProgress();
         }
 
