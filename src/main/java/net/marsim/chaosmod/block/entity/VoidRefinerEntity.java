@@ -40,7 +40,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
 
     private final CustomEnergyStorage energyStorage = new CustomEnergyStorage(100_000, 2000, 3000);
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-    private static final int ENERGY_REQ_PER_TICK = 20; // Mantendo o valor alto para ser visível
+    private static final int ENERGY_REQ_PER_TICK = 20;
 
     private final Map<Direction, IOSide> sideConfig = new HashMap<>();
 
@@ -52,17 +52,34 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
         public CustomEnergyStorage(int capacity, int maxReceive, int maxExtract) {
             super(capacity, maxReceive, maxExtract);
         }
+        @Override
+        public boolean canReceive() {
+            return true;
+        }
+
+        @Override
+        public boolean canExtract() {
+            return false;
+        }
 
         protected void onEnergyChanged() {
-            setChanged(); // Salva a alteração
+            setChanged();
             if (level != null && !level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3); // Notifica o cliente
             }
         }
+        public boolean consumeInternal(int amount) {
+            if (this.energy >= amount) {
+                this.energy -= amount;
+                onEnergyChanged();
+                return true;
+            }
+            return false;
+        }
 
         public void setEnergy(int energy) {
             this.energy = energy;
-            onEnergyChanged(); // Garante sincronização
+            onEnergyChanged();
         }
 
         @Override
@@ -123,10 +140,8 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
         if(cap == ForgeCapabilities.ITEM_HANDLER){
             return lazyItemHandler.cast();
         }
-        if(cap == ForgeCapabilities.ENERGY && side != null) {
-            if (sideConfig.get(side) == IOSide.INPUT) {
-                return lazyEnergyHandler.cast();
-            }
+        if (cap == ForgeCapabilities.ENERGY) {
+            return lazyEnergyHandler.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -190,9 +205,10 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
         if (hasRecipe()) {
             if (hasEnoughEnergy()) {
                 int before = energyStorage.getEnergyStored();
-                int extracted = energyStorage.extractEnergy(ENERGY_REQ_PER_TICK, false);
+                boolean consumed = energyStorage.consumeInternal(ENERGY_REQ_PER_TICK);
+                if (!consumed) return;
                 int after = energyStorage.getEnergyStored();
-                System.out.println("Consumido: " + extracted + " | Antes: " + before + " | Depois: " + after);
+                System.out.println("Consumido: " + energyStorage.getEnergyStored() + " | Antes: " + before + " | Depois: " + after);
 
                 increaseCraftingProgress();
                 setChanged(pLevel, pPos, pState);

@@ -1,120 +1,126 @@
 package net.marsim.chaosmod.block.entity;
 
+import net.marsim.chaosmod.energy.network.EnergyNetworkSavedData;
+import net.marsim.chaosmod.energy.storage.CableEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.marsim.chaosmod.block.entity.ModBlockEntities;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class CableBlockEntity extends BlockEntity {
-    private final Map<Direction, ConnectionType> connectionStates = new HashMap<>();
+    private final CableEnergyStorage energy = new CableEnergyStorage(10_000);
+    private final LazyOptional<IEnergyStorage> energyCap =
+            LazyOptional.of(() -> energy);
+    private final Map<Direction, ConnectionType> connections =
+            new EnumMap<>(Direction.class);
 
-    private static final int CAPACITY = 10000;
-    private static final int MAX_TRANSFER = 10000;
+    public CableBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.CABLE_BE.get(), pos, state);
 
-    private final EnergyStorage energyStorage = new EnergyStorage(CAPACITY, MAX_TRANSFER, MAX_TRANSFER);
-    private final LazyOptional<IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
-
-    public CableBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.CABLE_BE.get(), pPos, pBlockState);
         for (Direction dir : Direction.values()) {
-            connectionStates.put(dir, ConnectionType.INPUT_OUTPUT);
+            connections.put(dir, ConnectionType.INPUT_OUTPUT);
         }
     }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY && side != null && connectionStates.get(side) != ConnectionType.NONE) {
-            return lazyEnergy.cast();
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+        if (cap != ForgeCapabilities.ENERGY) {
+            return super.getCapability(cap, side);
         }
-        return super.getCapability(cap, side);
+
+        if (side == null) {
+            return energyCap.cast();
+        }
+
+        ConnectionType type = connections.get(side);
+        if (type != null && type != ConnectionType.NONE) {
+            return energyCap.cast();
+        }
+
+        return LazyOptional.empty();
     }
 
-    public void cycleConnection(Direction side) {
-        ConnectionType currentState = connectionStates.get(side);
-        connectionStates.put(side, currentState.getNext());
+
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        energyCap.invalidate();
+    }
+
+    public ConnectionType getConnection(Direction dir) {
+        return connections.get(dir);
+    }
+
+    public void setConnection(Direction dir, ConnectionType type) {
+        connections.put(dir, type);
         setChanged();
-        level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
-    public ConnectionType getConnectionState(Direction side) {
-        return this.connectionStates.get(side);
+    public void cycleConnection(Direction dir) {
+        ConnectionType current = connections.get(dir);
+
+        ConnectionType next = switch (current) {
+            case NONE -> ConnectionType.INPUT;
+            case INPUT -> ConnectionType.OUTPUT;
+            case OUTPUT -> ConnectionType.INPUT_OUTPUT;
+            case INPUT_OUTPUT -> ConnectionType.NONE;
+        };
+
+        connections.put(dir, next);
+        setChanged();
+
+        if (level != null && !level.isClientSide) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            EnergyNetworkSavedData.get(serverLevel)
+                    .getManager()
+                    .rebuildNetwork(level, worldPosition);
+        }
+    }
+
+
+
+
+
+
+
+
+    @Override
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+
+        for (Direction dir : Direction.values()) {
+            tag.putString(
+                    "Conn_" + dir.getName(),
+                    connections.get(dir).name()
+            );
+        }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
-        pTag.putInt("energy", energyStorage.getEnergyStored());
-        for (Direction dir : Direction.values()) {
-            pTag.putInt("conn_" + dir.getName(), connectionStates.get(dir).ordinal());
-        }
-        super.saveAdditional(pTag);
-    }
-
-    @Override
-    public void load(CompoundTag pTag) {
-        super.load(pTag);
-        energyStorage.deserializeNBT(pTag.get("energy"));
-        for (Direction dir : Direction.values()) {
-            connectionStates.put(dir, ConnectionType.values()[pTag.getInt("conn_" + dir.getName())]);
-        }
-    }
-
-    public void tick(Level level, BlockPos pos, BlockState state) {
-        if (level.isClientSide) return;
-
-        List<IEnergyStorage> outputs = new ArrayList<>();
-        List<IEnergyStorage> inputs = new ArrayList<>();
+    public void load(CompoundTag tag) {
+        super.load(tag);
 
         for (Direction dir : Direction.values()) {
-            ConnectionType type = connectionStates.get(dir);
-            if (type == ConnectionType.NONE) continue;
-
-            BlockEntity neighbor = level.getBlockEntity(pos.relative(dir));
-            if (neighbor == null) continue;
-
-            LazyOptional<IEnergyStorage> neighborEnergy = neighbor.getCapability(ForgeCapabilities.ENERGY, dir.getOpposite());
-            neighborEnergy.ifPresent(storage -> {
-                if (storage.canExtract() && type.canReceive()) {
-                    inputs.add(storage);
-                }
-                if (storage.canReceive() && type.canExtract()) {
-                    outputs.add(storage);
-                }
-            });
-        }
-
-        for (IEnergyStorage source : inputs) {
-
-            int canPull = source.extractEnergy(MAX_TRANSFER, true);
-            if (canPull > 0) {
-                int received = energyStorage.receiveEnergy(canPull, false);
-                source.extractEnergy(received, false);
-            }
-        }
-
-        if (energyStorage.getEnergyStored() > 0 && !outputs.isEmpty()) {
-
-            int energyToSend = Math.min(energyStorage.getEnergyStored(), MAX_TRANSFER);
-            int energyPerOutput = energyToSend / outputs.size();
-
-            if (energyPerOutput > 0) {
-                for (IEnergyStorage destination : outputs) {
-                    int sent = destination.receiveEnergy(energyPerOutput, false);
-                    energyStorage.extractEnergy(sent, false);
-                }
+            String key = "Conn_" + dir.getName();
+            if (tag.contains(key)) {
+                connections.put(
+                        dir,
+                        ConnectionType.valueOf(tag.getString(key))
+                );
             }
         }
     }

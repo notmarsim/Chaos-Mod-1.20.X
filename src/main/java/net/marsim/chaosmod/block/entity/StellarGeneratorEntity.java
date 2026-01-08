@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.block.entity;
 
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.energy.GeneratorEnergyStorage;
 import net.marsim.chaosmod.screen.StellarGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,13 +35,19 @@ import java.util.stream.Collectors;
 public class StellarGeneratorEntity extends BlockEntity implements MenuProvider {
     private static final int ENERGY_TRANSFER_RATE = 1_000_000;
     private static final int CAPACITY = 500_000_000;
-    private static final int MAX_RECEIVE = 500_000;
+    private static final int MAX_RECEIVE = 10_000_000;
+    private static final float EXPORT_THRESHOLD = 0.95f;
+
+    private boolean isExporting = false;
+
+
+    private final GeneratorEnergyStorage energyStorage =
+            new GeneratorEnergyStorage(this, CAPACITY, MAX_RECEIVE, ENERGY_TRANSFER_RATE);
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(1);
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-
-    private final EnergyStorage energyStorage = new EnergyStorage(CAPACITY, MAX_RECEIVE, ENERGY_TRANSFER_RATE);
     private LazyOptional<IEnergyStorage> lazyEnergy = LazyOptional.of(() -> energyStorage);
+
     protected final ContainerData data;
 
     public StellarGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
@@ -61,16 +68,7 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         };
     }
 
-    @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == ForgeCapabilities.ENERGY) {
-            return lazyEnergy.cast();
-        }
-        if(cap == ForgeCapabilities.ITEM_HANDLER){
-            return lazyItemHandler.cast();
-        }
-        return super.getCapability(cap, side);
-    }
+    public boolean isExportingNow() { return isExporting; }
 
     @Override
     public void onLoad() {
@@ -86,38 +84,18 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         lazyEnergy.invalidate();
     }
 
-//    public void drops() {
-//        ItemStack blockItem = new ItemStack(ModBlocks.STELLAR_GENERATOR.get());
-//
-//        blockItem.getCapability(ForgeCapabilities.ENERGY).ifPresent(energy -> {
-//            energy.receiveEnergy(this.energyStorage.getEnergyStored(), false);
-//        });
-//
-//        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-//        for (int i = 0; i < itemHandler.getSlots(); i++) {
-//            inventory.setItem(i, itemHandler.getStackInSlot(i));
-//        }
-//
-//        Containers.dropContents(this.level, this.worldPosition, inventory);
-//        Containers.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), blockItem);
-//    }
-
-
     @Override
-    public Component getDisplayName() {
-        return Component.translatable("block.chaosmod.stellar_generator");
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
-        return new StellarGeneratorMenu(pContainerId, pPlayerInventory,this,this.data);
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ENERGY) return lazyEnergy.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
+        return super.getCapability(cap, side);
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.put("energy", energyStorage.serializeNBT());
+        pTag.putBoolean("isExporting", isExporting);
         super.saveAdditional(pTag);
     }
 
@@ -128,69 +106,67 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider 
         if (pTag.contains("energy")) {
             energyStorage.deserializeNBT(pTag.get("energy"));
         }
+        this.isExporting = pTag.getBoolean("isExporting");
     }
 
+
     public void tick(Level level, BlockPos pos, BlockState state) {
-        if (level.isClientSide) {
-            return;
-        }
+        if (level.isClientSide) return;
 
 
-        int energyGeneratedThisTick = 0;
         if (level.isDay() && level.canSeeSky(pos.above())) {
-            energyGeneratedThisTick = MAX_RECEIVE;
+            energyStorage.generate(MAX_RECEIVE);
+        }
+
+        int stored = energyStorage.getEnergyStored();
+        int capacity = energyStorage.getMaxEnergyStored();
+
+
+        if (!isExporting && stored >= capacity) {
+            isExporting = true;
+        } else if (isExporting && stored <= (int)(capacity * EXPORT_THRESHOLD)) {
+            isExporting = false;
         }
 
 
-        int energyTransferredThisTick = 0;
-        int energyAvailable = energyStorage.getEnergyStored() + energyGeneratedThisTick;
-        int maxEnergyToSend = Math.min(ENERGY_TRANSFER_RATE, energyAvailable);
-
-
-        ItemStack stack = itemHandler.getStackInSlot(0);
-        if (!stack.isEmpty() && maxEnergyToSend > 0) {
-            IEnergyStorage itemEnergy = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
-            if (itemEnergy != null && itemEnergy.canReceive()) {
-                int sentToItem = itemEnergy.receiveEnergy(maxEnergyToSend, false);
-                energyTransferredThisTick += sentToItem;
-                maxEnergyToSend -= sentToItem;
-            }
-        }
-
-
-        if (maxEnergyToSend > 0) {
-
-            List<IEnergyStorage> receivers = new ArrayList<>();
-            for (Direction direction : Direction.values()) {
-                BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
-                if (neighbor != null) {
-                    neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).ifPresent(storage -> {
-                        if (storage.canReceive()) {
-                            receivers.add(storage);
-                        }
-                    });
-                }
-            }
-
-
-            if (!receivers.isEmpty()) {
-                int energyPerReceiver = maxEnergyToSend / receivers.size();
-                for (IEnergyStorage receiver : receivers) {
-                    int sent = receiver.receiveEnergy(energyPerReceiver, false);
-                    energyTransferredThisTick += sent;
-                }
-            }
-        }
-
-
-        int netEnergyChange = energyGeneratedThisTick - energyTransferredThisTick;
-
-        if (netEnergyChange > 0) {
-            energyStorage.receiveEnergy(netEnergyChange, false);
-        } else if (netEnergyChange < 0) {
-            energyStorage.extractEnergy(Math.abs(netEnergyChange), false);
-        }
 
         setChanged(level, pos, state);
+    }
+
+    private void distributeEnergy(Level level, BlockPos pos) {
+        int energyToExport = energyStorage.extractEnergy(ENERGY_TRANSFER_RATE, true);
+        if (energyToExport <= 0) return;
+
+        List<IEnergyStorage> receivers = new ArrayList<>();
+        for (Direction direction : Direction.values()) {
+            BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
+            if (neighbor != null && neighbor != this) {
+                neighbor.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).ifPresent(storage -> {
+                    if (storage.canReceive()) receivers.add(storage);
+                });
+            }
+        }
+
+        if (!receivers.isEmpty()) {
+            int totalSent = 0;
+            int energyPerReceiver = energyToExport / receivers.size();
+
+            for (IEnergyStorage receiver : receivers) {
+                int sent = receiver.receiveEnergy(energyPerReceiver, false);
+                totalSent += sent;
+            }
+            energyStorage.extractEnergy(totalSent, false);
+        }
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("block.chaosmod.stellar_generator");
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
+        return new StellarGeneratorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 }
