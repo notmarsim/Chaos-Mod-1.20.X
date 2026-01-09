@@ -22,7 +22,18 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
 
 
         add("unstable_particle_from_creeper", new AddItemModifier(new LootItemCondition[] {
-                new LootTableIdCondition.Builder(new ResourceLocation("entities/creeper")).build() }, ModItems.UNSTABLE_PARTICLE.get()));
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/creeper")).build(),
+                LootItemRandomChanceCondition.randomChance(0.5f).build()}, ModItems.UNSTABLE_PARTICLE.get()));
+
+        add("void_dust_from_wither_skeleton", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/wither_skeleton")).build(),
+                LootItemRandomChanceCondition.randomChance(0.5f).build()}, ModItems.VOID_DUST.get()));
+        add("void_fragment_from_wither_skeleton", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/wither_skeleton")).build(),
+                LootItemRandomChanceCondition.randomChance(0.2f).build()}, ModItems.VOID_FRAGMENT.get()));
+        add("void_bar_from_wither_skeleton", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/wither_skeleton")).build(),
+                LootItemRandomChanceCondition.randomChance(0.05f).build()}, ModItems.VOID_BAR.get()));
 
 
 

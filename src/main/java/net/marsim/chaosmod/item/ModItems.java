@@ -32,6 +32,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NOVA_FRAGMENT= ITEMS.register("nova_fragment",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_FRAGMENT = ITEMS.register("void_fragment",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STELLAR_ESSENCE = ITEMS.register("stellar_essence",
             () -> new Item(new Item.Properties()));
 

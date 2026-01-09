@@ -116,6 +116,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
                 .save(pWriter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.VOID_FRAGMENT.get())
+                .pattern("VVV")
+                .pattern("VVV")
+                .pattern("VVV")
+                .define('V', ModItems.VOID_DUST.get())
+                .unlockedBy(getHasName(ModItems.VOID_DUST.get()), has(ModItems.VOID_DUST.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.VOID_BAR.get())
+                .pattern("VVV")
+                .pattern("VVV")
+                .pattern("VVV")
+                .define('V', ModItems.VOID_FRAGMENT.get())
+                .unlockedBy(getHasName(ModItems.VOID_FRAGMENT.get()), has(ModItems.VOID_FRAGMENT.get()))
+                .save(pWriter);
+
+
+
         // block
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.UNSTABLE_BLOCK.get())
@@ -172,6 +189,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.UNSTABLE_BLOCK.get())
                 .unlockedBy(getHasName(ModBlocks.UNSTABLE_BLOCK.get()), has(ModBlocks.UNSTABLE_BLOCK.get()))
                 .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "unstable_bar_from_block"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.VOID_FRAGMENT.get(), 9)
+                .requires(ModItems.VOID_BAR.get())
+                .unlockedBy(getHasName(ModItems.VOID_BAR.get()), has(ModItems.VOID_BAR.get()))
+                .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "void_fragment_from_void_bar"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.VOID_DUST.get(), 9)
+                .requires(ModItems.VOID_FRAGMENT.get())
+                .unlockedBy(getHasName(ModItems.VOID_FRAGMENT.get()), has(ModItems.VOID_FRAGMENT.get()))
+                .save(pWriter, new ResourceLocation(ChaosMod.MOD_ID, "void_dust_from_void_fragment"));
 
         // void station:
         // duality sword

@@ -26,6 +26,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.CHAOS_FRAGMENT.get());
                         output.accept(ModItems.DARKLIGHT_FRAGMENT.get());
                         output.accept(ModItems.NOVA_FRAGMENT.get());
+                        output.accept(ModItems.VOID_FRAGMENT.get());
 
                         // bars
                         output.accept(ModItems.UNSTABLE_BAR.get());
