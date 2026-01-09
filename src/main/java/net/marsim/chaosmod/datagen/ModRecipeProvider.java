@@ -125,17 +125,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('U', ModItems.UNSTABLE_BAR.get())
                 .unlockedBy(getHasName(ModItems.UNSTABLE_BAR.get()), has(ModItems.UNSTABLE_BAR.get()))
                 .save(pWriter);
-
-
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VOID_REFINER.get())
-                .pattern("ODO")
-                .pattern("DFD")
-                .pattern("ODO")
+        // void station
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VOID_STATION.get())
+                .pattern("UUU")
+                .pattern("OFO")
+                .pattern("UUU")
+                .define('U', ModItems.VOID_BAR.get())
                 .define('O', Items.OBSIDIAN)
                 .define('F', ModItems.FUSION_CORE.get())
-                .define('D', Items.DIAMOND)
-                .unlockedBy(getHasName(ModItems.FUSION_CORE.get()), has(ModItems.FUSION_CORE.get()))
+                .unlockedBy(getHasName(ModItems.VOID_BAR.get()), has(ModItems.VOID_BAR.get()))
                 .save(pWriter);
 
         // fuel
@@ -761,6 +759,178 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     json.add("ingredients", ingredients);
                     JsonObject outputObj = new JsonObject();
                     outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.STELLAR_GENERATOR.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+        // void refiner
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+
+            Ingredient voidBar = Ingredient.of(ModItems.VOID_BAR.get());
+            Ingredient voidCircuit = Ingredient.of(ModItems.VOID_CIRCUIT.get());
+            Ingredient obsidian = Ingredient.of(Items.OBSIDIAN);
+            Ingredient fusionCore = Ingredient.of(ModItems.FUSION_CORE.get());
+
+            inputs.set(40, voidCircuit);
+            inputs.set(22, voidCircuit);
+            inputs.set(31, voidCircuit);
+            inputs.set(49, voidCircuit);
+            inputs.set(58, voidCircuit);
+
+            inputs.set(19, voidCircuit);
+            inputs.set(20, voidCircuit);
+            inputs.set(21, voidCircuit);
+            inputs.set(23, voidCircuit);
+            inputs.set(24, voidCircuit);
+            inputs.set(25, voidCircuit);
+            inputs.set(55, voidCircuit);
+            inputs.set(56, voidCircuit);
+            inputs.set(57, voidCircuit);
+            inputs.set(59, voidCircuit);
+            inputs.set(60, voidCircuit);
+            inputs.set(61, voidCircuit);
+
+            inputs.set(28, obsidian);
+            inputs.set(29, obsidian);
+            inputs.set(30, obsidian);
+            inputs.set(37, obsidian);
+            inputs.set(39, obsidian);
+            inputs.set(46, obsidian);
+            inputs.set(47, obsidian);
+            inputs.set(48, obsidian);
+
+            inputs.set(32, obsidian);
+            inputs.set(33, obsidian);
+            inputs.set(34, obsidian);
+            inputs.set(41, obsidian);
+            inputs.set(43, obsidian);
+            inputs.set(50, obsidian);
+            inputs.set(51, obsidian);
+            inputs.set(52, obsidian);
+
+            inputs.set(38, fusionCore);
+            inputs.set(42, fusionCore);
+
+            inputs.set(9, voidBar);
+            inputs.set(10, voidBar);
+            inputs.set(11, voidBar);
+            inputs.set(12, voidBar);
+            inputs.set(13, voidBar);
+            inputs.set(14, voidBar);
+            inputs.set(15, voidBar);
+            inputs.set(16, voidBar);
+            inputs.set(17, voidBar);
+            inputs.set(18, voidBar);
+
+            inputs.set(26, voidBar);
+            inputs.set(35, voidBar);
+            inputs.set(44, voidBar);
+            inputs.set(53, voidBar);
+            inputs.set(62, voidBar);
+
+
+            inputs.set(63, voidBar);
+            inputs.set(64, voidBar);
+            inputs.set(65, voidBar);
+            inputs.set(66, voidBar);
+            inputs.set(67, voidBar);
+            inputs.set(68, voidBar);
+            inputs.set(69, voidBar);
+            inputs.set(70, voidBar);
+            inputs.set(71, voidBar);
+
+            inputs.set(27, voidBar);
+            inputs.set(36, voidBar);
+            inputs.set(45, voidBar);
+            inputs.set(54, voidBar);
+            inputs.set(63, voidBar);
+
+
+            ItemStack output = new ItemStack(ModItems.VOID_REFINER.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "void_refiner_void_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.VOID_REFINER.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+        // stellar bar
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+
+            Ingredient stellarEssence = Ingredient.of(ModItems.STELLAR_ESSENCE.get());
+            Ingredient stellarStar = Ingredient.of(ModItems.STELLAR_STAR.get());
+            Ingredient netherStar = Ingredient.of(Items.NETHER_STAR);
+
+
+            int[] essenceIndices = {
+                    18, 19, 20, 21, 22, 23, 24, 25, 26,
+                    27, 35,
+                    36, 44,
+                    45, 53,
+                    54, 55, 56, 57, 58, 59, 60, 61, 62
+            };
+            for (int i : essenceIndices) inputs.set(i, stellarEssence);
+
+
+            int[] sStarIndices = {
+                    28, 30, 32, 34,
+                    38, 40, 42,
+                    46, 48, 50, 52
+            };
+            for (int i : sStarIndices) inputs.set(i, stellarStar);
+
+
+            int[] nStarIndices = {
+                    29, 31, 33,
+                    37, 39, 41, 43,
+                    47, 49, 51
+            };
+            for (int i : nStarIndices) inputs.set(i, netherStar);
+
+            ItemStack output = new ItemStack(ModItems.STELLAR_BAR.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "stellar_bar_void_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.STELLAR_BAR.get()).toString());
                     outputObj.addProperty("count", 1);
                     json.add("output", outputObj);
                 }
