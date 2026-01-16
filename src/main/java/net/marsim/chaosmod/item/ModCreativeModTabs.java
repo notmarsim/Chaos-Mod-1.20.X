@@ -77,6 +77,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.VOID_ROD.get());
                         output.accept(ModItems.CHAOTIC_STAR.get());
                         output.accept(ModItems.DARKLIGHT_STAR.get());
+                        output.accept(ModItems.VOID_STAR.get());
                         output.accept(ModItems.NOVA_STAR.get());
                         output.accept(ModItems.STELLAR_STAR.get());
                         output.accept(ModItems.VOID_CAPACITOR.get());

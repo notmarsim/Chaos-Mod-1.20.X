@@ -53,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CHAOTIC_STAR);
         simpleItem(ModItems.STELLAR_STAR);
         simpleItem(ModItems.DARKLIGHT_STAR);
+        simpleItem(ModItems.VOID_STAR);
         simpleItem(ModItems.NOVA_STAR);
         simpleItem(ModItems.CHAOS_BAR);
         simpleItem(ModItems.STELLAR_ESSENCE);

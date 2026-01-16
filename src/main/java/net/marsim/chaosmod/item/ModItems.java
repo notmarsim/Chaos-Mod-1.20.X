@@ -102,6 +102,8 @@ public class ModItems {
             () -> new ConfiguratorItem(new Item.Properties()));
     public static final RegistryObject<Item> CHAOTIC_STAR = ITEMS.register("chaotic_star",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_STAR = ITEMS.register("void_star",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ZENITH = ITEMS.register("zenith",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ZENITH_SHARD = ITEMS.register("zenith_shard",
