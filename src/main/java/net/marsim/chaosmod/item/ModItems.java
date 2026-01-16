@@ -112,6 +112,13 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> VOID_CIRCUIT = ITEMS.register("void_circuit",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_CAPACITOR = ITEMS.register("stellar_capacitor",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_CIRCUIT = ITEMS.register("stellar_circuit",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STELLAR_CORE = ITEMS.register("stellar_core",
+            () -> new Item(new Item.Properties()));
+
 
     public static final RegistryObject<Item> DARKLIGHT_STAR = ITEMS.register("darklight_star",
             () -> new Item(new Item.Properties()));

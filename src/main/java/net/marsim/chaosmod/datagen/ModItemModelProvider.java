@@ -68,6 +68,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.ZENITH_SHARD);
         simpleItem(ModItems.VOID_CAPACITOR);
         simpleItem(ModItems.VOID_CIRCUIT);
+        simpleItem(ModItems.STELLAR_CIRCUIT);
+        simpleItem(ModItems.STELLAR_CAPACITOR);
+        simpleItem(ModItems.STELLAR_CORE);
+
 
         // tools
         handheldItem(ModItems.DUALITY_SWORD);

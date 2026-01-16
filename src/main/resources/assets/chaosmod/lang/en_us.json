@@ -35,6 +35,9 @@
   "item.chaosmod.zenith_shard": "Zenith Shard",
   "item.chaosmod.void_capacitor": "Void Capacitor",
   "item.chaosmod.void_circuit": "Void Circuit",
+  "item.chaosmod.stellar_capacitor": "Stellar Capacitor",
+  "item.chaosmod.stellar_circuit": "Stellar Circuit",
+  "item.chaosmod.stellar_core": "Stellar Core",
 
   "item.chaosmod.stellar_essence": "Stellar Essence",
   "item.chaosmod.void_rod": "Void Rod",
