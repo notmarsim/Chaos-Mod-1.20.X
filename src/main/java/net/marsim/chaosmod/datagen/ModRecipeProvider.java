@@ -1179,116 +1179,116 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             });
         }
         // darklight refiner
-//        {
-//            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
-//
-//
-//            Ingredient darklightBar = Ingredient.of(ModItems.DARKLIGHT_BAR.get());
-//            Ingredient stellarCircuit = Ingredient.of(ModItems.STELLAR_CIRCUIT.get());
-//            Ingredient obsidian = Ingredient.of(Items.OBSIDIAN);
-//            Ingredient stellarCore = Ingredient.of(ModItems.STELLAR_CORE.get());
-//
-//            inputs.set(40, stellarCircuit);
-//            inputs.set(22, stellarCircuit);
-//            inputs.set(31, stellarCircuit);
-//            inputs.set(49, stellarCircuit);
-//            inputs.set(58, stellarCircuit);
-//
-//            inputs.set(19, stellarCircuit);
-//            inputs.set(20, stellarCircuit);
-//            inputs.set(21, stellarCircuit);
-//            inputs.set(23, stellarCircuit);
-//            inputs.set(24, stellarCircuit);
-//            inputs.set(25, stellarCircuit);
-//            inputs.set(55, stellarCircuit);
-//            inputs.set(56, stellarCircuit);
-//            inputs.set(57, stellarCircuit);
-//            inputs.set(59, stellarCircuit);
-//            inputs.set(60, stellarCircuit);
-//            inputs.set(61, stellarCircuit);
-//
-//            inputs.set(28, obsidian);
-//            inputs.set(29, obsidian);
-//            inputs.set(30, obsidian);
-//            inputs.set(37, obsidian);
-//            inputs.set(39, obsidian);
-//            inputs.set(46, obsidian);
-//            inputs.set(47, obsidian);
-//            inputs.set(48, obsidian);
-//
-//            inputs.set(32, obsidian);
-//            inputs.set(33, obsidian);
-//            inputs.set(34, obsidian);
-//            inputs.set(41, obsidian);
-//            inputs.set(43, obsidian);
-//            inputs.set(50, obsidian);
-//            inputs.set(51, obsidian);
-//            inputs.set(52, obsidian);
-//
-//            inputs.set(38, stellarCore);
-//            inputs.set(42, stellarCore);
-//
-//            inputs.set(9, darklightBar);
-//            inputs.set(10, darklightBar);
-//            inputs.set(11, darklightBar);
-//            inputs.set(12, darklightBar);
-//            inputs.set(13, darklightBar);
-//            inputs.set(14, darklightBar);
-//            inputs.set(15, darklightBar);
-//            inputs.set(16, darklightBar);
-//            inputs.set(17, darklightBar);
-//            inputs.set(18, darklightBar);
-//
-//            inputs.set(26, darklightBar);
-//            inputs.set(35, darklightBar);
-//            inputs.set(44, darklightBar);
-//            inputs.set(53, darklightBar);
-//            inputs.set(62, darklightBar);
-//
-//
-//            inputs.set(63, darklightBar);
-//            inputs.set(64, darklightBar);
-//            inputs.set(65, darklightBar);
-//            inputs.set(66, darklightBar);
-//            inputs.set(67, darklightBar);
-//            inputs.set(68, darklightBar);
-//            inputs.set(69, darklightBar);
-//            inputs.set(70, darklightBar);
-//            inputs.set(71, darklightBar);
-//
-//            inputs.set(27, darklightBar);
-//            inputs.set(36, darklightBar);
-//            inputs.set(45, darklightBar);
-//            inputs.set(54, darklightBar);
-//            inputs.set(63, darklightBar);
-//
-//
-//            ItemStack output = new ItemStack(ModItems.VOID_REFINER.get());
-//            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "void_refiner_void_station");
-//            pWriter.accept(new FinishedRecipe() {
-//                @Override
-//                public void serializeRecipeData(JsonObject json) {
-//                    json.addProperty("type", "chaosmod:void_station");
-//                    JsonArray ingredients = new JsonArray();
-//                    for (Ingredient ingredient : inputs) {
-//                        ingredients.add(ingredient.toJson());
-//                    }
-//                    json.add("ingredients", ingredients);
-//                    JsonObject outputObj = new JsonObject();
-//                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.VOID_REFINER.get()).toString());
-//                    outputObj.addProperty("count", 1);
-//                    json.add("output", outputObj);
-//                }
-//                @Override
-//                public ResourceLocation getId() { return id; }
-//                @Override
-//                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
-//                @Override
-//                public JsonObject serializeAdvancement() { return null; }
-//                @Override
-//                public ResourceLocation getAdvancementId() { return null; }
-//            });
-//        }
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+
+            Ingredient darklightBar = Ingredient.of(ModItems.DARKLIGHT_BAR.get());
+            Ingredient stellarCircuit = Ingredient.of(ModItems.STELLAR_CIRCUIT.get());
+            Ingredient obsidian = Ingredient.of(Items.OBSIDIAN);
+            Ingredient stellarCore = Ingredient.of(ModItems.STELLAR_CORE.get());
+
+            inputs.set(40, stellarCircuit);
+            inputs.set(22, stellarCircuit);
+            inputs.set(31, stellarCircuit);
+            inputs.set(49, stellarCircuit);
+            inputs.set(58, stellarCircuit);
+
+            inputs.set(19, stellarCircuit);
+            inputs.set(20, stellarCircuit);
+            inputs.set(21, stellarCircuit);
+            inputs.set(23, stellarCircuit);
+            inputs.set(24, stellarCircuit);
+            inputs.set(25, stellarCircuit);
+            inputs.set(55, stellarCircuit);
+            inputs.set(56, stellarCircuit);
+            inputs.set(57, stellarCircuit);
+            inputs.set(59, stellarCircuit);
+            inputs.set(60, stellarCircuit);
+            inputs.set(61, stellarCircuit);
+
+            inputs.set(28, obsidian);
+            inputs.set(29, obsidian);
+            inputs.set(30, obsidian);
+            inputs.set(37, obsidian);
+            inputs.set(39, obsidian);
+            inputs.set(46, obsidian);
+            inputs.set(47, obsidian);
+            inputs.set(48, obsidian);
+
+            inputs.set(32, obsidian);
+            inputs.set(33, obsidian);
+            inputs.set(34, obsidian);
+            inputs.set(41, obsidian);
+            inputs.set(43, obsidian);
+            inputs.set(50, obsidian);
+            inputs.set(51, obsidian);
+            inputs.set(52, obsidian);
+
+            inputs.set(38, stellarCore);
+            inputs.set(42, stellarCore);
+
+            inputs.set(9, darklightBar);
+            inputs.set(10, darklightBar);
+            inputs.set(11, darklightBar);
+            inputs.set(12, darklightBar);
+            inputs.set(13, darklightBar);
+            inputs.set(14, darklightBar);
+            inputs.set(15, darklightBar);
+            inputs.set(16, darklightBar);
+            inputs.set(17, darklightBar);
+            inputs.set(18, darklightBar);
+
+            inputs.set(26, darklightBar);
+            inputs.set(35, darklightBar);
+            inputs.set(44, darklightBar);
+            inputs.set(53, darklightBar);
+            inputs.set(62, darklightBar);
+
+
+            inputs.set(63, darklightBar);
+            inputs.set(64, darklightBar);
+            inputs.set(65, darklightBar);
+            inputs.set(66, darklightBar);
+            inputs.set(67, darklightBar);
+            inputs.set(68, darklightBar);
+            inputs.set(69, darklightBar);
+            inputs.set(70, darklightBar);
+            inputs.set(71, darklightBar);
+
+            inputs.set(27, darklightBar);
+            inputs.set(36, darklightBar);
+            inputs.set(45, darklightBar);
+            inputs.set(54, darklightBar);
+            inputs.set(63, darklightBar);
+
+
+            ItemStack output = new ItemStack(ModItems.DARKLIGHT_REFINER.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "darklight_refiner_void_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.DARKLIGHT_REFINER.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
         // stellar bar
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);

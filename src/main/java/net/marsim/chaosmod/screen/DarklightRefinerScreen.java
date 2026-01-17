@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class VoidRefinerScreen extends AbstractContainerScreen<VoidRefinerMenu> {
+public class DarklightRefinerScreen extends AbstractContainerScreen<DarklightRefinerMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/void_refiner_gui.png");
 
@@ -24,7 +24,7 @@ public class VoidRefinerScreen extends AbstractContainerScreen<VoidRefinerMenu> 
     private static final ResourceLocation CONFIG_BUTTON_TEXTURE =
             new ResourceLocation(ChaosMod.MOD_ID, "textures/gui/configuration.png");
 
-    public VoidRefinerScreen(VoidRefinerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public DarklightRefinerScreen(DarklightRefinerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

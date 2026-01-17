@@ -8,11 +8,9 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.marsim.chaosmod.ChaosMod;
+import net.marsim.chaosmod.recipe.DarklightRefinerRecipe;
 import net.marsim.chaosmod.recipe.VoidRefinerRecipe;
-import net.marsim.chaosmod.screen.VoidRefinerMenu;
-import net.marsim.chaosmod.screen.VoidRefinerScreen;
-import net.marsim.chaosmod.screen.VoidStationMenu;
-import net.marsim.chaosmod.screen.VoidStationScreen;
+import net.marsim.chaosmod.screen.*;
 import net.marsim.chaosmod.recipe.VoidStationRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -31,6 +29,7 @@ public class JEIChaosModPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new VoidRefinerCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new VoidStationCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new DarklightRefinerCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -40,6 +39,9 @@ public class JEIChaosModPlugin implements IModPlugin {
         List<VoidRefinerRecipe> refinerRecipes = recipeManager.getAllRecipesFor(VoidRefinerRecipe.Type.INSTANCE);
         registration.addRecipes(VoidRefinerCategory.VOID_REFINER_TYPE, refinerRecipes);
 
+        List<DarklightRefinerRecipe> darklightRefinerRecipes = recipeManager.getAllRecipesFor(DarklightRefinerRecipe.Type.INSTANCE);
+        registration.addRecipes(DarklightRefinerCategory.DARKLIGHT_REFINER_TYPE, darklightRefinerRecipes);
+
         List<VoidStationRecipe> chaoticRecipes = recipeManager.getAllRecipesFor(VoidStationRecipe.Type.INSTANCE);
         registration.addRecipes(VoidStationCategory.VOID_STATION_TYPE, chaoticRecipes);
     }
@@ -48,12 +50,14 @@ public class JEIChaosModPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(VoidRefinerScreen.class,80,30,28,30,
                 VoidRefinerCategory.VOID_REFINER_TYPE);
+        registration.addRecipeClickArea(DarklightRefinerScreen.class,80,30,28,30,
+                DarklightRefinerCategory.DARKLIGHT_REFINER_TYPE);
         registration.addRecipeClickArea(VoidStationScreen.class,176,80,21,14,
                 VoidStationCategory.VOID_STATION_TYPE);
     }
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        // Handler para o Void Refiner
+
         registration.addRecipeTransferHandler(VoidRefinerMenu.class, null,
                 VoidRefinerCategory.VOID_REFINER_TYPE,
                 36, // first slot index (input)
@@ -61,7 +65,14 @@ public class JEIChaosModPlugin implements IModPlugin {
                 0,
                 36);
 
-        // Handler para a Void Station
+        registration.addRecipeTransferHandler(DarklightRefinerMenu.class, null,
+                DarklightRefinerCategory.DARKLIGHT_REFINER_TYPE,
+                36, // first slot index (input)
+                1,  // slots quantity
+                0,
+                36);
+
+
         registration.addRecipeTransferHandler(VoidStationMenu.class, null,
                 VoidStationCategory.VOID_STATION_TYPE,
                 36, // first slot index (input)

@@ -1,0 +1,12 @@
+{
+  "type": "chaosmod:darklight_refiner",
+  "ingredients": [
+    {
+      "item": "chaosmod:darklight_fragment"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "chaosmod:darklight_bar"
+  }
+}

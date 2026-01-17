@@ -17,6 +17,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(VoidRefinerEntity::new,
                             ModBlocks.VOID_REFINER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<DarklightRefinerEntity>> DARKLIGHT_REFINER_BE =
+            BLOCK_ENTITIES.register("darklight_refiner_be",()->
+                    BlockEntityType.Builder.of(DarklightRefinerEntity::new,
+                            ModBlocks.DARKLIGHT_REFINER.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<VoidStationEntity>> VOID_STATION_BE =
             BLOCK_ENTITIES.register("void_station_be",()->
                     BlockEntityType.Builder.of(VoidStationEntity::new,

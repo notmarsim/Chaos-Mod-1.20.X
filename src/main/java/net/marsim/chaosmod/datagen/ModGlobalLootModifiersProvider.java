@@ -35,6 +35,16 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/wither_skeleton")).build(),
                 LootItemRandomChanceCondition.randomChance(0.05f).build()}, ModItems.VOID_BAR.get()));
 
+        add("darklight_fragment_from_enderman", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/enderman")).build(),
+                LootItemRandomChanceCondition.randomChance(0.1f).build()}, ModItems.DARKLIGHT_FRAGMENT.get()));
+        add("darklight_bar_from_enderman", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/enderman")).build(),
+                LootItemRandomChanceCondition.randomChance(0.01f).build()}, ModItems.DARKLIGHT_BAR.get()));
+
+
+
+
 
 
     }

@@ -19,7 +19,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class CableBlockEntity extends BlockEntity {
-    private final CableEnergyStorage energy = new CableEnergyStorage(10_000);
+    private final CableEnergyStorage energy = new CableEnergyStorage(50_000);
     private final LazyOptional<IEnergyStorage> energyCap =
             LazyOptional.of(() -> energy);
     private final Map<Direction, ConnectionType> connections =

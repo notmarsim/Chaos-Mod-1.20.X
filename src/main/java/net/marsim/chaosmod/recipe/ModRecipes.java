@@ -16,6 +16,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<VoidRefinerRecipe>> VOID_REFINER_SERIALIZER =
             SERIALIZERS.register("void_refiner", () -> VoidRefinerRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<DarklightRefinerRecipe>> DARKLIGHT_REFINER_SERIALIZER =
+            SERIALIZERS.register("darklight_refiner", () -> DarklightRefinerRecipe.Serializer.INSTANCE);
+
     public static final RegistryObject<RecipeSerializer<VoidStationRecipe>> VOID_STATION_SERIALIZER =
             SERIALIZERS.register("void_station", () -> VoidStationRecipe.Serializer.INSTANCE);
 

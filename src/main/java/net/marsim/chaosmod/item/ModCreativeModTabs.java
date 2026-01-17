@@ -46,6 +46,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.UNSTABLE_BLOCK.get());
                         output.accept(ModBlocks.UNSTABLE_PARTICLE_ORE.get());
                         output.accept(ModBlocks.VOID_REFINER.get());
+                        output.accept(ModBlocks.DARKLIGHT_REFINER.get());
                         output.accept(ModBlocks.VOID_STATION.get());
                         output.accept(ModBlocks.STELLAR_GENERATOR.get());
 

@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<VoidRefinerMenu>> VOID_REFINER_MENU =
             registerMenuType("void_refiner_menu", VoidRefinerMenu::new);
 
+    public static final RegistryObject<MenuType<DarklightRefinerMenu>> DARKLIGHT_REFINER_MENU =
+            registerMenuType("darklight_refiner_menu", DarklightRefinerMenu::new);
+
     public static final RegistryObject<MenuType<VoidStationMenu>> VOID_STATION_MENU =
             registerMenuType("chaotic_station_menu", VoidStationMenu::new);
 

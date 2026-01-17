@@ -1,6 +1,8 @@
 package net.marsim.chaosmod.block.entity;
 
+import net.marsim.chaosmod.recipe.DarklightRefinerRecipe;
 import net.marsim.chaosmod.recipe.VoidRefinerRecipe;
+import net.marsim.chaosmod.screen.DarklightRefinerMenu;
 import net.marsim.chaosmod.screen.VoidRefinerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,13 +34,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISideConfigurable {
+public class DarklightRefinerEntity extends BlockEntity implements MenuProvider, ISideConfigurable {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    private final CustomEnergyStorage energyStorage = new CustomEnergyStorage(100_000, 20000, 10000);
+    private final CustomEnergyStorage energyStorage = new CustomEnergyStorage(100_000_000, 20_000_000, 10_000_000);
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
     private static final int ENERGY_REQ_PER_TICK = 20;
 
@@ -46,7 +48,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 600;
+    private int maxProgress = 6000;
 
     private class CustomEnergyStorage extends EnergyStorage {
         public CustomEnergyStorage(int capacity, int maxReceive, int maxExtract) {
@@ -101,8 +103,8 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
         }
     }
 
-    public VoidRefinerEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.VOID_REFINER_BE.get(), pPos, pBlockState);
+    public DarklightRefinerEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.DARKLIGHT_REFINER_BE.get(), pPos, pBlockState);
 
         for (Direction dir : Direction.values()) {
             sideConfig.put(dir, IOSide.INPUT);
@@ -112,19 +114,19 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
             @Override
             public int get(int pIndex) {
                 return switch (pIndex){
-                    case 0 -> VoidRefinerEntity.this.progress;
-                    case 1 -> VoidRefinerEntity.this.maxProgress;
-                    case 2 -> VoidRefinerEntity.this.energyStorage.getEnergyStored();
-                    case 3 -> VoidRefinerEntity.this.energyStorage.getMaxEnergyStored();
+                    case 0 -> DarklightRefinerEntity.this.progress;
+                    case 1 -> DarklightRefinerEntity.this.maxProgress;
+                    case 2 -> DarklightRefinerEntity.this.energyStorage.getEnergyStored();
+                    case 3 -> DarklightRefinerEntity.this.energyStorage.getMaxEnergyStored();
                     default -> 0;
                 };
             }
             @Override
             public void set(int pIndex, int pValue) {
                 switch (pIndex){
-                    case 0 -> VoidRefinerEntity.this.progress = pValue;
-                    case 1 -> VoidRefinerEntity.this.maxProgress = pValue;
-                    case 2 -> VoidRefinerEntity.this.energyStorage.setEnergy(pValue);
+                    case 0 -> DarklightRefinerEntity.this.progress = pValue;
+                    case 1 -> DarklightRefinerEntity.this.maxProgress = pValue;
+                    case 2 -> DarklightRefinerEntity.this.energyStorage.setEnergy(pValue);
                     case 3 -> {}
                 }
             }
@@ -174,7 +176,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("void_refiner.progress", progress);
+        pTag.putInt("darklight_refiner.progress", progress);
         pTag.put("energy", energyStorage.serializeNBT());
 
         for (Map.Entry<Direction, IOSide> entry : sideConfig.entrySet()) {
@@ -188,7 +190,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("void_refiner.progress");
+        progress = pTag.getInt("darklight_refiner.progress");
         energyStorage.deserializeNBT(pTag.get("energy"));
 
         for (Direction dir : Direction.values()) {
@@ -242,13 +244,13 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.chaosmod.void_refiner");
+        return Component.translatable("block.chaosmod.darklight_refiner");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
-        return new VoidRefinerMenu(pContainerId, pPlayerInventory,this,this.data);
+        return new DarklightRefinerMenu(pContainerId, pPlayerInventory,this,this.data);
     }
 
     private void resetProgress() {
@@ -256,7 +258,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
     }
 
     private void craftItem() {
-        Optional<VoidRefinerRecipe> recipe = getCurrentRecipe();
+        Optional<DarklightRefinerRecipe> recipe = getCurrentRecipe();
         ItemStack result = recipe.get().getResultItem(null);
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
@@ -264,7 +266,7 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
     }
 
     private boolean hasRecipe() {
-        Optional<VoidRefinerRecipe> recipe = getCurrentRecipe();
+        Optional<DarklightRefinerRecipe> recipe = getCurrentRecipe();
         if(recipe.isEmpty()){
             return false;
         }
@@ -272,12 +274,12 @@ public class VoidRefinerEntity extends BlockEntity implements MenuProvider, ISid
         return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }
 
-    private Optional<VoidRefinerRecipe> getCurrentRecipe() {
+    private Optional<DarklightRefinerRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
         for(int i = 0; i< itemHandler.getSlots(); i++){
             inventory.setItem(i, this.itemHandler.getStackInSlot(i));
         }
-        return this.level.getRecipeManager().getRecipeFor(VoidRefinerRecipe.Type.INSTANCE, inventory,level);
+        return this.level.getRecipeManager().getRecipeFor(DarklightRefinerRecipe.Type.INSTANCE, inventory,level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

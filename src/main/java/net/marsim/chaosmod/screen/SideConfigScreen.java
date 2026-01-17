@@ -86,7 +86,7 @@ public class SideConfigScreen extends Screen {
             int[] layout = entry.getValue();
             IOSide sideState = blockEntity.getSideConfig(dir);
 
-            int u = (sideState == IOSide.INPUT) ? 16 : 0; // Se for INPUT, usa a parte vermelha da textura. Senão, a cinza.
+            int u = (sideState == IOSide.INPUT) ? 16 : 0;
 
             guiGraphics.blit(OVERLAYS_TEXTURE, this.x + layout[0], this.y + layout[1], u, 0, layout[2], layout[3], 32, 16);
         }

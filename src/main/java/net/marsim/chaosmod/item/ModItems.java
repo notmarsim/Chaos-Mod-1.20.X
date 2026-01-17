@@ -66,6 +66,12 @@ public class ModItems {
                     1_000_000, // capacity
                     500_000,   // maxReceive
                     3_000)); // maxExtract
+    public static final RegistryObject<Item> DARKLIGHT_REFINER = ITEMS.register("darklight_refiner",
+            () -> new EnergyBlockItem(ModBlocks.DARKLIGHT_REFINER.get(), new Item.Properties(),
+                    1_000_000, // capacity
+                    500_000,   // maxReceive
+                    3_000)); // maxExtract
+
     // fuel
     public static final RegistryObject<Item> SHADOW_INFUSED_COAL = ITEMS.register("shadow_infused_coal",
             () -> new FuelItem(new Item.Properties(),3000));

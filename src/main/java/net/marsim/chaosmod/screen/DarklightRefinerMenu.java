@@ -1,6 +1,7 @@
 package net.marsim.chaosmod.screen;
 
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.block.entity.DarklightRefinerEntity;
 import net.marsim.chaosmod.block.entity.VoidRefinerEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,20 +13,20 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class VoidRefinerMenu extends AbstractContainerMenu {
-    public final VoidRefinerEntity blockEntity;
+public class DarklightRefinerMenu extends AbstractContainerMenu {
+    public final DarklightRefinerEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public VoidRefinerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public DarklightRefinerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
 
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
-    public VoidRefinerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.VOID_REFINER_MENU.get(), pContainerId);
+    public DarklightRefinerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.DARKLIGHT_REFINER_MENU.get(), pContainerId);
         checkContainerSize(inv, 2);
-        blockEntity = ((VoidRefinerEntity) entity);
+        blockEntity = ((DarklightRefinerEntity) entity);
         this.level = inv.player.level();
         this.data = data;
 
@@ -101,7 +102,7 @@ public class VoidRefinerMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.VOID_REFINER.get());
+                pPlayer, ModBlocks.DARKLIGHT_REFINER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

@@ -55,6 +55,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         )
         );
 
+        this.add(ModBlocks.DARKLIGHT_REFINER.get(),
+                LootTable.lootTable()
+                        .withPool(
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1))
+                                        .add(
+                                                LootItem.lootTableItem(ModBlocks.DARKLIGHT_REFINER.get().asItem())
+                                                        .apply(
+
+                                                                CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                                                        .copy("energy", "BlockEntityTag.energy")
+                                                                        .copy("inventory", "BlockEntityTag.inventory")
+                                                                        .copy("darklight_refiner.progress", "BlockEntityTag.darklight_refiner.progress")
+                                                        )
+                                        )
+                        )
+        );
+
         this.dropSelf(ModBlocks.STELLAR_FLOWER.get());
         this.add(ModBlocks.POTTED_STELLAR_FLOWER.get(), createPotFlowerItemTable(ModBlocks.STELLAR_FLOWER.get()));
 

@@ -30,6 +30,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.STABLE_PARTICLE_ORE);
         simpleBlockWithItem(ModBlocks.VOID_REFINER.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));
+        simpleBlockWithItem(ModBlocks.DARKLIGHT_REFINER.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/darklight_refiner")));
         simpleBlockWithItem(ModBlocks.VOID_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
         simpleBlockWithItem(ModBlocks.STELLAR_GENERATOR.get(),

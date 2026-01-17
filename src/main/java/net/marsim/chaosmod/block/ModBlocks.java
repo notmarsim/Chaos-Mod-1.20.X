@@ -1,10 +1,7 @@
 package net.marsim.chaosmod.block;
 
 import net.marsim.chaosmod.ChaosMod;
-import net.marsim.chaosmod.block.custom.VoidCableBlock;
-import net.marsim.chaosmod.block.custom.StellarGeneratorBlock;
-import net.marsim.chaosmod.block.custom.VoidRefinerBlock;
-import net.marsim.chaosmod.block.custom.VoidStationBlock;
+import net.marsim.chaosmod.block.custom.*;
 import net.marsim.chaosmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
@@ -37,11 +34,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> VOID_REFINER = registerBlockWithoutItem("void_refiner",
             ()-> new VoidRefinerBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
+    public static final RegistryObject<Block> DARKLIGHT_REFINER = registerBlockWithoutItem("darklight_refiner",
+            ()-> new DarklightRefinerBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
+
     public static final RegistryObject<Block> VOID_STATION = registerBlock("void_station",
             ()-> new VoidStationBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
             ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
+
+
 
     public static final RegistryObject<Block> VOID_CABLE = registerBlock("void_cable",
             () -> new VoidCableBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).noOcclusion()));
