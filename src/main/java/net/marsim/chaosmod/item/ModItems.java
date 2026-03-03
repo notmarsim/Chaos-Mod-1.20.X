@@ -2,6 +2,7 @@ package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.item.custom.AntimatterItem;
 import net.marsim.chaosmod.item.custom.ConfiguratorItem;
 import net.marsim.chaosmod.item.custom.FuelItem;
 import net.minecraft.world.item.*;
@@ -131,7 +132,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> ANTIMATTER = ITEMS.register("antimatter",
-            () -> new Item(new Item.Properties()));
+            () -> new AntimatterItem(new Item.Properties().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> BLACKHOLE = ITEMS.register("blackhole",
             () -> new Item(new Item.Properties()));
 
