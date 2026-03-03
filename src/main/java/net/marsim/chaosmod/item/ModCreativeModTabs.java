@@ -44,6 +44,7 @@ public class ModCreativeModTabs {
 
                         // blocks
                         output.accept(ModBlocks.UNSTABLE_BLOCK.get());
+                        output.accept(ModBlocks.ANTIMATTER_BLOCK.get());
                         output.accept(ModBlocks.UNSTABLE_PARTICLE_ORE.get());
                         output.accept(ModBlocks.VOID_REFINER.get());
                         output.accept(ModBlocks.DARKLIGHT_REFINER.get());
@@ -89,6 +90,9 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.STELLAR_CORE.get());
                         output.accept(ModItems.ZENITH.get());
                         output.accept(ModItems.ZENITH_SHARD.get());
+                        output.accept(ModItems.ANTIMATTER.get());
+                        output.accept(ModItems.BLACKHOLE.get());
+
 
 
                         // flower

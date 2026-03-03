@@ -23,6 +23,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.UNSTABLE_BLOCK.get(),
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
+                ModBlocks.ANTIMATTER_BLOCK.get(),
                 ModBlocks.STABLE_PARTICLE_ORE.get(),
                 ModBlocks.VOID_REFINER.get(),
                 ModBlocks.DARKLIGHT_REFINER.get(),
@@ -46,7 +47,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL);
 
 
-        this.tag(ModTags.NEEDS_DUALITY_TOOL);
-
+        this.tag(ModTags.NEEDS_DUALITY_TOOL)
+                .add(ModBlocks.ANTIMATTER_BLOCK.get());
     }
 }

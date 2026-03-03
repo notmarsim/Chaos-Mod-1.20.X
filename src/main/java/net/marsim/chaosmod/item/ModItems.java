@@ -130,6 +130,11 @@ public class ModItems {
     public static final RegistryObject<Item> STELLAR_CORE = ITEMS.register("stellar_core",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> ANTIMATTER = ITEMS.register("antimatter",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BLACKHOLE = ITEMS.register("blackhole",
+            () -> new Item(new Item.Properties()));
+
 
     public static final RegistryObject<Item> DARKLIGHT_STAR = ITEMS.register("darklight_star",
             () -> new Item(new Item.Properties()));

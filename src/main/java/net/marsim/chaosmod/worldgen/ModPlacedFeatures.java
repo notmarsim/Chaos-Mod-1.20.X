@@ -21,6 +21,7 @@ import java.util.List;
 public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("unstable_particle_ore_placed");
+    public static final ResourceKey<PlacedFeature> ANTIMATTER_BLOCK_PLACED_KEY = registerKey("antimatter_block_placed");
     public static final ResourceKey<PlacedFeature> NETHER_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("nether_unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> END_UNSTABLE_PARTICLE_ORE_PLACED_KEY = registerKey("end_unstable_particle_ore_placed");
     public static final ResourceKey<PlacedFeature> STELLAR_FLOWER_PLACED_KEY = registerKey("stellar_flower_placed");
@@ -31,6 +32,9 @@ public class ModPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, UNSTABLE_PARTICLE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_UNSTABLE_PARTICLE_ORE_KEY),
+                ModOrePlacement.commonOrePlacement(5,
+                        HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
+        register(context, ANTIMATTER_BLOCK_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_ANTIMATTER_BLOCK_KEY),
                 ModOrePlacement.commonOrePlacement(5,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))));
         register(context, NETHER_UNSTABLE_PARTICLE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_UNSTABLE_PARTICLE_ORE_KEY),

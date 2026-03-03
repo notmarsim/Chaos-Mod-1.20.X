@@ -71,6 +71,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.STELLAR_CIRCUIT);
         simpleItem(ModItems.STELLAR_CAPACITOR);
         simpleItem(ModItems.STELLAR_CORE);
+        simpleItem(ModItems.BLACKHOLE);
+        simpleItem(ModItems.ANTIMATTER);
 
 
         // tools

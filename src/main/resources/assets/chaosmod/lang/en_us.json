@@ -38,6 +38,8 @@
   "item.chaosmod.stellar_capacitor": "Stellar Capacitor",
   "item.chaosmod.stellar_circuit": "Stellar Circuit",
   "item.chaosmod.stellar_core": "Stellar Core",
+  "item.chaosmod.antimatter": "Antimatter",
+  "item.chaosmod.blackhole": "Blackhole",
 
   "item.chaosmod.stellar_essence": "Stellar Essence",
   "item.chaosmod.void_rod": "Void Rod",
@@ -52,6 +54,7 @@
   "block.chaosmod.darklight_generator": "Darklight Generator",
   "block.chaosmod.stellar_flower": "Stellar Flower",
   "block.chaosmod.potted_stellar_flower": "Potted Stellar Flower",
+  "block.chaosmod.antimatter_block": "Antimatter Block",
 
 
 
