@@ -36,6 +36,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
         simpleBlockWithItem(ModBlocks.STELLAR_GENERATOR.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
+        simpleBlockWithItem(ModBlocks.DARKLIGHT_GENERATOR.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/void_station")));
 
         simpleBlockWithItem(ModBlocks.STELLAR_FLOWER.get(), models().cross(blockTexture(ModBlocks.STELLAR_FLOWER.get()).getPath(),
                 blockTexture(ModBlocks.STELLAR_FLOWER.get())).renderType("cutout"));

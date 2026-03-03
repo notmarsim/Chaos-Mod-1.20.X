@@ -42,6 +42,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> STELLAR_GENERATOR = registerBlockWithoutItem("stellar_generator",
             ()-> new StellarGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> DARKLIGHT_GENERATOR = registerBlockWithoutItem("darklight_generator",
+            ()-> new DarklightGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().noOcclusion()));
 
 
 

@@ -28,6 +28,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 ModBlocks.DARKLIGHT_REFINER.get(),
                 ModBlocks.VOID_STATION.get(),
                 ModBlocks.STELLAR_GENERATOR.get(),
+                ModBlocks.DARKLIGHT_GENERATOR.get(),
                 ModBlocks.VOID_CABLE.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL);

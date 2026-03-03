@@ -32,6 +32,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(StellarGeneratorEntity::new,
                             ModBlocks.STELLAR_GENERATOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<DarklightGeneratorEntity>> DARKLIGHT_GENERATOR_BE =
+            BLOCK_ENTITIES.register("darklight_generator_be",()->
+                    BlockEntityType.Builder.of(DarklightGeneratorEntity::new,
+                            ModBlocks.DARKLIGHT_GENERATOR.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<CableBlockEntity>> CABLE_BE =
             BLOCK_ENTITIES.register("cable_be", () ->
                     BlockEntityType.Builder.of(CableBlockEntity::new,

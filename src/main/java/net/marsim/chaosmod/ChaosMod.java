@@ -96,6 +96,7 @@ public class ChaosMod
             MenuScreens.register(ModMenuTypes.DARKLIGHT_REFINER_MENU.get(), DarklightRefinerScreen::new);
             MenuScreens.register(ModMenuTypes.VOID_STATION_MENU.get(), VoidStationScreen::new);
             MenuScreens.register(ModMenuTypes.STELLAR_GENERATOR_MENU.get(), StellarGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.DARKLIGHT_GENERATOR_MENU.get(), DarklightGeneratorScreen::new);
         }
 
 

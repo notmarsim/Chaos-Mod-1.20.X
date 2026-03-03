@@ -1,28 +1,24 @@
 package net.marsim.chaosmod.block.entity;
 
-import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.energy.GeneratorEnergyStorage;
 import net.marsim.chaosmod.energy.IEnergyExporter;
+import net.marsim.chaosmod.screen.DarklightGeneratorMenu;
 import net.marsim.chaosmod.screen.StellarGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -31,9 +27,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class StellarGeneratorEntity extends BlockEntity implements MenuProvider, IEnergyExporter {
+public class DarklightGeneratorEntity extends BlockEntity implements MenuProvider, IEnergyExporter {
     private static final int ENERGY_TRANSFER_RATE = 1_000_000;
     private static final int CAPACITY = 500_000_000;
     private static final int MAX_RECEIVE = 10_000_000;
@@ -51,14 +46,14 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider,
 
     protected final ContainerData data;
 
-    public StellarGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.STELLAR_GENERATOR_BE.get(), pPos, pBlockState);
+    public DarklightGeneratorEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.DARKLIGHT_GENERATOR_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
                 return switch (pIndex) {
-                    case 0 -> StellarGeneratorEntity.this.energyStorage.getEnergyStored();
-                    case 1 -> StellarGeneratorEntity.this.energyStorage.getMaxEnergyStored();
+                    case 0 -> DarklightGeneratorEntity.this.energyStorage.getEnergyStored();
+                    case 1 -> DarklightGeneratorEntity.this.energyStorage.getMaxEnergyStored();
                     default -> 0;
                 };
             }
@@ -162,12 +157,12 @@ public class StellarGeneratorEntity extends BlockEntity implements MenuProvider,
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.chaosmod.stellar_generator");
+        return Component.translatable("block.chaosmod.darklight_generator");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player player) {
-        return new StellarGeneratorMenu(pContainerId, pPlayerInventory, this, this.data);
+        return new DarklightGeneratorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 }

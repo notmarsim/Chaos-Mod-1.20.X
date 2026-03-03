@@ -78,6 +78,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 
         this.add(ModBlocks.STELLAR_GENERATOR.get(), block -> createBlockEntityTable(ModBlocks.STELLAR_GENERATOR.get(), "energy", "inventory"));
+        this.add(ModBlocks.DARKLIGHT_GENERATOR.get(), block -> createBlockEntityTable(ModBlocks.DARKLIGHT_GENERATOR.get(), "energy", "inventory"));
 
     }
 

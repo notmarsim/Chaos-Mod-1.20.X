@@ -26,6 +26,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<StellarGeneratorMenu>> STELLAR_GENERATOR_MENU =
             registerMenuType("star_generator_menu", StellarGeneratorMenu::new);
 
+    public static final RegistryObject<MenuType<DarklightGeneratorMenu>> DARKLIGHT_GENERATOR_MENU =
+            registerMenuType("darklight_generator_menu", DarklightGeneratorMenu::new);
+
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

@@ -5,9 +5,10 @@ import net.minecraftforge.energy.EnergyStorage;
 
 public class GeneratorEnergyStorage extends EnergyStorage {
 
-    private final StellarGeneratorEntity entity;
+    private final IEnergyExporter entity;
 
-    public GeneratorEnergyStorage(StellarGeneratorEntity entity, int capacity, int maxReceive, int maxExtract) {
+
+    public GeneratorEnergyStorage(IEnergyExporter entity, int capacity, int maxReceive, int maxExtract) {
         super(capacity, maxReceive, maxExtract);
         this.entity = entity;
     }

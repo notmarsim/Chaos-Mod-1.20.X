@@ -61,6 +61,11 @@ public class ModItems {
                     500_000_000, // capacity
                     500_000,   // maxReceive
                     100_000)); // maxExtract
+    public static final RegistryObject<Item> DARKLIGHT_GENERATOR = ITEMS.register("darklight_generator",
+            () -> new EnergyBlockItem(ModBlocks.DARKLIGHT_GENERATOR.get(), new Item.Properties(),
+                    500_000_000, // capacity
+                    500_000,   // maxReceive
+                    100_000)); // maxExtract
     public static final RegistryObject<Item> VOID_REFINER = ITEMS.register("void_refiner",
             () -> new EnergyBlockItem(ModBlocks.VOID_REFINER.get(), new Item.Properties(),
                     1_000_000, // capacity
