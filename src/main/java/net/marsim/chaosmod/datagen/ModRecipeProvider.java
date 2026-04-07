@@ -369,6 +369,53 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             });
         }
 
+        // blackhole
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+            Ingredient stellarStar = Ingredient.of(ModItems.STELLAR_STAR.get());
+            Ingredient antimatter = Ingredient.of(ModItems.ANTIMATTER.get());
+
+            inputs.set(4, antimatter);
+            inputs.set(12, antimatter); inputs.set(13, antimatter); inputs.set(14, antimatter);
+            inputs.set(20, antimatter); inputs.set(21, antimatter); inputs.set(22, antimatter); inputs.set(23, antimatter); inputs.set(24, antimatter);
+            inputs.set(28, antimatter); inputs.set(29, antimatter); inputs.set(30, antimatter); inputs.set(31, antimatter); inputs.set(32, antimatter); inputs.set(33, antimatter); inputs.set(34, antimatter);
+            inputs.set(36, antimatter); inputs.set(37, antimatter); inputs.set(38, antimatter); inputs.set(39, antimatter);
+            inputs.set(40, stellarStar);
+            inputs.set(41, antimatter); inputs.set(42, antimatter); inputs.set(43, antimatter); inputs.set(44, antimatter);
+            inputs.set(46, antimatter); inputs.set(47, antimatter); inputs.set(48, antimatter); inputs.set(49, antimatter); inputs.set(50, antimatter); inputs.set(51, antimatter); inputs.set(52, antimatter);
+            inputs.set(56, antimatter); inputs.set(57, antimatter); inputs.set(58, antimatter); inputs.set(59, antimatter); inputs.set(60, antimatter);
+            inputs.set(66, antimatter); inputs.set(67, antimatter); inputs.set(68, antimatter);
+            inputs.set(76, antimatter);
+            ItemStack output = new ItemStack(ModItems.BLACKHOLE.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "blackhole_void_station");
+
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.BLACKHOLE.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+
         // void star
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
