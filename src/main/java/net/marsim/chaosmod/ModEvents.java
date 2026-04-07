@@ -1,12 +1,14 @@
 package net.marsim.chaosmod;
 
 import net.marsim.chaosmod.block.ModBlocks;
+import net.marsim.chaosmod.event.MeteorGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -56,8 +58,32 @@ public class ModEvents {
             }
         }
     }
+    // meteor
+    @SubscribeEvent
+    public static void onLevelTick(TickEvent.LevelTickEvent event) {
+
+        if (event.phase != TickEvent.Phase.END || event.level.isClientSide) return;
+
+        ServerLevel serverLevel = (ServerLevel) event.level;
+
+        // 0.0001f +- 20 minutes
+        // 0.01f always
+        if (serverLevel.getRandom().nextFloat() < 0.0001f && !serverLevel.players().isEmpty()) {
 
 
+            var player = serverLevel.players().get(serverLevel.getRandom().nextInt(serverLevel.players().size()));
+
+
+            int range = 320;
+            int x = player.blockPosition().getX() + (serverLevel.getRandom().nextInt(range * 2) - range);
+            int z = player.blockPosition().getZ() + (serverLevel.getRandom().nextInt(range * 2) - range);
+
+
+            BlockPos impactPos = serverLevel.getHeightmapPos(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE, new BlockPos(x, 0, z));
+
+            MeteorGenerator.generate(serverLevel, impactPos);
+        }
+    }
     private static BlockPos findGround(Level level, BlockPos startPos) {
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos(startPos.getX(), startPos.getY(), startPos.getZ());
         for (int y = 0; y < 10 && level.getBlockState(mutablePos).isAir(); ++y) {

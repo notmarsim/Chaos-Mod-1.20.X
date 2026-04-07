@@ -48,7 +48,6 @@ public class ChaosMod
         ModMenuTypes.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         ModRecipes.register(modEventBus);
-
         ModLootModifiers.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
