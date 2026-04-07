@@ -39,7 +39,7 @@ public class MeteorGenerator {
 
                         if (level.getBlockState(currentPos).isAir()) {
                             BlockState state = level.random.nextFloat() < 0.7f ?
-                                    ModBlocks.ANTIMATTER_BLOCK.get().defaultBlockState() :
+                                    ModBlocks.ZENITH_CRYSTAL_BLOCK.get().defaultBlockState() :
                                     Blocks.MAGMA_BLOCK.defaultBlockState();
 
                             level.setBlock(currentPos, state, 3);

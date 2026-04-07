@@ -416,6 +416,53 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             });
         }
 
+        // zenith
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+            Ingredient netherStar = Ingredient.of(Items.NETHER_STAR);
+            Ingredient zenithShard = Ingredient.of(ModItems.ZENITH_SHARD.get());
+
+            inputs.set(13, zenithShard);
+            inputs.set(21, netherStar); inputs.set(22, zenithShard); inputs.set(23, netherStar);
+            inputs.set(29, netherStar); inputs.set(30, netherStar); inputs.set(31, zenithShard); inputs.set(32, netherStar); inputs.set(33, netherStar);
+            inputs.set(37, zenithShard); inputs.set(38, zenithShard); inputs.set(39, zenithShard);
+            inputs.set(40, zenithShard);
+            inputs.set(41, zenithShard); inputs.set(42, zenithShard); inputs.set(43, zenithShard);
+            inputs.set(47, netherStar); inputs.set(48, netherStar); inputs.set(49, zenithShard); inputs.set(50, netherStar); inputs.set(51, netherStar);
+            inputs.set(57, netherStar); inputs.set(58, zenithShard); inputs.set(59, netherStar);
+            inputs.set(67, zenithShard);
+
+            ItemStack output = new ItemStack(ModItems.ZENITH.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "zenith_void_station");
+
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.ZENITH.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+
+
         // void star
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);

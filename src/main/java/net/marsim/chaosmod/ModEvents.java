@@ -68,7 +68,7 @@ public class ModEvents {
 
         // 0.0001f +- 20 minutes
         // 0.01f always
-        if (serverLevel.getRandom().nextFloat() < 0.0001f && !serverLevel.players().isEmpty()) {
+        if (serverLevel.getRandom().nextFloat() < 0.01f && !serverLevel.players().isEmpty()) {
 
 
             var player = serverLevel.players().get(serverLevel.getRandom().nextInt(serverLevel.players().size()));

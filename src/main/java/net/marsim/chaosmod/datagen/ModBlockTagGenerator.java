@@ -30,7 +30,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 ModBlocks.VOID_STATION.get(),
                 ModBlocks.STELLAR_GENERATOR.get(),
                 ModBlocks.DARKLIGHT_GENERATOR.get(),
-                ModBlocks.VOID_CABLE.get());
+                ModBlocks.VOID_CABLE.get(),
+                ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL);
 
@@ -48,6 +49,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
         this.tag(ModTags.NEEDS_DUALITY_TOOL)
-                .add(ModBlocks.ANTIMATTER_BLOCK.get());
+                .add(ModBlocks.ANTIMATTER_BLOCK.get(),
+                ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
     }
 }

@@ -28,6 +28,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> UNSTABLE_PARTICLE_ORE = registerBlock("unstable_particle_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(5,10)));
 
+    public static final RegistryObject<Block> ZENITH_CRYSTAL_BLOCK = registerBlock("zenith_crystal_block",
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops()));
+
+
     public static final RegistryObject<Block> ANTIMATTER_BLOCK = registerBlock("antimatter_block",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).sound(SoundType.GLASS).requiresCorrectToolForDrops(), UniformInt.of(1,30)));
 

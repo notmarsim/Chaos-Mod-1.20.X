@@ -39,6 +39,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.ANTIMATTER_BLOCK.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.ANTIMATTER_BLOCK.get(), ModItems.ANTIMATTER.get()));
 
+        this.add(ModBlocks.ZENITH_CRYSTAL_BLOCK.get(),
+                block -> createCopperLikeOreDrops(ModBlocks.ZENITH_CRYSTAL_BLOCK.get(), ModItems.ZENITH_SHARD.get()));
 
         this.add(ModBlocks.VOID_REFINER.get(),
                 LootTable.lootTable()
