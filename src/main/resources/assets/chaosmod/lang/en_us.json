@@ -40,6 +40,7 @@
   "item.chaosmod.stellar_core": "Stellar Core",
   "item.chaosmod.antimatter": "Antimatter",
   "item.chaosmod.blackhole": "Blackhole",
+  "item.chaosmod.chaotic_catalyst": "Chaotic Catalyst",
 
   "item.chaosmod.stellar_essence": "Stellar Essence",
   "item.chaosmod.void_rod": "Void Rod",
@@ -70,6 +71,11 @@
   "tooltip.chaosmod.energy_bar": "Energy: %s / %s FE",
   "block.chaosmod.energy_cable": "Energy Cable",
   "item.chaosmod.shadow_infused_coal": "Shadow Infused Coal",
+
+  "entity.chaosmod.chaos_zombie": "Chaos Zombie",
+  "entity.chaosmod.chaos_skeleton": "Chaos Skeleton",
+  "entity.chaosmod.chaos_creeper": "Chaos Creeper",
+  "entity.chaosmod.chaos_spider": "Chaos Spider",
 
   "creativetab.chaos_tab": "Chaos Mod"
 }

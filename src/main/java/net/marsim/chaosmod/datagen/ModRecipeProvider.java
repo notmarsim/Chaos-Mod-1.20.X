@@ -462,6 +462,51 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             });
         }
 
+        // chaotic catalyst
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+            Ingredient darklight = Ingredient.of(ModItems.DARKLIGHT_STAR.get());
+            Ingredient stellarStar = Ingredient.of(ModItems.STELLAR_STAR.get());
+            Ingredient voidStar = Ingredient.of(ModItems.VOID_STAR  .get());
+            Ingredient novaStar = Ingredient.of(ModItems.NOVA_STAR.get());
+            Ingredient zenith = Ingredient.of(ModItems.ZENITH.get());
+
+            inputs.set(31, stellarStar);
+            inputs.set(39, voidStar);
+            inputs.set(40, zenith);
+            inputs.set(41, darklight);
+            inputs.set(49, novaStar);
+
+            ItemStack output = new ItemStack(ModItems.CHAOTIC_CATALYST.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "chaotic_catalyst_void_station");
+
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.CHAOTIC_CATALYST.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+
 
         // void star
         {

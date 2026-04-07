@@ -98,7 +98,7 @@ public class ModCreativeModTabs {
 
                         // flower
                         output.accept(ModBlocks.STELLAR_FLOWER.get());
-
+                        output.accept(ModItems.CHAOTIC_CATALYST.get());
                     })
                     .build());
     public static void register(IEventBus eventBus){

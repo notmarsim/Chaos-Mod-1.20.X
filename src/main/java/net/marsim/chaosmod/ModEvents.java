@@ -2,13 +2,26 @@ package net.marsim.chaosmod;
 
 import net.marsim.chaosmod.block.ModBlocks;
 import net.marsim.chaosmod.event.MeteorGenerator;
+import net.marsim.chaosmod.entity.ChaosSpider;
+import net.marsim.chaosmod.entity.ChaosZombie;
+import net.marsim.chaosmod.entity.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -68,7 +81,7 @@ public class ModEvents {
 
         // 0.0001f +- 20 minutes
         // 0.01f always
-        if (serverLevel.getRandom().nextFloat() < 0.01f && !serverLevel.players().isEmpty()) {
+        if (serverLevel.getRandom().nextFloat() < 0.0001f && !serverLevel.players().isEmpty()) {
 
 
             var player = serverLevel.players().get(serverLevel.getRandom().nextInt(serverLevel.players().size()));
@@ -92,7 +105,46 @@ public class ModEvents {
         return mutablePos;
     }
 
+    @SubscribeEvent
+    public static void onMobSpawn(MobSpawnEvent.FinalizeSpawn event) {
 
+        LevelAccessor accessor = event.getLevel();
+
+        if (!accessor.isClientSide() && accessor instanceof ServerLevelAccessor serverAccessor) {
+            Level level = serverAccessor.getLevel();
+
+            if (ChaosSavedData.get(level).chaosModeActive) {
+
+
+                if (event.getSpawnType() == MobSpawnType.SPAWNER) return;
+
+
+                if (level.random.nextFloat() < 0.40f) {
+                    Mob oldMob = event.getEntity();
+                    EntityType<?> targetType = null;
+
+                    // Mapeia quem vira quem
+                    if (oldMob instanceof Zombie && !(oldMob instanceof ChaosZombie)) targetType = ModEntities.CHAOS_ZOMBIE.get();
+                    else if (oldMob instanceof Spider && !(oldMob instanceof ChaosSpider)) targetType = ModEntities.CHAOS_SPIDER.get();
+                    else if (oldMob instanceof Creeper) targetType = ModEntities.CHAOS_CREEPER.get();
+                    else if (oldMob instanceof Skeleton) targetType = ModEntities.CHAOS_SKELETON.get();
+
+                    if (targetType != null) {
+                        Mob chaosMob = (Mob) targetType.create(level);
+                        if (chaosMob != null) {
+                            chaosMob.moveTo(oldMob.getX(), oldMob.getY(), oldMob.getZ(), oldMob.getYRot(), oldMob.getXRot());
+
+                            chaosMob.finalizeSpawn(serverAccessor, level.getCurrentDifficultyAt(chaosMob.blockPosition()),
+                                    MobSpawnType.CONVERSION, null, null);
+
+                            level.addFreshEntity(chaosMob);
+                            event.setSpawnCancelled(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
     private static BlockState getPlantToPlace(RandomSource random) {
         float chance = random.nextFloat();
         if (chance < 0.10f) { // 10% stellar flower

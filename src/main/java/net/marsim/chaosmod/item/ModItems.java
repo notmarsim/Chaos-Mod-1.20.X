@@ -2,10 +2,7 @@ package net.marsim.chaosmod.item;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.block.ModBlocks;
-import net.marsim.chaosmod.item.custom.AntimatterItem;
-import net.marsim.chaosmod.item.custom.BlackholeItem;
-import net.marsim.chaosmod.item.custom.ConfiguratorItem;
-import net.marsim.chaosmod.item.custom.FuelItem;
+import net.marsim.chaosmod.item.custom.*;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -147,4 +144,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> VOID_ROD = ITEMS.register("void_rod",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CHAOTIC_CATALYST = ITEMS.register("chaotic_catalyst",
+            () -> new ChaoticCatalystItem(new Item.Properties()));
 }

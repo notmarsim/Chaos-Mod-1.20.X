@@ -7,6 +7,7 @@ import net.marsim.chaosmod.block.entity.ModBlockEntities;
 import net.marsim.chaosmod.loot.ModLootModifiers;
 import net.marsim.chaosmod.item.ModCreativeModTabs;
 import net.marsim.chaosmod.item.ModItems;
+import net.marsim.chaosmod.entity.ModEntities;
 import net.marsim.chaosmod.recipe.ModRecipes;
 import net.marsim.chaosmod.screen.*;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -41,6 +42,7 @@ public class ChaosMod
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
 
 

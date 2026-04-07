@@ -73,6 +73,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.STELLAR_CORE);
         simpleItem(ModItems.BLACKHOLE);
         simpleItem(ModItems.ANTIMATTER);
+        simpleItem(ModItems.CHAOTIC_CATALYST);
 
 
         // tools
