@@ -3,7 +3,7 @@ package net.marsim.chaosmod.event;
 
 import net.marsim.chaosmod.ChaosMod;
 import net.marsim.chaosmod.entity.ModEntities;
-import net.marsim.chaosmod.entity.*; // Ajuste o pacote aqui
+import net.marsim.chaosmod.entity.*;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

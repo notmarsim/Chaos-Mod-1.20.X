@@ -25,6 +25,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get(),
                 ModBlocks.ANTIMATTER_BLOCK.get(),
                 ModBlocks.STABLE_PARTICLE_ORE.get(),
+                ModBlocks.DARKLIGHT_ORE.get(),
                 ModBlocks.VOID_REFINER.get(),
                 ModBlocks.DARKLIGHT_REFINER.get(),
                 ModBlocks.VOID_STATION.get(),
@@ -50,6 +51,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(ModTags.NEEDS_DUALITY_TOOL)
                 .add(ModBlocks.ANTIMATTER_BLOCK.get(),
+                ModBlocks.DARKLIGHT_ORE.get(),
                 ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
     }
 }

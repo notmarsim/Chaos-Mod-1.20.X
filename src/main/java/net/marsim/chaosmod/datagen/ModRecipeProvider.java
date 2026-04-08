@@ -1663,6 +1663,64 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             });
         }
 
+        // nova bar
+        {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);
+
+            Ingredient darklightBar = Ingredient.of(ModItems.DARKLIGHT_BAR.get());
+            Ingredient stellarStar = Ingredient.of(ModItems.STELLAR_STAR.get());
+            Ingredient novaStar = Ingredient.of(ModItems.NOVA_STAR.get());
+
+            int[] darklightBarIndices = {
+                    18, 19, 20, 21, 22, 23, 24, 25, 26,
+                    27, 35,
+                    36, 44,
+                    45, 53,
+                    54, 55, 56, 57, 58, 59, 60, 61, 62
+            };
+            for (int i : darklightBarIndices) inputs.set(i, darklightBar);
+
+            int[] stellarStarIndices = {
+                    28, 30, 32, 34,
+                    38, 40, 42,
+                    46, 48, 50, 52
+            };
+            for (int i : stellarStarIndices) inputs.set(i, stellarStar);
+
+            int[] novaStarIndices = {
+                    29, 31, 33,
+                    37, 39, 41, 43,
+                    47, 49, 51
+            };
+            for (int i : novaStarIndices) inputs.set(i, novaStar);
+
+            ItemStack output = new ItemStack(ModItems.NOVA_BAR.get());
+            ResourceLocation id = new ResourceLocation(ChaosMod.MOD_ID, "nova_bar_void_station");
+            pWriter.accept(new FinishedRecipe() {
+                @Override
+                public void serializeRecipeData(JsonObject json) {
+                    json.addProperty("type", "chaosmod:void_station");
+                    JsonArray ingredients = new JsonArray();
+                    for (Ingredient ingredient : inputs) {
+                        ingredients.add(ingredient.toJson());
+                    }
+                    json.add("ingredients", ingredients);
+                    JsonObject outputObj = new JsonObject();
+                    outputObj.addProperty("item", ForgeRegistries.ITEMS.getKey(ModItems.NOVA_BAR.get()).toString());
+                    outputObj.addProperty("count", 1);
+                    json.add("output", outputObj);
+                }
+                @Override
+                public ResourceLocation getId() { return id; }
+                @Override
+                public RecipeSerializer<?> getType() { return VoidStationRecipe.Serializer.INSTANCE; }
+                @Override
+                public JsonObject serializeAdvancement() { return null; }
+                @Override
+                public ResourceLocation getAdvancementId() { return null; }
+            });
+        }
+
         // // duality pickaxe
         {
             NonNullList<Ingredient> inputs = NonNullList.withSize(81, Ingredient.EMPTY);

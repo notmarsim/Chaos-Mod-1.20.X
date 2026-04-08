@@ -81,7 +81,7 @@ public class ModEvents {
 
         // 0.0001f +- 20 minutes
         // 0.01f always
-        if (serverLevel.getRandom().nextFloat() < 0.0001f && !serverLevel.players().isEmpty()) {
+        if (serverLevel.getRandom().nextFloat() < 0.000001f && !serverLevel.players().isEmpty()) {
 
 
             var player = serverLevel.players().get(serverLevel.getRandom().nextInt(serverLevel.players().size()));
@@ -123,7 +123,6 @@ public class ModEvents {
                     Mob oldMob = event.getEntity();
                     EntityType<?> targetType = null;
 
-                    // Mapeia quem vira quem
                     if (oldMob instanceof Zombie && !(oldMob instanceof ChaosZombie)) targetType = ModEntities.CHAOS_ZOMBIE.get();
                     else if (oldMob instanceof Spider && !(oldMob instanceof ChaosSpider)) targetType = ModEntities.CHAOS_SPIDER.get();
                     else if (oldMob instanceof Creeper) targetType = ModEntities.CHAOS_CREEPER.get();

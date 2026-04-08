@@ -54,6 +54,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
 
                         output.accept(ModBlocks.STABLE_PARTICLE_ORE.get());
+                        output.accept(ModBlocks.DARKLIGHT_ORE.get());
 
                         //dusts
                         output.accept(ModItems.VOID_DUST.get());

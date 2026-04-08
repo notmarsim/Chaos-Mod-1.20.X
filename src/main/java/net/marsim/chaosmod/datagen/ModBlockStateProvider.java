@@ -29,6 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.UNSTABLE_PARTICLE_ORE);
         blockWithItem(ModBlocks.ANTIMATTER_BLOCK);
         blockWithItem(ModBlocks.STABLE_PARTICLE_ORE);
+        blockWithItem(ModBlocks.DARKLIGHT_ORE);
         blockWithItem(ModBlocks.ZENITH_CRYSTAL_BLOCK);
         simpleBlockWithItem(ModBlocks.VOID_REFINER.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/void_refiner")));

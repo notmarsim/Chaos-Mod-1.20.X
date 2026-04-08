@@ -30,6 +30,8 @@ import java.util.List;
 public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_UNSTABLE_PARTICLE_ORE_KEY = registerKey("unstable_particle_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_STABLE_PARTICLE_ORE_KEY = registerKey("stable_particle_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_DARKLIGHT_ORE_KEY = registerKey("darklight_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_ANTIMATTER_BLOCK_KEY = registerKey("antimatter_block");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_UNSTABLE_PARTICLE_ORE_KEY = registerKey("nether_unstable_particle_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_UNSTABLE_PARTICLE_ORE_KEY = registerKey("end_unstable_particle_ore");
@@ -51,11 +53,21 @@ public class ModConfiguredFeatures {
                 ModBlocks.UNSTABLE_PARTICLE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.UNSTABLE_PARTICLE_ORE.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> overworldStableParticleOres = List.of(OreConfiguration.target(stoneReplaceable,
+                        ModBlocks.STABLE_PARTICLE_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.STABLE_PARTICLE_ORE.get().defaultBlockState()));
+
+        List<OreConfiguration.TargetBlockState> overworldDarklightOres = List.of(OreConfiguration.target(stoneReplaceable,
+                        ModBlocks.DARKLIGHT_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DARKLIGHT_ORE.get().defaultBlockState()));
+
         List<OreConfiguration.TargetBlockState> overworldAntimatterBlocks = List.of(OreConfiguration.target(stoneReplaceable,
                         ModBlocks.ANTIMATTER_BLOCK.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.ANTIMATTER_BLOCK.get().defaultBlockState()));
 
         register(context,OVERWORLD_UNSTABLE_PARTICLE_ORE_KEY,Feature.ORE,new OreConfiguration(overworldUnstableParticleOres,6));
+        register(context,OVERWORLD_STABLE_PARTICLE_ORE_KEY,Feature.ORE,new OreConfiguration(overworldStableParticleOres,6));
+        register(context,OVERWORLD_DARKLIGHT_ORE_KEY,Feature.ORE,new OreConfiguration(overworldDarklightOres,6));
         register(context,OVERWORLD_ANTIMATTER_BLOCK_KEY,Feature.ORE,new OreConfiguration(overworldAntimatterBlocks,6));
 
         register(context, NETHER_UNSTABLE_PARTICLE_ORE_KEY, Feature.ORE, new OreConfiguration(netherrackReplacables,
