@@ -52,6 +52,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NOVA_BAR = ITEMS.register("nova_bar",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ZENITH_BAR = ITEMS.register("zenith_bar",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CHAOS_BAR = ITEMS.register("chaos_bar",
             () -> new Item(new Item.Properties()));
 
@@ -95,6 +97,43 @@ public class ModItems {
             () -> new PickaxeItem(ModToolTiers.DUALITY, 2, 2F, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_AXE = ITEMS.register("duality_axe",
             () -> new AxeItem(ModToolTiers.DUALITY, 9F, 1F, new Item.Properties()));
+
+    public static final RegistryObject<Item> UNSTABLE_SWORD = ITEMS.register("unstable_sword",
+            () -> new SwordItem(ModToolTiers.UNSTABLE, 3, 3.2F, new Item.Properties()));
+    public static final RegistryObject<Item> UNSTABLE_PICKAXE = ITEMS.register("unstable_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.UNSTABLE, 1, 2.2F, new Item.Properties()));
+    public static final RegistryObject<Item> UNSTABLE_AXE = ITEMS.register("unstable_axe",
+            () -> new AxeItem(ModToolTiers.UNSTABLE, 6.0F, 1.2F, new Item.Properties()));
+
+    public static final RegistryObject<Item> STABLE_SWORD = ITEMS.register("stable_sword",
+            () -> new SwordItem(ModToolTiers.STABLE, 4, 2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> STABLE_PICKAXE = ITEMS.register("stable_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.STABLE, 2, 1.4F, new Item.Properties()));
+    public static final RegistryObject<Item> STABLE_AXE = ITEMS.register("stable_axe",
+            () -> new AxeItem(ModToolTiers.STABLE, 7.0F, 1.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> DARKLIGHT_SWORD = ITEMS.register("darklight_sword",
+            () -> new SwordItem(ModToolTiers.DARKLIGHT, 7, 3.2F, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_PICKAXE = ITEMS.register("darklight_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.DARKLIGHT, 4, 2.5F, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_AXE = ITEMS.register("darklight_axe",
+            () -> new AxeItem(ModToolTiers.DARKLIGHT, 12.0F, 1.1F, new Item.Properties()));
+
+    public static final RegistryObject<Item> NOVA_SWORD = ITEMS.register("nova_sword",
+            () -> new SwordItem(ModToolTiers.NOVA, 10, 3.5F, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_PICKAXE = ITEMS.register("nova_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.NOVA, 6, 3.0F, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_AXE = ITEMS.register("nova_axe",
+            () -> new AxeItem(ModToolTiers.NOVA, 15.0F, 1.2F, new Item.Properties()));
+
+    public static final RegistryObject<Item> ZENITH_SWORD = ITEMS.register("zenith_sword",
+            () -> new SwordItem(ModToolTiers.ZENITH, 18, 4.0F, new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ZENITH_PICKAXE = ITEMS.register("zenith_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.ZENITH, 10, 4.0F, new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ZENITH_AXE = ITEMS.register("zenith_axe",
+            () -> new AxeItem(ModToolTiers.ZENITH, 25.0F, 1.5F, new Item.Properties().rarity(Rarity.EPIC)));
+
+
 
     // armor
     public static final RegistryObject<Item> DUALITY_HELMET = ITEMS.register("duality_helmet",

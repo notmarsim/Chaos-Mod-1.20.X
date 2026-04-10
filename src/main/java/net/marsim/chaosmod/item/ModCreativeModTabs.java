@@ -36,6 +36,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.STELLAR_BAR.get());
                         output.accept(ModItems.DARKLIGHT_BAR.get());
                         output.accept(ModItems.NOVA_BAR.get());
+                        output.accept(ModItems.ZENITH_BAR.get());
                         output.accept(ModItems.CHAOS_BAR.get());
 
 
@@ -70,6 +71,21 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DUALITY_SWORD.get());
                         output.accept(ModItems.DUALITY_PICKAXE.get());
                         output.accept(ModItems.DUALITY_AXE.get());
+                        output.accept(ModItems.UNSTABLE_SWORD.get());
+                        output.accept(ModItems.UNSTABLE_PICKAXE.get());
+                        output.accept(ModItems.UNSTABLE_AXE.get());
+                        output.accept(ModItems.STABLE_SWORD.get());
+                        output.accept(ModItems.STABLE_PICKAXE.get());
+                        output.accept(ModItems.STABLE_AXE.get());
+                        output.accept(ModItems.DARKLIGHT_SWORD.get());
+                        output.accept(ModItems.DARKLIGHT_PICKAXE.get());
+                        output.accept(ModItems.DARKLIGHT_AXE.get());
+                        output.accept(ModItems.NOVA_SWORD.get());
+                        output.accept(ModItems.NOVA_PICKAXE.get());
+                        output.accept(ModItems.NOVA_AXE.get());
+                        output.accept(ModItems.ZENITH_SWORD.get());
+                        output.accept(ModItems.ZENITH_PICKAXE.get());
+                        output.accept(ModItems.ZENITH_AXE.get());
 
                         // armor
                         output.accept(ModItems.DUALITY_HELMET.get());

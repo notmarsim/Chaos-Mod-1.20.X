@@ -27,7 +27,7 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
 
         add("void_dust_from_enderman", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/enderman")).build(),
-                LootItemRandomChanceCondition.randomChance(0.5f).build()}, ModItems.VOID_DUST.get()));
+                LootItemRandomChanceCondition.randomChance(0.7f).build()}, ModItems.VOID_DUST.get()));
         add("void_fragment_from_enderman", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/enderman")).build(),
                 LootItemRandomChanceCondition.randomChance(0.2f).build()}, ModItems.VOID_FRAGMENT.get()));

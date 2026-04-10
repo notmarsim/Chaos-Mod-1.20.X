@@ -12,6 +12,16 @@ import net.minecraftforge.common.TierSortingRegistry;
 import java.util.List;
 
 public class ModToolTiers {
+
+
+    public static final Tier UNSTABLE = TierSortingRegistry.registerTier(
+            new ForgeTier(3,3000,8f,4f,30, ModTags.NEEDS_UNSTABLE_TOOL,
+                    ()-> Ingredient.of(ModItems.UNSTABLE_PARTICLE.get())),
+            new ResourceLocation(ChaosMod.MOD_ID, "unstable"), List.of(Tiers.NETHERITE), List.of());
+    public static final Tier STABLE = TierSortingRegistry.registerTier(
+            new ForgeTier(3,3000,8f,4f,30, ModTags.NEEDS_STABLE_TOOL,
+                    ()-> Ingredient.of(ModItems.STABLE_PARTICLE.get())),
+            new ResourceLocation(ChaosMod.MOD_ID, "stable"), List.of(Tiers.NETHERITE), List.of());
     public static final Tier DUALITY = TierSortingRegistry.registerTier(
             new ForgeTier(5,5000,10f,6f,30, ModTags.NEEDS_DUALITY_TOOL,
                     ()-> Ingredient.of(ModItems.DUALITY_BAR.get())),
@@ -28,12 +38,13 @@ public class ModToolTiers {
             new ForgeTier(35,37500,50f,30f,150, ModTags.NEEDS_NOVA_TOOL,
                     ()-> Ingredient.of(ModItems.NOVA_BAR.get())),
             new ResourceLocation(ChaosMod.MOD_ID, "nova"), List.of(Tiers.NETHERITE), List.of());
+    public static final Tier ZENITH = TierSortingRegistry.registerTier(
+            new ForgeTier(35,37500,50f,30f,150, ModTags.NEEDS_ZENITH_TOOL,
+                    ()-> Ingredient.of(ModItems.ZENITH.get())),
+            new ResourceLocation(ChaosMod.MOD_ID, "zenith"), List.of(Tiers.NETHERITE), List.of());
     public static final Tier CHAOS = TierSortingRegistry.registerTier(
             new ForgeTier(105,112500,150f,90f,450, ModTags.NEEDS_CHAOS_TOOL,
                     ()-> Ingredient.of(ModItems.CHAOS_BAR.get())),
             new ResourceLocation(ChaosMod.MOD_ID, "chaos"), List.of(Tiers.NETHERITE), List.of());
-
-
-
 
 }

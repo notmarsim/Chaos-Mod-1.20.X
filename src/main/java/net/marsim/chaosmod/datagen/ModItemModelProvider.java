@@ -55,6 +55,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.DARKLIGHT_STAR);
         simpleItem(ModItems.VOID_STAR);
         simpleItem(ModItems.NOVA_STAR);
+        simpleItem(ModItems.ZENITH_BAR);
         simpleItem(ModItems.CHAOS_BAR);
         simpleItem(ModItems.STELLAR_ESSENCE);
         simpleItem(ModItems.DARKLIGHT_FRAGMENT);
@@ -80,6 +81,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.DUALITY_SWORD);
         handheldItem(ModItems.DUALITY_PICKAXE);
         handheldItem(ModItems.DUALITY_AXE);
+        handheldItem(ModItems.UNSTABLE_SWORD);
+        handheldItem(ModItems.UNSTABLE_PICKAXE);
+        handheldItem(ModItems.UNSTABLE_AXE);
+        handheldItem(ModItems.STABLE_SWORD);
+        handheldItem(ModItems.STABLE_PICKAXE);
+        handheldItem(ModItems.STABLE_AXE);
+        handheldItem(ModItems.DARKLIGHT_SWORD);
+        handheldItem(ModItems.DARKLIGHT_PICKAXE);
+        handheldItem(ModItems.DARKLIGHT_AXE);
+        handheldItem(ModItems.NOVA_SWORD);
+        handheldItem(ModItems.NOVA_PICKAXE);
+        handheldItem(ModItems.NOVA_AXE);
+        handheldItem(ModItems.ZENITH_SWORD);
+        handheldItem(ModItems.ZENITH_PICKAXE);
+        handheldItem(ModItems.ZENITH_AXE);
 
         // armors
         trimmedArmorItem(ModItems.DUALITY_HELMET);

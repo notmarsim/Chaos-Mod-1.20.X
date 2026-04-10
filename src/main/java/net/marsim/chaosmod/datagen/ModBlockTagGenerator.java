@@ -50,8 +50,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
         this.tag(ModTags.NEEDS_DUALITY_TOOL)
-                .add(ModBlocks.ANTIMATTER_BLOCK.get(),
-                ModBlocks.DARKLIGHT_ORE.get(),
-                ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
+                .add(ModBlocks.DARKLIGHT_ORE.get());
+
+        this.tag(ModTags.NEEDS_DARKLIGHT_TOOL)
+                .add(ModBlocks.ANTIMATTER_BLOCK.get());
+
+        this.tag(ModTags.NEEDS_NOVA_TOOL)
+                .add(ModBlocks.ZENITH_CRYSTAL_BLOCK.get());
     }
 }
+
+
