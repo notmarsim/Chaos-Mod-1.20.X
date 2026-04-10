@@ -98,10 +98,28 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.ZENITH_AXE);
 
         // armors
-        trimmedArmorItem(ModItems.DUALITY_HELMET);
-        trimmedArmorItem(ModItems.DUALITY_CHESTPLATE);
-        trimmedArmorItem(ModItems.DUALITY_LEGGINGS);
-        trimmedArmorItem(ModItems.DUALITY_BOOTS);
+        //trimmedArmorItem(ModItems.DUALITY_HELMET);
+        //trimmedArmorItem(ModItems.DUALITY_CHESTPLATE);
+        //trimmedArmorItem(ModItems.DUALITY_LEGGINGS);
+        //trimmedArmorItem(ModItems.DUALITY_BOOTS);
+
+        // armors (not trimmable)
+        simpleItem(ModItems.DUALITY_HELMET);
+        simpleItem(ModItems.DUALITY_CHESTPLATE);
+        simpleItem(ModItems.DUALITY_LEGGINGS);
+        simpleItem(ModItems.DUALITY_BOOTS);
+        simpleItem(ModItems.DARKLIGHT_HELMET);
+        simpleItem(ModItems.DARKLIGHT_CHESTPLATE);
+        simpleItem(ModItems.DARKLIGHT_LEGGINGS);
+        simpleItem(ModItems.DARKLIGHT_BOOTS);
+        simpleItem(ModItems.NOVA_HELMET);
+        simpleItem(ModItems.NOVA_CHESTPLATE);
+        simpleItem(ModItems.NOVA_LEGGINGS);
+        simpleItem(ModItems.NOVA_BOOTS);
+        simpleItem(ModItems.ZENITH_HELMET);
+        simpleItem(ModItems.ZENITH_CHESTPLATE);
+        simpleItem(ModItems.ZENITH_LEGGINGS);
+        simpleItem(ModItems.ZENITH_BOOTS);
 
         //block
         simpleBlockItemBlockTexture(ModBlocks.STELLAR_FLOWER);

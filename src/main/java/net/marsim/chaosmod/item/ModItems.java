@@ -144,6 +144,30 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DUALITY_BOOTS = ITEMS.register("duality_boots",
             () -> new ArmorItem(ModArmorMaterials.DUALITY, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_HELMET = ITEMS.register("darklight_helmet",
+            () -> new ArmorItem(ModArmorMaterials.DARKLIGHT, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_CHESTPLATE = ITEMS.register("darklight_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.DARKLIGHT, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_LEGGINGS = ITEMS.register("darklight_leggings",
+            () -> new ArmorItem(ModArmorMaterials.DARKLIGHT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> DARKLIGHT_BOOTS = ITEMS.register("darklight_boots",
+            () -> new ArmorItem(ModArmorMaterials.DARKLIGHT, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_HELMET = ITEMS.register("nova_helmet",
+            () -> new ArmorItem(ModArmorMaterials.NOVA, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_CHESTPLATE = ITEMS.register("nova_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.NOVA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_LEGGINGS = ITEMS.register("nova_leggings",
+            () -> new ArmorItem(ModArmorMaterials.NOVA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> NOVA_BOOTS = ITEMS.register("nova_boots",
+            () -> new ArmorItem(ModArmorMaterials.NOVA, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> ZENITH_HELMET = ITEMS.register("zenith_helmet",
+            () -> new ArmorItem(ModArmorMaterials.ZENITH, ArmorItem.Type.HELMET, new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ZENITH_CHESTPLATE = ITEMS.register("zenith_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.ZENITH, ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ZENITH_LEGGINGS = ITEMS.register("zenith_leggings",
+            () -> new ArmorItem(ModArmorMaterials.ZENITH, ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ZENITH_BOOTS = ITEMS.register("zenith_boots",
+            () -> new ArmorItem(ModArmorMaterials.ZENITH, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC)));
 
 
     // others

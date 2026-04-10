@@ -92,6 +92,19 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.DUALITY_CHESTPLATE.get());
                         output.accept(ModItems.DUALITY_LEGGINGS.get());
                         output.accept(ModItems.DUALITY_BOOTS.get());
+                        output.accept(ModItems.DARKLIGHT_HELMET.get());
+                        output.accept(ModItems.DARKLIGHT_CHESTPLATE.get());
+                        output.accept(ModItems.DARKLIGHT_LEGGINGS.get());
+                        output.accept(ModItems.DARKLIGHT_BOOTS.get());
+                        output.accept(ModItems.NOVA_HELMET.get());
+                        output.accept(ModItems.NOVA_CHESTPLATE.get());
+                        output.accept(ModItems.NOVA_LEGGINGS.get());
+                        output.accept(ModItems.NOVA_BOOTS.get());
+                        output.accept(ModItems.ZENITH_HELMET.get());
+                        output.accept(ModItems.ZENITH_CHESTPLATE.get());
+                        output.accept(ModItems.ZENITH_LEGGINGS.get());
+                        output.accept(ModItems.ZENITH_BOOTS.get());
+
 
                         // others
                         output.accept(ModItems.STELLAR_ESSENCE.get());
